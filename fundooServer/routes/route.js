@@ -10,7 +10,6 @@
  * Required Dependencies.
  */
 const express = require('express'); // Importing express module.
-const app = express(); // Creating constructor of express module.
 var router = express.Router(); // Creating router using express' router() function.
 
 // Importing the controller module to set the control for each request type.
@@ -21,9 +20,6 @@ router.post('/login', controller.loginController);
 
 // Using router.post() function for '/signup' request.
 router.post('/signup', controller.signupController);
-
-// Using router.post() function for '/home' request.
-router.post('/home', controller.chatController);
 
 // Exporting the router module.
 module.exports = router;

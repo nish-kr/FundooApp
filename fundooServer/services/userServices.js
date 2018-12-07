@@ -15,6 +15,8 @@ const usermodel = require('../app/model/userModel');
  */
 exports.loginService = (req, callback) => {
 
+    console.log("in login service");
+
     // Calling loginUser() function of usermodel passing the request.
     usermodel.loginUser(req, (err, data) => {
 
@@ -37,22 +39,6 @@ exports.signupService = (req, callback) => {
 
     // Calling signupUser() function of usermodel passing the request.
     usermodel.signupUser(req, (err, data) => {
-
-        // If any error occurs, callback the error
-        if (err) {
-            return callback(err);
-        } else {
-
-            // else callback the data.
-            return callback(null, data);
-        }
-    })
-}
-
-exports.chatService = (req, callback) => {
-
-    // Calling signupUser() function of usermodel passing the request.
-    usermodel.chatMessage(req, (err, data) => {
 
         // If any error occurs, callback the error
         if (err) {

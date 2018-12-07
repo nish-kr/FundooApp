@@ -1,39 +1,53 @@
-<form>
-    <div class="registerForm">
-      <label for="firstName">First Name</label>
-      <input id="firstName" name="firstName" type="text" placeholder="Last Name" class="registerControl">
-    </div>
+<div class="medium-list">
+    <div class="list-viewer-wrapper">
+      <div class="list-header-title">Register</div>
   
-    <div class="registerForm">
-      <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="registerControl">
-    </div>
+      <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+        <div class="form-container">
+          <mat-form-field>
+            <input id="firstName"
+                   matInput
+                   formControlName="firstName"
+                   [(ngModel)]="user.firstName"
+                   placeholder="Enter your First Name" 
+                   autocomplete="off"/>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input id="lastName"
+                   matInput
+                   formControlName="lastName"
+                   [(ngModel)]="user.lastName"
+                   placeholder="Enter your Name" 
+                   autocomplete="off"/>
+          </mat-form-field>
+
+          <mat-form-field>
+              <input id="email"
+                     matInput
+                     formControlName="email"
+                     [(ngModel)]="user.email"
+                     placeholder="Enter your email" 
+                     autocomplete="off"/>
+            </mat-form-field>
   
-    <div class="registerForm">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="email" class="registerControl">
-    </div>
+          <mat-form-field>
+              <input id="password"
+                     matInput
+                     formControlName="password"
+                     [(ngModel)]="user.password"
+                     placeholder="Enter your password"
+                     [type]="hide ? 'password':'text'" />
+                <mat-icon matSuffix (click)="hide = !hide">
+                  {{hide ? 'visibility' : 'visibility_off'}}
+                </mat-icon>
+            </mat-form-field>
   
-    <div class="registerForm">
-      <label for="username">Userame</label>
-      <input type="text" id="username" name="username" placeholder="Username" class="registerControl">
+            <button mat-button type="submit" 
+                    class="mat-raised-button mat-primary" 
+                    [disabled]="!registerForm.valid">Register</button>
+            <button mat-button routerLink="/login" class="divider">Login</button>
+        </div>
+      </form>
     </div>
-  
-    <div class="registerForm">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password" class="registerControl">
-    </div>
-  
-    <div class="registerForm">
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="registerControl">
-    </div>
-  
-    <div class="registerForm">
-      <button class="btm btnPrimary" value="Register" class="registerControl"></button>
-    </div>
-  
-    <div class="registerForm">
-      Already have an account?<a routerLink="/login">Login here.</a>
-    </div>
-  </form>
+  </div>

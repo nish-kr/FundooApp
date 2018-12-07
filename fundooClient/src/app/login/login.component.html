@@ -1,19 +1,62 @@
-<form>
-    <div class="loginForm">
-      <label for="username">Userame</label>
-      <input type="text" id="username" name="username" placeholder="Username" class="loginControl">
-    </div>
-  
-    <div class="loginForm">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password" class="loginControl">
-    </div>
+<!-- <form class="loginForm"> -->
 
-    <div class="loginForm">
-      <button class="btm btnPrimary" value="Register" class="loginControl"></button>
-    </div>
-  
-    <div class="loginForm">
-      Don't have an account? <a routerLink="/register">Register here.</a>
-    </div>
-  </form>
+  <!-- <mat-form-field class="inputForm">
+    <input matInput placeholder="Email" [formControl]="loginControl" [errorStateMatcher]="matcher">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="loginControl.hasError('email') && !loginControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="loginControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field> -->
+
+  <!-- <mat-form-field class="inputForm">
+      <input matInput placeholder="Email" [formControl]="loginControl"
+             [errorStateMatcher]="matcher">
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="loginControl.min-length(6) && !loginControl.hasError('required')">
+        Password length must be more than 6
+      </mat-error>
+      <mat-error *ngIf="loginControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field> -->
+
+<!-- </form> -->  
+
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">Login</div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+      <div class="form-container">
+
+        <mat-form-field>
+            <input id="email"
+                   matInput
+                   formControlName="email"
+                   [(ngModel)]="user.email"
+                   placeholder="Enter your email"
+                   autocomplete="off" />
+          </mat-form-field>
+
+        <mat-form-field>
+            <input id="password"
+                   matInput
+                   formControlName="password"
+                   [(ngModel)]="user.password"
+                   placeholder="Enter your password"
+                   autocomplete="off"
+                   [type]="hide ? 'password':'text'" />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+          </mat-form-field>
+
+          <button mat-button type="submit" 
+                  class="mat-raised-button mat-primary" 
+                  [disabled]="!registerForm.valid">Login</button>
+          <button mat-button routerLink="/register" class="divider">Register</button>
+      </div>
+    </form>
+  </div>
