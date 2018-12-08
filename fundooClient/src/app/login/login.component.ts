@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from "../models/login.model";
 import { HttpService } from "../http.service";
+import { Router } from '@angular/router';
 
 /** @title Input with a custom ErrorStateMatcher */
 @Component({
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
   user: LoginModel = new LoginModel();
   registerForm: FormGroup;
   hide = true;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private httpService: HttpService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -33,5 +38,22 @@ export class LoginComponent implements OnInit {
 
   onRegisterSubmit() {
     alert(this.user.email + ' ' + this.user.password);
+
+    var userData = {
+      email: this.user.email,
+      password: this.user.password
+    }
+
+    this.httpService.post(userData, "login").subscribe(
+      data => {
+        console.log("Login successful", data);
+        this.router.navigateByUrl('/dashboard');
+      },
+      error => {
+        console.log("Invalid Credentials! ", error);
+        alert('Invalid Credentials');
+      }
+    );
+
   }
 }

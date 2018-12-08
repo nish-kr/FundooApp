@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError,tap,map } from "rxjs/operators";
 import { ServerUrl } from './backend.url';
 
 @Injectable({
@@ -9,15 +7,22 @@ import { ServerUrl } from './backend.url';
 })
 
 export class HttpService {
-  url: ServerUrl = new ServerUrl();
+  private url = new ServerUrl().serverUrl;
   constructor(private http: HttpClient) { }
 
-  // registerUser(newUser: Object): Observable<Object> {
-  //   return this.http.post<Object>(this.url.registerUrl,newUser).pipe(
+  post(data: Object,
+    purpose: String
+  ) {
+    
+    return this.http.post(this.url+"/"+purpose, data);
+
+  }
+}
+
+
+//   return this.http.post<Object>(this.url.registerUrl,newUser).pipe(
   //     tap(console.log(`User Registered ${JSON.stringify(newUser)}`),
   //     catchError(console.log("Some service Error");
   //     )
   //     )
   //   )
-  // }
-}

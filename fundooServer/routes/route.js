@@ -19,7 +19,7 @@ const controller = require('../controller/userController');
 router.post('/login', controller.loginController);
 
 // Using router.post() function for '/signup' request.
-router.post('/signup', controller.signupController);
+router.post('/register', controller.signupController);
 
 // Exporting the router module.
 module.exports = router;
