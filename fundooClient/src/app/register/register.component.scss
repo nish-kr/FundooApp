@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+html {
+    background: url('../../assets/background.jpeg');
+}
+
+html,
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.list-viewer-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 8% auto;
+    color: rgb(0, 0, 0);
+    width: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.list-header-title {
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    background: rgb(0, 0, 0);
+    padding: 20px;
+    font-weight: bold;
+    align-content: center;
+}
+
+.form-container {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.57);
+    text-decoration-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 500px) {
+  .list-viewer-wrapper {
+    margin: 45% auto;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+    .list-viewer-wrapper {
+      margin: 38% auto;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .list-viewer-wrapper {
+      margin: 32% auto;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .list-viewer-wrapper {
+      margin: 26% auto;
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    .list-viewer-wrapper {
+      margin: 20% auto;
+    }
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .list-viewer-wrapper {
+      margin: 17% auto;
+    }
+  }

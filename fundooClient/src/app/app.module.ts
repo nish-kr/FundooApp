@@ -16,13 +16,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from "./material.module";
 import { MatButtonModule, MatCheckboxModule } from "@angular/material";
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { CofirmpasswordDirective } from './cofirmpassword.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotpasswordComponent,
+    ResetpasswordComponent,
+    CofirmpasswordDirective
   ],
   imports: [
     BrowserModule,

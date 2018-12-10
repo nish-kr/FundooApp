@@ -1,4 +1,3 @@
-<div class="medium-list">
     <div class="list-viewer-wrapper">
       <div class="list-header-title">Register</div>
   
@@ -42,6 +41,15 @@
                   {{hide ? 'visibility' : 'visibility_off'}}
                 </mat-icon>
             </mat-form-field>
+
+            <mat-form-field>
+              <input id="confirmPassword"
+                     matInput
+                     formControlName="confirmPassword"
+                     [(ngModel)]="user.confirmPassword"
+                     placeholder="Re-Enter password"
+                     type="password" />
+            </mat-form-field>
   
             <button mat-button type="submit" 
                     class="mat-raised-button mat-primary" 
@@ -50,4 +58,3 @@
         </div>
       </form>
     </div>
-  </div>

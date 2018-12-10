@@ -87,6 +87,7 @@ userDB.prototype.signupUser = (req, callback) => {
         } else {
 
             console.log("Data Updated! \n", newData);
+            
             // Returning the result.
             return callback(null, result);
         }

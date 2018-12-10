@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegisterSubmit() {
-    alert(this.user.email + ' ' + this.user.password);
-
+    
     var userData = {
       email: this.user.email,
       password: this.user.password
@@ -47,10 +46,16 @@ export class LoginComponent implements OnInit {
     this.httpService.post(userData, "login").subscribe(
       data => {
         console.log("Login successful", data);
+        // localStorage.setItem("tokenReceived", data.loginToken);
+        
+        // console.log("token on client side", localStorage.getItem("tokenReceived"));
+        
+        alert("Login Successful!");
         this.router.navigateByUrl('/dashboard');
       },
       error => {
         console.log("Invalid Credentials! ", error);
+        alert("Login Unsuccessful! Invalid Credentials!");
         alert('Invalid Credentials');
       }
     );

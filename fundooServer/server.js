@@ -19,6 +19,7 @@ const mongoose = require('mongoose'); // Importing mongoose module to connect to
 const url = require('./config/dbconfig'); // Importing dbconfig module to get the url of the database.
 const cors = require('cors') // Importing cors module to check the request timed out while reaching the host.
 const expressValidator = require('express-validator');
+// const nodemailer = require('nodemailer');
 
 // Using cors() function
 app.use(cors());

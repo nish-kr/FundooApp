@@ -21,5 +21,8 @@ router.post('/login', controller.loginController);
 // Using router.post() function for '/signup' request.
 router.post('/register', controller.signupController);
 
+// Using router.post() function for '/forgotPassword' request.
+router.post('/forgotPassword', controller.forgotPasswordController);
+
 // Exporting the router module.
 module.exports = router;

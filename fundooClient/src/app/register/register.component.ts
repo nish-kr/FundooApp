@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterModel } from "../models/register.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpService } from "../http.service";
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -37,13 +37,16 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(30)
+      ]],
+      'confirmPassword': [this.user.confirmPassword, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(30)
       ]]
     });
   }
 
   onRegisterSubmit() {
-
-    alert(this.user.firstName + ' ' + this.user.lastName + ' ' + this.user.email + ' ' + this.user.password);
 
     var userData = {
       firstName: this.user.firstName,
@@ -55,9 +58,11 @@ export class RegisterComponent implements OnInit {
     this.httpService.post(userData, "register").subscribe(
       data => {
         console.log("Data sent", data);
+        alert("Registration Successful");
         this.router.navigateByUrl('/login');
       },
       error => {
+        alert("Registration Unsuccessful! Invalid Input(s)!");
         console.log("Internal HTTP Error: ", error);
       }
     );

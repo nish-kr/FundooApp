@@ -9,6 +9,7 @@
 
 // Importing the server module to use the user services.
 const userService = require('../services/userServices');
+const jwt = require('jsonwebtoken');
 
 // Defining the loginController to process login requests & exporting it.
 exports.loginController = (req, res) => {
@@ -36,11 +37,22 @@ exports.loginController = (req, res) => {
 
                 // If the data fetched has  nothing in it, Return Unsuccessful.
                 if (data.length == 0) {
-                    res.status(404).send('Login UNSUCCESSFUL');
+
+                    res.status(404).send({
+                        status: false,
+                        message: "Login Unsuccessful!"
+                    });
                 } else {
 
-                    // Else return Login Successful.
-                    res.status(200).send(req.body);
+                    var token = jwt.sign({ id: data[0]._id }, "nish");
+
+                    console.log(token);
+
+                    res.status(200).send({
+                        status: true,
+                        loginToken: token,
+                        message: "Login Successful!"
+                    });
                 }
             }
         })
@@ -67,6 +79,41 @@ exports.signupController = (req, res) => {
 
         userService.signupService(req.body, (err, data) => {
 
+            // If error is found, send error back in the response.
+            if (err) {
+                res.status(404).send('Error');
+            }
+
+            // Else, send object of the data back in response.
+            else {
+
+                // Creating obj object to store just the email of the data.
+                const obj = {
+                    email: data.email
+                }
+
+                // Sending the object back in response.
+                res.status(200).send(obj);
+            }
+        })
+    }
+}
+
+exports.forgotPasswordController = (req, res) => {
+
+    req.checkBody('email', 'Email is not valid').isEmail();
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+
+        console.log("\n", errors, "\n");
+
+        res.status(500).send(errors[0].msg);
+
+    } else {
+
+        userService.forgotPasswordService(req.body, (err, data) => {
 
             // If error is found, send error back in the response.
             if (err) {
@@ -86,5 +133,4 @@ exports.signupController = (req, res) => {
             }
         })
     }
-
 }
