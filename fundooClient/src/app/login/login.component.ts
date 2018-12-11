@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from "../models/login.model";
 import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 
 /** @title Input with a custom ErrorStateMatcher */
 @Component({
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit() {
@@ -50,7 +53,9 @@ export class LoginComponent implements OnInit {
         
         // console.log("token on client side", localStorage.getItem("tokenReceived"));
         
-        alert("Login Successful!");
+        // alert("Login Successful!");
+        this.snackBar.open("Login Successful!", "Okay!", { duration: 2000 })
+
         this.router.navigateByUrl('/dashboard');
       },
       error => {

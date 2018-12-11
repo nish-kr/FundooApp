@@ -3,6 +3,8 @@ import { RegisterModel } from "../models/register.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
+import { MatSnackBar} from '@angular/material';
+
 
 @Component({
   selector: 'app-register',
@@ -14,11 +16,12 @@ export class RegisterComponent implements OnInit {
   user: RegisterModel = new RegisterModel();
   registerForm: FormGroup;
   hide = true;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -58,7 +61,8 @@ export class RegisterComponent implements OnInit {
     this.httpService.post(userData, "register").subscribe(
       data => {
         console.log("Data sent", data);
-        alert("Registration Successful");
+        // alert("Registration Successful");
+        this.snackBar.open("Registration Successful!", "Okay!", { duration: 2000 })
         this.router.navigateByUrl('/login');
       },
       error => {
@@ -66,5 +70,9 @@ export class RegisterComponent implements OnInit {
         console.log("Internal HTTP Error: ", error);
       }
     );
+  }
+
+  openSnackBar() {
+    this.snackBar.open("Login Page!", "Okay!", { duration: 2000 })
   }
 }

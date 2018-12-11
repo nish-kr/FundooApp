@@ -1,4 +1,4 @@
-  <div class="list-viewer-wrapper">
+  <div layout="column" layoutAlign="center center" class="list-viewer-wrapper">
     <div class="list-header-title">Login</div>
 
     <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
@@ -30,7 +30,7 @@
                   class="mat-raised-button mat-primary"
                   [disabled]="!registerForm.valid">Login</button>
           <button mat-button routerLink="/register" class="divider">Register</button>
-          <button mat-button routerLink="/forgotPassword" class="divider">Forgot Password?</button>
+          <!-- <button mat-button routerLink="/forgotPassword" class="divider">Forgot Password?</button> -->
       </div>
     </form>
   </div>
