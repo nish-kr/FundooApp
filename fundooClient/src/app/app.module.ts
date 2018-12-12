@@ -15,7 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from "./material.module";
-import { MatButtonModule, MatCheckboxModule } from "@angular/material";
+import { MatButtonModule, MatCheckboxModule, MatSidenavModule, MatInputModule, MatToolbarModule } from "@angular/material";
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { CofirmpasswordDirective } from './cofirmpassword.directive';
@@ -28,7 +28,7 @@ import { CofirmpasswordDirective } from './cofirmpassword.directive';
     RegisterComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
-    CofirmpasswordDirective
+    CofirmpasswordDirective,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +36,12 @@ import { CofirmpasswordDirective } from './cofirmpassword.directive';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatSidenavModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    MatInputModule,
+    HttpClientModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
