@@ -1,22 +1,26 @@
-// @import "~@angular/material/prebuilt-themes/purple-green.css";
-// html {
-//     background: url('../../assets/background.jpeg');
-// }
+@import "~@angular/material/prebuilt-themes/purple-green.css";
 
-// body {
-//     background-image: rgb(0, 0, 0);
-// }
+.matToolbar {
+    background: #6b6a60;
+}
 
-// .sidenavBarContents {
-//     text-decoration-color: black;
-//     display: flex;
-//     justify-content: flex-start;
-// }
+.searchIcon {
+    margin-left: 40px;
+}
 
-// .material-icons {
-    
-// }
+.searchBar {
+    width: 1000px;
+    padding: 14px;
+    margin-right: 20px;
+    border-radius: 7px;
+    border-style: hidden;
+    font-size: 18px;
+}
 
-// #search {
-//     text-decoration-color: dimgrey;
-// }
+.fundooNotes {
+    margin:10px;
+}
+
+.account {
+    margin-left:40px;
+}

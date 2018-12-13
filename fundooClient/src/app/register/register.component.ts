@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterModel } from "../models/register.model";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormGroupDirective, NgForm, FormControl } from '@angular/forms';
 import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
-import { MatSnackBar} from '@angular/material';
+import { MatSnackBar, ErrorStateMatcher } from '@angular/material';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -16,6 +24,7 @@ export class RegisterComponent implements OnInit {
   user: RegisterModel = new RegisterModel();
   registerForm: FormGroup;
   hide = true;
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,11 +51,10 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(30)
       ]],
       'confirmPassword': [this.user.confirmPassword, [
-        Validators.required,
         Validators.minLength(6),
         Validators.maxLength(30)
       ]]
-    });
+    },{ validator: this.checkPasswords });
   }
 
   onRegisterSubmit() {
@@ -74,5 +82,12 @@ export class RegisterComponent implements OnInit {
 
   openSnackBar() {
     this.snackBar.open("Login Page!", "Okay!", { duration: 2000 })
+  }
+
+  checkPasswords(group: FormGroup) {
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.confirmPassword.value;
+
+    return pass === confirmPass ? null : { notSame: true }
   }
 }

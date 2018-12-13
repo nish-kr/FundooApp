@@ -44,11 +44,16 @@
 
             <mat-form-field>
               <input id="confirmPassword"
+                    name="confirmPassword"
                      matInput
                      formControlName="confirmPassword"
+                     pattern="{{user.password}}"
                      [(ngModel)]="user.confirmPassword"
                      placeholder="Re-Enter password"
-                     type="password" />
+                     type="password"/>
+                     <mat-error *ngIf="registerForm.hasError('')">
+                        Passwords do not match
+                      </mat-error> 
             </mat-form-field>
   
             <button mat-button type="submit" 

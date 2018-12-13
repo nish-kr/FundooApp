@@ -13,7 +13,7 @@ import { RegisterComponent } from './register/register.component';
 
 /** Angular Material & Animations modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from "./material.module";
 import { MatButtonModule, MatCheckboxModule, MatSidenavModule, MatInputModule, MatToolbarModule } from "@angular/material";
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
@@ -41,7 +41,8 @@ import { CofirmpasswordDirective } from './cofirmpassword.directive';
     MaterialModule,
     MatInputModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

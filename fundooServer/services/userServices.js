@@ -13,10 +13,10 @@ const nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'nish.kr.node@gmail.com',
-        pass: 'Nish@123'
+        email: process.env.email,
+        pass: process.env.pass
     }
-})
+});
 
 /**
  * @description Creating login service function to fetch the request from the user and pass it to the database.
@@ -52,7 +52,7 @@ exports.signupService = (req, callback) => {
         } else {
 
             var mailOptions = {
-                from: 'nish.kr.node@gmail.com',
+                from: process.env.email,
                 to: req.email,
                 subject: 'Welcome to Fundoo Notes Application',
                 text: `Hi ${req.firstName},\n\nThank you for joining our application. We hope you like it.` +

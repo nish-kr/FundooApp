@@ -1,27 +1,29 @@
-<mat-toolbar>
-  <button mat-icon-button (click)="sidenav.toggle()">
+<mat-toolbar class="matToolbar">
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
     <mat-icon>menu</mat-icon>
   </button>
+  <img class="fundooNotes" src="../../assets/Icons/keep_48dp.png" (click)="sidenav.toggle()" matTooltip="Home"> Fundoo Notes
 
-  <button mat-icon-button>
+  <button class="searchIcon" mat-icon-button (click)="sidenav.toggle()" matTooltip="Search">
     <mat-icon>search</mat-icon>
-
   </button>
-  <mat-form-field>
-    <input #search matInput placeholder="Search" autocomplete="off" />
-  </mat-form-field>
-  <button mat-icon-button (click)="sidenav.toggle()">
+
+  <input class="searchBar" placeholder="Search" autocomplete="off" />
+
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Refresh">
     <mat-icon>refresh</mat-icon>
   </button>
-  <button mat-icon-button (click)="sidenav.toggle()">
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Grid/List View">
     <mat-icon>view_agenda</mat-icon>
   </button>
-  <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>view_compact</mat-icon>
-    </button>
-  <button mat-icon-button (click)="sidenav.toggle()">
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Settings">
     <mat-icon>settings</mat-icon>
   </button>
+
+  <button class="account" mat-icon-button (click)="sidenav.toggle()" matTooltip="Your Account">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
 
   <mat-sidenav-container class="sidenavBar">
     <mat-sidenav #sidenav mode="side" closed class="sidenavBarContents">
