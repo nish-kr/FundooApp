@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 // import { FormBuilder, FormGroup } from '@angular/forms';
 // import { MatSidenav } from '@angular/material';
+import { Router } from '@angular/router';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 
 @Component({
@@ -10,9 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  
+  constructor(
+    private router: Router,
+    media: MediaMatcher
+  ) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.router.navigateByUrl('/login');
   }
 
 }
