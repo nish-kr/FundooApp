@@ -34,7 +34,7 @@ function userDB() { }
 userDB.prototype.loginUser = (req, callback) => {
 
     // Using find function to fetch the data from the database based on the username.
-    user.find({ email: req.email }, function (err, data) {
+    user.findOne({ email: req.email }, function (err, data) {
 
         if (err) {
             console.log("Username Request Error");
@@ -42,10 +42,11 @@ userDB.prototype.loginUser = (req, callback) => {
         } else {
 
             // Checking if there is any data in the database of that username.
-            if (data.length > 0) {
-
+            if (data) {
+                console.log(data);
+                
                 // Cheking if 'res' is true, i.e. passwords are matched.
-                if (bcrypt.compareSync(req.password, data[0].password)) {
+                if (bcrypt.compareSync(req.password, data.password)) {
 
                     // Returning the data.
                     return callback(null, data);

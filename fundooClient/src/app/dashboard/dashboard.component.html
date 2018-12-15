@@ -23,10 +23,6 @@
   <button class="accountIcon" mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Your Account">
     <mat-icon>account_circle_outline</mat-icon>
   </button>
-
-  <!-- <button class="logoutIcon" mat-icon-button (click)="logout()" matTooltip="Logout">
-    <mat-icon>power_settings_new</mat-icon>
-  </button> -->
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenavBar">
@@ -66,7 +62,7 @@
 
 <div class="accountMenu">
   <mat-menu #menu="matMenu" class="accountMenu">
-    <button mat-menu-item class="accountMenu">Item 1</button>
+    <button mat-menu-item class="accountMenu"></button>
     <button mat-menu-item class="logoutIcon" (click)="logout()" matTooltip="Logout">
       <mat-icon>power_settings_new</mat-icon> Logout
     </button>

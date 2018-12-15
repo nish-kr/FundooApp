@@ -11,13 +11,14 @@
 const usermodel = require('../app/model/userModel');
 const nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    service: 'Gmail',
+    secure: false,
     auth: {
-        // email: process.env.email,
-        // pass: process.env.pass
-        type: 'login',
-        email: 'nish.kr.node@gmail.com',
-        pass: 'Nish@123'
+        user: process.env.user_id,
+        pass: process.env.password
+        // type: 'login',
+        // user: 'nish.kr.node@gmail.com',
+        // pass: 'Nish@123'
     }
 });
 
@@ -34,6 +35,8 @@ exports.loginService = (req, callback) => {
             return callback(err);
         } else {
 
+            console.log("data in service callbnack", data);
+            
             // else callback the data.
             return callback(null, data);
         }
@@ -53,12 +56,12 @@ exports.signupService = (req, callback) => {
         if (err) {
             return callback(err);
         } else {
-            console.log("email in env - ", process.env.email);
-            console.log("pass in env - ", process.env.pass);
+            console.log("user in env - ", process.env.user_id);
+            console.log("pass in env - ", process.env.password);
 
             var mailOptions = {
-                from: 'nish.kr.node@gmail.com',
-                // from: process.env.email,
+                // from: 'nish.kr.node@gmail.com',
+                from: process.env.user_id,
                 to: req.email,
                 subject: 'Welcome to Fundoo Notes Application',
                 text: `Hi ${req.firstName},\n\nThank you for joining our application. We hope you like it.` +

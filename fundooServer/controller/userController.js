@@ -36,7 +36,7 @@ exports.loginController = (req, res) => {
             } else {
 
                 // If the data fetched has  nothing in it, Return Unsuccessful.
-                if (data.length == 0) {
+                if (data == null) {
 
                     res.status(404).send({
                         status: false,
@@ -44,14 +44,19 @@ exports.loginController = (req, res) => {
                     });
                 } else {
 
-                    var token = jwt.sign({ id: data[0]._id }, "nish");
+                    var token = jwt.sign({ id: data._id }, "nish");
 
                     console.log(token);
 
+                    var name = data.firstName + " " + data.lastName;
+
+                    console.log(name);
+
                     res.status(200).send({
+                        name: name,
                         status: true,
                         loginToken: token,
-                        message: "Login Successful!"
+                        message: "Login Successful"
                     });
                 }
             }

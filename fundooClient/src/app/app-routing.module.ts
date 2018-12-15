@@ -17,7 +17,10 @@ import { ForgotpasswordComponent } from "./forgotpassword/forgotpassword.compone
     },
     { 
       path: 'dashboard',
-      component: DashboardComponent
+      component: DashboardComponent,
+      children:[
+        
+      ]
     },
     { 
       path: 'forgotPassword',

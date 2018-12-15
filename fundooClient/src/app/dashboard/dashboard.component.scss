@@ -20,16 +20,24 @@
 
 .sideNavList {
     width: 300px;
+    height: 98.6%;
     background-color: #ffffff;
 }
 
 .sideNavListItems {
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
     width: 300px;
     font-size: 18px;
-    padding: 20px;
+    padding: 35px;
     color: rgba(37, 37, 37, 0.8);
+}
+
+.labelTitle {
+    color: black;
+    margin-left: 20px;
+    font-size: 14px;
+    border-top: 20px black;
 }
 
 .sideNavListItems:hover {
@@ -74,5 +82,5 @@
 }
 
 .accountMenu {
-    background-color: #ffffff;
+    background-color: #909090;
 }

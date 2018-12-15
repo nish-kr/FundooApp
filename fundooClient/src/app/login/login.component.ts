@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
   user: LoginModel = new LoginModel();
   registerForm: FormGroup;
   hide = true;
+  userNameEmail={
+    name: String,
+    email: String
+  };
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpService,
@@ -48,7 +52,11 @@ export class LoginComponent implements OnInit {
 
     this.httpService.post(userData, "login").subscribe(
       data => {
-        console.log("Login successful", data);
+        let userNameEmail={
+          // name: data.name,
+          email: this.user.email
+        };
+        console.log("Login successful", userNameEmail, " ", data);
         // localStorage.setItem("tokenReceived", data.loginToken);
         
         // console.log("token on client side", localStorage.getItem("tokenReceived"));
@@ -64,6 +72,5 @@ export class LoginComponent implements OnInit {
         alert('Invalid Credentials');
       }
     );
-
   }
 }
