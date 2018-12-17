@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.httpService.post(userData, "login").subscribe(
-      data => {
+      (data) => {
         let userNameEmail={
           // name: data.name,
           email: this.user.email
@@ -59,14 +59,13 @@ export class LoginComponent implements OnInit {
         console.log("Login successful", userNameEmail, " ", data);
         // localStorage.setItem("tokenReceived", data.loginToken);
         
-        // console.log("token on client side", localStorage.getItem("tokenReceived"));
+        console.log("token on client side", localStorage.getItem("tokenReceived"));
         
-        // alert("Login Successful!");
         this.snackBar.open("Login Successful!", "Okay!", { duration: 2000 })
 
         this.router.navigateByUrl('/dashboard');
       },
-      error => {
+      (error) => {
         console.log("Invalid Credentials! ", error);
         alert("Login Unsuccessful! Invalid Credentials!");
         alert('Invalid Credentials');

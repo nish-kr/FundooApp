@@ -15,10 +15,17 @@ import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from "./material.module";
-import { MatButtonModule, MatCheckboxModule, MatSidenavModule, MatInputModule, MatToolbarModule } from "@angular/material";
+import {
+  MatButtonModule, MatCheckboxModule, MatSidenavModule,
+  MatInputModule, MatToolbarModule, MatExpansionModule
+} from "@angular/material";
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { CofirmpasswordDirective } from './cofirmpassword.directive';
+import { NotesComponent } from './notes/notes.component';
+import { RemindersComponent } from './reminders/reminders.component';
+import { ArchiveComponent } from './archive/archive.component';
+import { TrashComponent } from './trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +36,10 @@ import { CofirmpasswordDirective } from './cofirmpassword.directive';
     ForgotpasswordComponent,
     ResetpasswordComponent,
     CofirmpasswordDirective,
+    NotesComponent,
+    RemindersComponent,
+    ArchiveComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +53,8 @@ import { CofirmpasswordDirective } from './cofirmpassword.directive';
     MatInputModule,
     HttpClientModule,
     MatToolbarModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

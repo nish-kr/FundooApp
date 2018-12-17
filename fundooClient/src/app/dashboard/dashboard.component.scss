@@ -30,7 +30,16 @@
     width: 300px;
     font-size: 18px;
     padding: 35px;
+    background-color: #ffffff;
     color: rgba(37, 37, 37, 0.8);
+}
+
+.sideNavListItems:hover {
+    background-color: #e0e0e0;    
+}
+
+.sidenavContent {
+    background-color: rgb(65, 65, 65);
 }
 
 .labelTitle {
@@ -40,9 +49,6 @@
     border-top: 20px black;
 }
 
-.sideNavListItems:hover {
-    background-color: #e0e0e0;    
-}
 
 .menuIcon,
 .searchIcon,

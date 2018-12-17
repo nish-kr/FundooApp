@@ -1,0 +1,29 @@
+<!-- <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+     
+  </mat-expansion-panel>
+</mat-accordion> -->
+
+<div class="mainNotes">
+
+<div *ngIf="!isOpen">
+  <mat-form-field>
+    <input matInput placeholder="Take a note..." (click)="isOpen=true">
+  </mat-form-field>
+</div>
+
+<div *ngIf="isOpen">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Title">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <textarea matInput placeholder="Take a note..."></textarea>
+    </mat-form-field>
+  </div>
+</div>
+
+</div>

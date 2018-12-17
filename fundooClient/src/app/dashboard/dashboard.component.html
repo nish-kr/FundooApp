@@ -26,15 +26,15 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenavBar">
-  <mat-sidenav #sidenav mode="over" opened="true" style="min-width:50px;" class="sideNav">
+  <mat-sidenav #sidenav mode="side" opened="true" style="min-width:50px;" class="sideNav">
     <mat-nav-list class="sideNavList">
       <div>
-        <button class="sideNavListItems" mat-button>
+        <button class="sideNavListItems" mat-button [routerLink]="['notes']">
           <mat-icon>lightbulb_outline</mat-icon> Notes
         </button>
       </div>
       <div>
-        <button class="sideNavListItems" mat-button>
+        <button class="sideNavListItems" mat-button [routerLink]="['reminders']">
           <mat-icon>notifications_none</mat-icon> Reminders
         </button>
       </div>
@@ -44,19 +44,22 @@
         </button>
       </div>
       <div>
-        <button class="sideNavListItems" mat-button>
+        <button class="sideNavListItems" mat-button [routerLink]="['archive']">
           <mat-icon>archive</mat-icon> Archive
         </button>
       </div>
       <div>
-        <button class="sideNavListItems" mat-button>
+        <button class="sideNavListItems" mat-button [routerLink]="['trash']">
           <mat-icon>delete</mat-icon> Trash
         </button>
       </div>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    Sidenav content
+  <mat-sidenav-content class="sidenavContent">
+    <router-outlet></router-outlet>
+    <router-outlet name="reminders"></router-outlet>
+    <router-outlet name="archive"></router-outlet>
+    <router-outlet name="trash"></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
