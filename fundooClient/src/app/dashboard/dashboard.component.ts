@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,6 +12,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class DashboardComponent implements OnInit {
 
+  public icon = 'view_agenda_outline';
+  public view = 'List View';
   constructor(
     private router: Router,
     media: MediaMatcher
@@ -25,4 +26,13 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  toggleGridListIcon(){
+    if(this.icon==='view_agenda_outline'){
+      this.icon = 'view_module';
+      this.view = "Grid View";
+    }else {
+      this.icon = 'view_agenda_outline';
+      this.view = "List View";
+    }
+  }
 }

@@ -10,6 +10,7 @@
 // Importing usermodel to use the databse properties.
 const usermodel = require('../app/model/userModel');
 const nodemailer = require('nodemailer');
+const util = require('../Util/util');
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     secure: false,
@@ -35,8 +36,8 @@ exports.loginService = (req, callback) => {
             return callback(err);
         } else {
 
-            console.log("data in service callbnack", data);
-            
+            // console.log("data in service callbnack", data);
+
             // else callback the data.
             return callback(null, data);
         }
@@ -84,5 +85,28 @@ exports.signupService = (req, callback) => {
 }
 
 exports.forgotPasswordService = (req, callback) => {
+
+    let token = util.generateToken(req.email);
+
+    let request = {
+        email: req.email,
+        token: token
+    }
+
+    usermodel.forgotPassword(request, (err, data) => {
+        if (err) {
+            return callback(err);
+        } else {
+
+            let sendMailUserDetail = {
+                to: req.email,
+                subject: "FundooNotes Password Reset",
+                html: '<p>Click <a href = "'+ 'http://localhost:4200/resetPassword/' + token+ '">here</a> to activate account.</p>'
+            }
+
+            util.sendEmail(sendMailUserDetail);
+            return callback(null, data);
+        }
+    })
 
 }

@@ -1,29 +1,29 @@
-<!-- <mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-     
-  </mat-expansion-panel>
-</mat-accordion> -->
-
 <div class="mainNotes">
-
-<div *ngIf="!isOpen">
-  <mat-form-field>
-    <input matInput placeholder="Take a note..." (click)="isOpen=true">
-  </mat-form-field>
-</div>
-
-<div *ngIf="isOpen">
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Title">
-    </mat-form-field>
+  <div *ngIf="!isOpen" class="noteTitle">
+    <input placeholder="Take a note..." (click)="isOpen=true">
   </div>
-  <div>
-    <mat-form-field>
-      <textarea matInput placeholder="Take a note..."></textarea>
-    </mat-form-field>
+  <div *ngIf="isOpen">
+    <div class="noteTitle">
+      <textarea matTextareaAutosize placeholder="Title"></textarea>
+    </div>
+    <div class="noteContent">
+      <textarea matTextareaAutosize placeholder="Take a note..."></textarea>
+    </div>
+    <div>
+      <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
+        <mat-icon>notifications_active</mat-icon>
+      </button>
+      <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
+        <mat-icon>person_add_outline</mat-icon>
+      </button>
+      <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+        <mat-icon>color_lens</mat-icon>
+      </button>
+      <button class="archiveIcon" mat-icon-button matTooltip="Archive">
+        <mat-icon>archive</mat-icon>
+      </button>
+      <button class="closeButton" mat-button (click)="isOpen=false">Close
+      </button>
+    </div>
   </div>
-</div>
-
 </div>

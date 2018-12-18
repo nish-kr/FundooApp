@@ -1,5 +1,4 @@
-@import "~@angular/material/prebuilt-themes/purple-green.css";
-
+@import "../../../node_modules/@angular/material/theming";
 .matToolbar {
     text-emphasis-color: inherit;
     text-decoration-color: black;
@@ -35,11 +34,11 @@
 }
 
 .sideNavListItems:hover {
-    background-color: #e0e0e0;    
+    background-color: #e0e0e0;
 }
 
 .sidenavContent {
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(255, 255, 255);
 }
 
 .labelTitle {
@@ -49,7 +48,6 @@
     border-top: 20px black;
 }
 
-
 .menuIcon,
 .searchIcon,
 .refreshIcon,
@@ -58,8 +56,19 @@
 .accountIcon,
 .logoutIcon,
 .fundooNotesText {
-    color: rgba(110, 110, 110, 0.8);
-    border-color : transparent!important;
+    color: rgba(75, 75, 75, 0.8);
+    border-color: transparent !important;
+}
+
+.menuIcon:hover,
+.searchIcon:hover,
+.refreshIcon:hover,
+.viewIcon:hover,
+.settingsIcon:hover,
+.accountIcon:hover,
+.logoutIcon:hover,
+.fundooNotesText:hover {
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .searchIcon {
@@ -79,12 +88,12 @@
 }
 
 .fundooNotes {
-    margin-left:10px;
-    margin-right:10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.accountIcon{
-    margin-left:30px;
+.accountIcon {
+    margin-left: 30px;
 }
 
 .accountMenu {

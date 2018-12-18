@@ -19,8 +19,9 @@ var userSchema = new mongoose.Schema({
     lastName: String,
     email: String,
     userName: String,
-    password: String
-})
+    password: String,
+    token: String
+});
 
 // Defining model for mongoose using the userSchema.
 var user = mongoose.model('user', userSchema);
@@ -91,6 +92,20 @@ userDB.prototype.signupUser = (req, callback) => {
             
             // Returning the result.
             return callback(null, result);
+        }
+    })
+}
+
+userDB.prototype.forgotPassword = (req, callback) => {
+    user.findOneAndUpdate( {email:req.email}, {token:req.token}, (err, data) => {
+        if (err) {
+
+            return callback(err);
+        } else {
+
+            console.log("Data Updated! \n", data);
+            
+            return callback(null, data);
         }
     })
 }

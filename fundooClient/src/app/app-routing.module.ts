@@ -8,6 +8,7 @@ import { NotesComponent } from './notes/notes.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { TrashComponent } from './trash/trash.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 @NgModule({
@@ -47,6 +48,10 @@ import { TrashComponent } from './trash/trash.component';
         },
         
       ]
+    },
+    {
+      path: 'resetPassword',
+      component: ResetpasswordComponent
     },
     {
       path: 'forgotPassword',

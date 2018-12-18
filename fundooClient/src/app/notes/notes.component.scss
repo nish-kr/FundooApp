@@ -1,9 +1,30 @@
-// html, body {
-//     background-image: rgb(78, 78, 78);
-// }
+html, body {
+    background-image: rgb(255, 255, 255);
+}
 
 .mainNotes {
+    background-color: white;
+    border: 2px solid;
     width: 800px;
     margin-left: 150px;
     margin-right: 150px;
+    display: flex;
+}
+
+.reminderIcon,
+.collaboratorIcon,
+.changeColorIcon,
+.archiveIcon,
+.moreIcon,
+.closeButton {
+    color: rgba(0, 0, 0, 0.8);
+    border-color : transparent!important;
+}
+
+.noteTitle,
+.noteContent {
+    border: none;
+    max-height: 200px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }

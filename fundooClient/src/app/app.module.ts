@@ -54,7 +54,7 @@ import { TrashComponent } from './trash/trash.component';
     HttpClientModule,
     MatToolbarModule,
     FormsModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

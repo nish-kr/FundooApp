@@ -44,7 +44,7 @@ exports.loginController = (req, res) => {
                     });
                 } else {
 
-                    var token = jwt.sign({ id: data._id }, "nish");
+                    var token = jwt.sign({ id: data._id }, "nishant");
 
                     console.log(token);
 
