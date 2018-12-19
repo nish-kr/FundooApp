@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from "../models/login.model";
 import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-
+// import { DashboardComponent } from '../dashboard/dashboard.component';
 
 /** @title Input with a custom ErrorStateMatcher */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 
+@Injectable()
 export class LoginComponent implements OnInit {
 
   user: LoginModel = new LoginModel();
   registerForm: FormGroup;
   hide = true;
-  userNameEmail={
+  public userNameEmail = {
     name: String,
     email: String
   };
@@ -26,8 +27,9 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpService: HttpService,
     private router: Router,
-    private snackBar: MatSnackBar
-    ) { }
+    private snackBar: MatSnackBar,
+    // private dashboard: DashboardComponent
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegisterSubmit() {
-    
+
     var userData = {
       email: this.user.email,
       password: this.user.password
@@ -52,15 +54,20 @@ export class LoginComponent implements OnInit {
 
     this.httpService.post(userData, "login").subscribe(
       (data) => {
-        let userNameEmail={
-          // name: data.name,
-          email: this.user.email
-        };
-        console.log("Login successful", userNameEmail, " ", data);
-        // localStorage.setItem("tokenReceived", data.loginToken);
-        
+        // let userNameEmail = {
+        //   name: data.name,
+        //   email: this.user.email
+        // };
+        //  = userNameEmail;
+        // this.dashboard.name = userNameEmail.name;
+        console.log("Login successful", data);
+        localStorage.setItem("tokenReceived", JSON.stringify(data));
+
         console.log("token on client side", localStorage.getItem("tokenReceived"));
-        
+
+        this.userNameEmail.name = JSON.parse(localStorage.getItem("tokenReceived")).name;
+        this.userNameEmail.email = JSON.parse(this.user.email);
+
         this.snackBar.open("Login Successful!", "Okay!", { duration: 2000 })
 
         this.router.navigateByUrl('/dashboard');

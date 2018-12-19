@@ -11,15 +11,18 @@
 
   <input class="searchBar" placeholder="Search" autocomplete="off" />
 
-  <button class="refreshIcon" mat-icon-button (click)="sidenav.toggle()" matTooltip="Refresh">
+  <!-- <button class="refreshIcon" mat-icon-button (click)="sidenav.toggle()" matTooltip="Refresh">
     <mat-icon>refresh</mat-icon>
-  </button>
+  </button> -->
+
   <button class="viewIcon" mat-icon-button matTooltip="{{view}}">
-    <mat-icon (click)="toggleGridListIcon()" >{{icon}}</mat-icon>
+    <mat-icon (click)="toggleGridListIcon()">{{icon}}</mat-icon>
   </button>
+
   <!-- <button class="settingsIcon" mat-icon-button (click)="sidenav.toggle()" matTooltip="Settings">
     <mat-icon>settings</mat-icon>
   </button> -->
+
   <button class="accountIcon" mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Your Account">
     <mat-icon>account_circle_outline</mat-icon>
   </button>
@@ -65,7 +68,8 @@
 
 <div class="accountMenu">
   <mat-menu #menu="matMenu" class="accountMenu">
-    <button mat-menu-item class="accountMenu"></button>
+    <button mat-menu-item class="accountMenu"> {{name}} </button>
+    <button mat-menu-item class="accountMenu"> {{email}} </button>
     <button mat-menu-item class="logoutIcon" (click)="logout()" matTooltip="Logout">
       <mat-icon>power_settings_new</mat-icon> Logout
     </button>

@@ -27,10 +27,17 @@
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     width: 300px;
-    font-size: 18px;
-    padding: 35px;
+    font-size: 16px;
+    padding: 15px;
     background-color: #ffffff;
     color: rgba(37, 37, 37, 0.8);
+    align-items: baseline;
+    text-align: left;
+}
+
+.sideNavListItems .mat-icon {
+    padding-left: 10px;
+    padding-right: 30px;
 }
 
 .sideNavListItems:hover {
@@ -39,6 +46,9 @@
 
 .sidenavContent {
     background-color: rgb(255, 255, 255);
+    // max-width: 600px;
+    max-width: -webkit-fill-available;
+    margin-left: 200px;
 }
 
 .labelTitle {
