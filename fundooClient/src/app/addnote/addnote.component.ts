@@ -5,12 +5,11 @@ import { MatSnackBar } from '@angular/material';
 import { NotesModel } from "../models/notes.model";
 
 @Component({
-  selector: 'app-notes',
-  templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss']
+  selector: 'app-addnote',
+  templateUrl: './addnote.component.html',
+  styleUrls: ['./addnote.component.scss']
 })
-
-export class NotesComponent implements OnInit {
+export class AddnoteComponent implements OnInit {
 
   notes: NotesModel = new NotesModel();
   title: String;
@@ -61,4 +60,5 @@ export class NotesComponent implements OnInit {
       console.log("Empty note!");
     }
   }
+
 }

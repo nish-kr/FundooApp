@@ -1,0 +1,35 @@
+<div class="mainNotes">
+    <div *ngIf="!isOpen">
+      <div class="noteTitle">
+        <textarea matTextareaAutosize placeholder="Take a note..." (click)="isOpen=true"></textarea>
+      </div>
+    </div>
+    <div *ngIf="isOpen">
+      <div class="noteTitle">
+        <textarea matTextareaAutosize placeholder="Title" [(ngModel)]="notes.title"></textarea>
+      </div>
+      <div class="noteContent">
+        <textarea matTextareaAutosize required placeholder="Take a note..." [(ngModel)]="notes.note"></textarea>
+      </div>
+      <div class="notesIcons">
+        <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
+          <mat-icon>notifications_active</mat-icon>
+        </button>
+        <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
+          <mat-icon>person_add_outline</mat-icon>
+        </button>
+        <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+          <mat-icon>color_lens</mat-icon>
+        </button>
+        <button class="archiveIcon" mat-icon-button matTooltip="Archive">
+          <mat-icon>archive</mat-icon>
+        </button>
+        <button class="closeButton" mat-button (click)="addNote()" (click)="isOpen=false">Close
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+    
+  </div>

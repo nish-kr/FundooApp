@@ -1,4 +1,9 @@
 export class NotesModel {
     title: String;
-    text: String;
+    note: String;
+    reminder: String;
+    pin: Boolean;
+    trash: Boolean;
+    archive: Boolean;
+    color: String;
 }

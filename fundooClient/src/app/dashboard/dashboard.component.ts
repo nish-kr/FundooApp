@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 // import { FormBuilder, FormGroup } from '@angular/forms';
 // import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [LoginComponent]
+  providers: [LoginComponent],
+  // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   public icon = 'view_agenda_outline';
@@ -23,16 +23,18 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // let userCredentials = JSON.parse(localStorage.getItem("data recieved"));
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
 
-    let userCredentials = this.login.userNameEmail;
-    this.name = JSON.stringify(userCredentials.name);
-    this.email = JSON.stringify(userCredentials.email);
+    // let userCredentials = this.login.userNameEmail;
+    this.name = userCredentials.name;
+    this.email = userCredentials.email;
 
   }
 
   logout() {
     this.router.navigateByUrl('/login');
+    console.log(localStorage.getItem('loginToken'));
+    localStorage.clear();
   }
 
   toggleGridListIcon() {

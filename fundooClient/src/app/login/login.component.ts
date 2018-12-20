@@ -61,12 +61,12 @@ export class LoginComponent implements OnInit {
         //  = userNameEmail;
         // this.dashboard.name = userNameEmail.name;
         console.log("Login successful", data);
-        localStorage.setItem("tokenReceived", JSON.stringify(data));
+        localStorage.setItem("loginToken", JSON.stringify(data));
 
-        console.log("token on client side", localStorage.getItem("tokenReceived"));
+        console.log("token on client side", localStorage.getItem("loginToken"));
 
-        this.userNameEmail.name = JSON.parse(localStorage.getItem("tokenReceived")).name;
-        this.userNameEmail.email = JSON.parse(this.user.email);
+        this.userNameEmail.name = JSON.parse(localStorage.getItem("loginToken")).name;
+        // this.userNameEmail.email = JSON.parse(this.user.email);
 
         this.snackBar.open("Login Successful!", "Okay!", { duration: 2000 })
 

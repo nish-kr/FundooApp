@@ -9,6 +9,7 @@ import { RemindersComponent } from './reminders/reminders.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { TrashComponent } from './trash/trash.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { AddnoteComponent } from './addnote/addnote.component';
 
 
 @NgModule({
@@ -27,26 +28,37 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
       children: [
         {
           path: '',
-          component: NotesComponent
+          component: AddnoteComponent
         },
         {
-          path: 'notes',
-          component: NotesComponent
-        },  
+          path: 'addNote',
+          component: AddnoteComponent,
+          // outlet: "addNote",
+          children: [
+            {
+              path: 'notes',
+              component: NotesComponent,
+              // outlet: "notes"
+            }
+          ]
+        },
+
         {
           path: 'reminders',
-          component: RemindersComponent
-
+          component: RemindersComponent,
+          // outlet: "reminders"
         },
         {
           path: 'archive',
-          component: ArchiveComponent
+          component: ArchiveComponent,
+          // outlet: "archive"
         },
         {
           path: 'trash',
-          component: TrashComponent
+          component: TrashComponent,
+          // outlet: "trash"
         },
-        
+
       ]
     },
     {

@@ -13,16 +13,21 @@ const express = require('express'); // Importing express module.
 var router = express.Router(); // Creating router using express' router() function.
 
 // Importing the controller module to set the control for each request type.
-const controller = require('../controller/userController');
+const userController = require('../controller/userController');
+const notesController = require('../controller/notesController');
+
+const notesMiddleware = require('../middleware/notesMiddleware');
 
 // Using router.post() function for '/login' request.
-router.post('/login', controller.loginController);
+router.post('/login', userController.loginController);
 
 // Using router.post() function for '/signup' request.
-router.post('/register', controller.signupController);
+router.post('/register', userController.signupController);
 
 // Using router.post() function for '/forgotPassword' request.
-router.post('/forgotPassword', controller.forgotPasswordController);
+router.post('/forgotPassword', userController.forgotPasswordController);
+
+router.post('/addNote', notesMiddleware.addNoteMiddleware, notesController.addNoteController);
 
 // Exporting the router module.
 module.exports = router;

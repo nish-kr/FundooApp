@@ -53,6 +53,8 @@ exports.loginController = (req, res) => {
                     console.log(name);
 
                     res.status(200).send({
+                        userId: data._id,
+                        email: data.email,
                         name: name,
                         status: true,
                         loginToken: token,

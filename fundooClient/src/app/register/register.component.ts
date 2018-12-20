@@ -5,14 +5,14 @@ import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
 import { MatSnackBar, ErrorStateMatcher } from '@angular/material';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+// export class MyErrorStateMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+//     const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
 
-    return (invalidCtrl || invalidParent);
-  }
-}
+//     return (invalidCtrl || invalidParent);
+//   }
+// }
 
 @Component({
   selector: 'app-register',
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   user: RegisterModel = new RegisterModel();
   registerForm: FormGroup;
   hide = true;
-  matcher = new MyErrorStateMatcher();
+  // matcher = new MyErrorStateMatcher();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) { }
-
+ 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       'firstName': [this.user.firstName, [
