@@ -65,4 +65,22 @@ notesDB.prototype.addNote = (req, callback) => {
     })
 }
 
+notesDB.prototype.getNotes = (req, callback) => {
+
+    notes.find({ userId: req.userId }, function (err, data) {
+
+        if (err) {
+            console.log("Username Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
 module.exports = new notesDB;

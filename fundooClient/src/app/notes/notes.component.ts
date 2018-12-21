@@ -53,6 +53,7 @@ export class NotesComponent implements OnInit {
           console.log("Internal HTTP Error: ", error);
         }
       )
+
       console.log(this.notes.title, " title ", this.notes.note);
       this.notes.title = null;
       this.notes.note = null;
@@ -60,5 +61,20 @@ export class NotesComponent implements OnInit {
     } else {
       console.log("Empty note!");
     }
+  }
+
+  getNotes() {
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+
+    var getNotesObj = {
+      userId: userCredentials.userId,
+      token: userCredentials.loginToken
+    }
+
+    this.httpService.post(getNotesObj, 'getNotes').subscribe(
+      data => {
+        console.log(data);
+      }
+    )
   }
 }

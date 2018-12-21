@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 // import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { AddnoteComponent } from "../addnote/addnote.component";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [LoginComponent],
+  providers: [LoginComponent, AddnoteComponent]
   // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     // media: MediaMatcher,
     public login: LoginComponent,
+    public addNote: AddnoteComponent
   ) { }
 
   ngOnInit() {
@@ -39,11 +41,19 @@ export class DashboardComponent implements OnInit {
 
   toggleGridListIcon() {
     if (this.icon === 'view_agenda_outline') {
-      this.icon = 'view_module';
+      this.icon = 'dashboard';
       this.view = "Grid View";
+      this.addNote.rowCol = "row";
+      // this.addNote.getNotes();
+      console.log(this.addNote.rowCol);
+
     } else {
       this.icon = 'view_agenda_outline';
       this.view = "List View";
+      this.addNote.rowCol = "column";
+      // this.addNote.getNotes();
+      console.log(this.addNote.rowCol);
+
     }
   }
 }
