@@ -1,39 +1,39 @@
 html,
-body {
-    background-image: rgb(255, 255, 255);
-}
+// body {
+//     background-image: rgb(255, 255, 255);
+// }
 
-.mainNotes {
-    background-color: white; // border: 2px solid;
-    width: 600px;
-    margin-left: 150px;
-    margin-right: 150px;
-    display: flex;
-    border: 2px solid rgb(223, 223, 223);
-    border-radius: 10px;
-    box-shadow: 5px;
-}
+// .mainNotes {
+//     background-color: white; // border: 2px solid;
+//     width: 600px;
+//     margin-left: 150px;
+//     margin-right: 150px;
+//     display: flex;
+//     border: 2px solid rgb(223, 223, 223);
+//     border-radius: 10px;
+//     box-shadow: 5px;
+// }
 
-.noteTitle,
-.noteContent {
-    margin-left: 5px;
-    margin-top: 4px;
-    margin-bottom: none;
-    border: none;
-    max-height: 200px;
-    overflow-y: overlay;
-}
+// .noteTitle,
+// .noteContent {
+//     margin-left: 5px;
+//     margin-top: 4px;
+//     margin-bottom: none;
+//     border: none;
+//     max-height: 200px;
+//     overflow-y: overlay;
+// }
 
-/deep/ textarea.cdk-textarea-autosize {
-    resize: none;
-    border: none;
-    outline: none;
-    min-width: 575px;
-    font-family: sans-serif;
-    font-size: medium;
-    padding: 10px;
-    overflow-y: hidden;
-}
+// /deep/ textarea.cdk-textarea-autosize {
+//     resize: none;
+//     border: none;
+//     outline: none;
+//     min-width: 575px;
+//     font-family: sans-serif;
+//     font-size: medium;
+//     padding: 10px;
+//     overflow-y: hidden;
+// }
 
 .notesIcons {
     margin-left: 5px;
@@ -46,18 +46,32 @@ body {
 .archiveIcon,
 .moreIcon {
     color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
-    margin-right: 18px;
+    margin-right: 5px;
 }
 
-.closeButton {
-    color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
-    margin-right: 0;
-    margin-left: 280px;
+/deep/ .mat-icon-button .mat-icon {
+    font-size: 20px;
 }
 
-.closeButton:hover {
-    background-color: rgb(230, 230, 230);
+
+.notes {
+    display: inherit;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    transition-delay: 1000ms;
+    transition: all;
+    animation-delay: 1000ms;
 }
+
+.notesIcons {
+    display: none;
+}
+
+.notes:hover .notesIcons {
+    display: block;
+}
+
 
 /deep/ .mat-icon-button .mat-icon {
     font-size: 20px;

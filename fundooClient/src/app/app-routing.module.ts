@@ -33,30 +33,18 @@ import { AddnoteComponent } from './addnote/addnote.component';
         {
           path: 'addNote',
           component: AddnoteComponent,
-          // outlet: "addNote",
-          children: [
-            {
-              path: 'notes',
-              component: NotesComponent,
-              // outlet: "notes"
-            }
-          ]
         },
-
         {
           path: 'reminders',
           component: RemindersComponent,
-          // outlet: "reminders"
         },
         {
           path: 'archive',
           component: ArchiveComponent,
-          // outlet: "archive"
         },
         {
           path: 'trash',
           component: TrashComponent,
-          // outlet: "trash"
         },
 
       ]

@@ -26,7 +26,7 @@ export class AddnoteComponent implements OnInit {
 
   ngOnInit() {
     const isOpen = false;
-    this.getNotes();
+    // this.getNotes();
   }
 
   addNote() {
@@ -66,23 +66,23 @@ export class AddnoteComponent implements OnInit {
     }
   }
 
-  getNotes() {
-    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-    this.rowCol = "row";
-    var getNotesObj = {
-      userId: userCredentials.userId,
-      token: userCredentials.loginToken
-    }
+  // getNotes() {
+  //   let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+  //   this.rowCol = "row";
+  //   var getNotesObj = {
+  //     userId: userCredentials.userId,
+  //     token: userCredentials.loginToken
+  //   }
 
-    this.httpService.post(getNotesObj, 'getNotes').subscribe(
-      data => {
-        this.data = data;
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  //   this.httpService.post(getNotesObj, 'getNotes').subscribe(
+  //     data => {
+  //       this.data = data;
+  //       console.log(data);
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
 }

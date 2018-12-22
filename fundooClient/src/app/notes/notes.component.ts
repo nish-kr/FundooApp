@@ -15,6 +15,8 @@ export class NotesComponent implements OnInit {
   notes: NotesModel = new NotesModel();
   title: String;
   note: String;
+  data:any;
+  rowCol:any;
   constructor(
     private httpService: HttpService,
     private router: Router,
@@ -23,6 +25,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     const isOpen = false;
+    this.getNotes();
   }
 
   addNote() {
@@ -65,7 +68,7 @@ export class NotesComponent implements OnInit {
 
   getNotes() {
     let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-
+    this.rowCol = "row";
     var getNotesObj = {
       userId: userCredentials.userId,
       token: userCredentials.loginToken
@@ -73,7 +76,11 @@ export class NotesComponent implements OnInit {
 
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
+        this.data = data;
         console.log(data);
+      },
+      error => {
+        console.log(error);
       }
     )
   }
