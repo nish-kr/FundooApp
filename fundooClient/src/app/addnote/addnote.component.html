@@ -24,9 +24,11 @@
       <button class="archiveIcon" mat-icon-button matTooltip="Archive">
         <mat-icon>archive</mat-icon>
       </button>
-      <button class="closeButton" mat-button (click)="addNote()" (click)="getNotes()" (click)="isOpen=false">Close
+      <button class="closeButton" mat-button (click)="addNote()" (click)="isOpen=false">Close
       </button>
     </div>
   </div>
 </div>
-<app-notes></app-notes>
+<div class="notes">
+  <app-notes #child></app-notes>
+</div>
