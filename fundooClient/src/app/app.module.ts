@@ -18,7 +18,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from "./material.module";
 import {
   MatButtonModule, MatCheckboxModule, MatSidenavModule,
-  MatInputModule, MatToolbarModule, MatExpansionModule
+  MatInputModule, MatToolbarModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule
 } from "@angular/material";
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
@@ -58,7 +58,9 @@ import { AddnoteComponent } from './addnote/addnote.component';
     MatToolbarModule,
     FormsModule,
     MatExpansionModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

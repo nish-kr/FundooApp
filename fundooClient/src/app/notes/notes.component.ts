@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { MatSnackBar } from '@angular/material';
+import { ChangeviewService } from '../changeview.service';
 
 @Component({
   selector: 'app-notes',
@@ -10,22 +11,20 @@ import { MatSnackBar } from '@angular/material';
 
 export class NotesComponent implements OnInit {
 
-  // @Input() noteData: any;
-
   data: any;
-  rowCol: any;
+  rowCol: any = "column";
   constructor(
     private httpService: HttpService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private view: ChangeviewService
   ) { }
 
   ngOnInit() {
-    // this.getNotes();
+    this.view.currentMessage.subscribe(message => this.rowCol = message)
   }
 
   getNotes() {
     let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-    this.rowCol = "row";
     var getNotesObj = {
       userId: userCredentials.userId,
       token: userCredentials.loginToken

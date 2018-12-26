@@ -4,6 +4,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { AddnoteComponent } from "../addnote/addnote.component";
+import { ChangeviewService } from '../changeview.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -13,24 +15,25 @@ import { AddnoteComponent } from "../addnote/addnote.component";
   // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-  public icon = 'view_agenda_outline';
+  public icon = 'dashboard';
   public name: String;
   public email: String;
-  public view = 'List View';
+  public viewToolTip = 'Grid View';
+  public view = 'row';
   constructor(
     private router: Router,
     // media: MediaMatcher,
     public login: LoginComponent,
-    public addNote: AddnoteComponent
+    public addNote: AddnoteComponent,
+    private data: ChangeviewService
   ) { }
 
   ngOnInit() {
     let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-
+    this.data.currentMessage.subscribe(message => this.view = message);
     // let userCredentials = this.login.userNameEmail;
     this.name = userCredentials.name;
     this.email = userCredentials.email;
-
   }
 
   logout() {
@@ -42,18 +45,15 @@ export class DashboardComponent implements OnInit {
   toggleGridListIcon() {
     if (this.icon === 'view_agenda_outline') {
       this.icon = 'dashboard';
-      this.view = "Grid View";
-      this.addNote.rowCol = "row";
-      // this.addNote.getNotes();
-      console.log(this.addNote.rowCol);
+      this.viewToolTip = "Grid View";
+      this.data.changeMessage("row");
+      // console.log("row");
 
     } else {
       this.icon = 'view_agenda_outline';
-      this.view = "List View";
-      this.addNote.rowCol = "column";
-      // this.addNote.getNotes();
-      console.log(this.addNote.rowCol);
-
+      this.viewToolTip = "List View";
+      this.data.changeMessage("column");
+      // console.log("column");
     }
   }
 }
