@@ -17,3 +17,21 @@ exports.getNotesMiddleware = (req, res, next) => {
         next();
     }
 }
+
+exports.archiveNoteMiddleware = (req, res, next) => {
+    console.log('archiveNote middleware');
+    
+    // If the body of the request is not null, then only next() will be called.
+    if (req.body != null) {
+        next();
+    }
+}
+
+exports.deleteNoteMiddleware = (req, res, next) => {
+    console.log('deleteNote middleware');
+    
+    // If the body of the request is not null, then only next() will be called.
+    if (req.body != null) {
+        next();
+    }
+}

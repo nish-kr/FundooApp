@@ -19,6 +19,7 @@ export class NotesComponent implements OnInit {
     private view: ChangeviewService
   ) { }
 
+  
   ngOnInit() {
     this.view.currentMessage.subscribe(message => this.rowCol = message)
   }
@@ -32,6 +33,7 @@ export class NotesComponent implements OnInit {
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;
+        console.log('notesComponent: ',data);
       },
       error => {
         console.log(error);

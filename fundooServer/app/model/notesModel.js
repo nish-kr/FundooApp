@@ -83,4 +83,42 @@ notesDB.prototype.getNotes = (req, callback) => {
     });
 }
 
+notesDB.prototype.archiveNote = (req, callback) => {
+    notes.findByIdAndUpdate(req._id,{archive: req.archive}, function (params) {
+        
+    })
+    notes.findOneAndUpdate({ _id: req._id },{archive: req.archive}, function (err, data) {
+
+        if (err) {
+            console.log("Username Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.deleteNote = (req, callback) => {
+
+    notes.find({ userId: req.userId }, function (err, data) {
+
+        if (err) {
+            console.log("Username Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
 module.exports = new notesDB;

@@ -32,5 +32,9 @@ router.post('/addNote', notesMiddleware.addNoteMiddleware, notesController.addNo
 
 router.post('/getNotes', notesMiddleware.addNoteMiddleware, notesController.getNotesController);
 
+router.post('/deleteNote', notesMiddleware.deleteNoteMiddleware, notesController.deleteNoteController);
+
+router.post('/archiveNote', notesMiddleware.archiveNoteMiddleware, notesController.archiveNoteController);
+
 // Exporting the router module.
 module.exports = router;
