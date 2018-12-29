@@ -8,38 +8,40 @@
       {{item.note}}
     </div>
   </mat-card> -->
-    <mat-card *ngFor="let item of data" [ngClass]="{'matCardGrid': rowCol=='row',
-    'matCardList': rowCol=='column'}">
-      <div class="noteCard">
-        <div>
-          <mat-card-header>
-            <mat-card-title>{{item.title}}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content> {{item.note}} </mat-card-content>
-        </div>
-        <!-- <mat-card-actions align="start">
+    <div *ngFor="let item of data">
+      <mat-card *ngIf="item.archive" [ngClass]="{'matCardGrid': rowCol=='row',
+  'matCardList': rowCol=='column'}">
+        <div class="noteCard">
+          <div>
+            <mat-card-header>
+              <mat-card-title>{{item.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content> {{item.note}} </mat-card-content>
+          </div>
+          <!-- <mat-card-actions align="start">
           <button mat-button (click)="onAction1">Action1</button>
       </mat-card-actions> -->
-        <mat-card-footer class="matCardFooter">
-          <div class="notesIcons">
-            <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
-              <mat-icon>notifications_active</mat-icon>
-            </button>
-            <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
-              <mat-icon>person_add</mat-icon>
-            </button>
-            <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
-              <mat-icon>color_lens</mat-icon>
-            </button>
-            <button class="archiveIcon" mat-icon-button matTooltip="Archive">
-              <mat-icon>archive</mat-icon>
-            </button>
-            <button class="deleteIcon" mat-icon-button matTooltip="Delete">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </mat-card-footer>
-      </div>
-    </mat-card>
+          <mat-card-footer class="matCardFooter">
+            <div class="notesIcons">
+              <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
+                <mat-icon>notifications_active</mat-icon>
+              </button>
+              <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
+                <mat-icon>person_add</mat-icon>
+              </button>
+              <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+              <button class="archiveIcon" mat-icon-button matTooltip="Unarchive" (click)="unarchiveNote(item)">
+                <mat-icon>unarchive</mat-icon>
+              </button>
+              <button class="deleteIcon" mat-icon-button matTooltip="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-card-footer>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -1,3 +1,38 @@
-<p>
-  trash works!
-</p>
+<div class="notesDiv">
+  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="20px">
+    <!-- <mat-card *ngFor="let item of data">
+    <div>
+      {{item.title}}
+    </div>
+    <div>
+      {{item.note}}
+    </div>
+  </mat-card> -->
+    <div *ngFor="let item of data">
+      <mat-card *ngIf="item.trash" [ngClass]="{'matCardGrid': rowCol=='row',
+  'matCardList': rowCol=='column'}">
+        <div class="noteCard">
+          <div>
+            <mat-card-header>
+              <mat-card-title>{{item.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content> {{item.note}} </mat-card-content>
+          </div>
+          <!-- <mat-card-actions align="start">
+          <button mat-button (click)="onAction1">Action1</button>
+      </mat-card-actions> -->
+          <mat-card-footer class="matCardFooter">
+            <div class="notesIcons">
+              <button class="archiveIcon" mat-icon-button matTooltip="Delete Forever">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button class="deleteIcon" mat-icon-button matTooltip="Restore" (click)="restoreNote(item)">
+                <mat-icon>restore_from_trash</mat-icon>
+              </button>
+            </div>
+          </mat-card-footer>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

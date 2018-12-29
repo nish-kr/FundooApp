@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
+import { MatSnackBar } from '@angular/material';
+import { ChangeviewService } from '../changeview.service';
 
 @Component({
   selector: 'app-trash',
@@ -7,9 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrashComponent implements OnInit {
 
-  constructor() { }
+  data: any;
+  rowCol: any = "column";
+  constructor(
+    private httpService: HttpService,
+    private snackBar: MatSnackBar,
+    private view: ChangeviewService
+  ) { }
 
   ngOnInit() {
+    this.view.currentMessage.subscribe(message => this.rowCol = message);
+    this.getNotes();
+  }
+
+  getNotes() {
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+    var getNotesObj = {
+      userId: userCredentials.userId,
+      token: userCredentials.loginToken
+    }
+    this.httpService.post(getNotesObj, 'getNotes').subscribe(
+      data => {
+        this.data = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  restoreNote(item) {
+    // console.log(item);
+    item.trash=false;
+    console.log(item);
+    this.httpService.post(item, 'deleteNote').subscribe(
+      data => {
+        console.log('delete: ', data);
+        this.snackBar.open("Note Restored!", "Okay!", { duration: 2000 });
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }

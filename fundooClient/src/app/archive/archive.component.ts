@@ -20,7 +20,8 @@ export class ArchiveComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.view.currentMessage.subscribe(message => this.rowCol = message)
+    this.view.currentMessage.subscribe(message => this.rowCol = message);
+    this.getNotes();
   }
 
   getNotes() {
@@ -32,6 +33,21 @@ export class ArchiveComponent implements OnInit {
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  unarchiveNote(item) {
+    // console.log(item);
+    item.archive=false;
+    console.log(item);
+    this.httpService.post(item, 'archiveNote').subscribe(
+      data => {
+        console.log('archive: ', data);
+        this.snackBar.open("Note Unarchived!", "Okay!", { duration: 2000 });
       },
       error => {
         console.log(error);
