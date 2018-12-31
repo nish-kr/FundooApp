@@ -23,7 +23,8 @@
       </mat-card-actions> -->
           <mat-card-footer class="matCardFooter">
             <div class="notesIcons">
-              <button class="archiveIcon" mat-icon-button matTooltip="Delete Forever">
+              <button class="archiveIcon" mat-icon-button matTooltip="Delete Forever"
+               (click)="deleteForever(item)" matDialogTriggerFor> 
                 <mat-icon>delete_forever</mat-icon>
               </button>
               <button class="deleteIcon" mat-icon-button matTooltip="Restore" (click)="restoreNote(item)">
@@ -36,3 +37,16 @@
     </div>
   </div>
 </div>
+
+<!-- 
+<h1 matDialogTitle>Title</h1>
+
+<mat-dialog-content>
+    Dialog content
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Close dialog</button>
+    <button mat-button>Action</button>
+    
+</mat-dialog-actions> -->

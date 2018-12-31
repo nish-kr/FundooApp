@@ -11,6 +11,7 @@
  * Dependencies required.
  */
 const mongoose = require('mongoose'); // Importing mongoose model to use the Mongo database.
+mongoose.set("useFindAndModify", false);
 const schema = mongoose.Schema;
 
 // Defining Mongoose schema for storing user data into the database.
@@ -119,6 +120,25 @@ notesDB.prototype.archiveNote = (req, callback) => {
 notesDB.prototype.deleteNote = (req, callback) => {
 
     notes.findByIdAndUpdate(req._id, { trash: req.trash }, function (err, data) {
+
+        if (err) {
+            console.log("Archive Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.deleteNoteForever = (req, callback) => {
+    console.log('req on model to delete', req);
+    
+    notes.deleteOne({ _id: req._id }, function (err, data) {
 
         if (err) {
             console.log("Archive Request Error");

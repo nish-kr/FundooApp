@@ -32,7 +32,7 @@ export class NotesComponent implements OnInit {
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;
-        console.log('notesComponent: ', data);
+        // console.log('notesComponent: ', data);
       },
       error => {
         console.log(error);

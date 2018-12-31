@@ -8,19 +8,20 @@
       {{item.note}}
     </div>
   </mat-card> -->
-    <div *ngFor="let item of data">
+    <div class="ngForDiv" *ngFor="let item of data">
       <mat-card *ngIf="!item.archive && !item.trash" [ngClass]="{'matCardGrid': rowCol=='row',
     'matCardList': rowCol=='column'}">
         <div class="noteCard">
           <div>
             <mat-card-header>
               <mat-card-title>{{item.title}}</mat-card-title>
+              <!-- <mat-icon class="mat-18"></mat-icon> -->
             </mat-card-header>
             <mat-card-content> {{item.note}} </mat-card-content>
           </div>
           <!-- <mat-card-actions align="start">
           <button mat-button (click)="onAction1">Action1</button>
-      </mat-card-actions> -->
+          </mat-card-actions> -->
           <mat-card-footer class="matCardFooter">
             <div class="notesIcons">
               <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
@@ -45,7 +46,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- [matMenuTriggerFor]="reminderMenu" -->
 

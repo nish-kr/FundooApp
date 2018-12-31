@@ -41,7 +41,7 @@ export class TrashComponent implements OnInit {
 
   restoreNote(item) {
     // console.log(item);
-    item.trash=false;
+    item.trash = false;
     console.log(item);
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
@@ -54,4 +54,19 @@ export class TrashComponent implements OnInit {
     )
   }
 
+  deleteForever(item) {
+    console.log(item);
+    this.httpService.post(item, 'deleteNoteForever').subscribe(
+      data => {
+        console.log('deleted: ', data);
+        var index = this.data.indexOf(item);
+        // console.log(index);
+        this.data.splice(index);
+        this.snackBar.open("Note Delete Permanently!", "Okay!", { duration: 2000 });
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 }

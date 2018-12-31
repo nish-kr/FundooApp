@@ -29,12 +29,13 @@ router.post('/forgotPassword', userController.forgotPasswordController);
 
 router.post('/addNote', notesMiddleware.addNoteMiddleware, notesController.addNoteController);
 
-
 router.post('/getNotes', notesMiddleware.addNoteMiddleware, notesController.getNotesController);
 
 router.post('/deleteNote', notesMiddleware.deleteNoteMiddleware, notesController.deleteNoteController);
 
 router.post('/archiveNote', notesMiddleware.archiveNoteMiddleware, notesController.archiveNoteController);
 
+router.post('/deleteNoteForever', notesMiddleware.deleteNoteForeverMiddleware,
+    notesController.deleteNoteForeverController);
 // Exporting the router module.
 module.exports = router;
