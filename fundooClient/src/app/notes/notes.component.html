@@ -1,5 +1,5 @@
 <div class="notesDiv">
-  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="20px">
+  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px">
     <!-- <mat-card *ngFor="let item of data">
     <div>
       {{item.title}}
@@ -8,14 +8,59 @@
       {{item.note}}
     </div>
   </mat-card> -->
+    <!-- <div *ngIf="pinValue==true" style="width: 700px">Pinned</div> -->
+    <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">PINNED</div>
     <div class="ngForDiv" *ngFor="let item of data">
-      <mat-card *ngIf="!item.archive && !item.trash" [ngClass]="{'matCardGrid': rowCol=='row',
+      <mat-card *ngIf="!item.archive && !item.trash && item.pin" [ngClass]="{'matCardGrid': rowCol=='row',
+        'matCardList': rowCol=='column'}">
+        <div class="noteCard">
+          <div class="matCardTitleContent">
+            <mat-card-header>
+              <mat-card-title class="matCardTitle">{{item.title}}</mat-card-title>
+              <button class="pinIcon" mat-icon-button matTooltip="Unpin" (click)="unpinNote(item)">
+                <mat-icon>check_box</mat-icon>
+              </button>
+            </mat-card-header>
+            <mat-card-content class="matCardContent"> {{item.note}} </mat-card-content>
+          </div>
+          <!-- <mat-card-actions align="start">
+              <button mat-button (click)="onAction1">Action1</button>
+              </mat-card-actions> -->
+          <mat-card-footer class="matCardFooter">
+            <div class="notesIcons">
+              <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
+                <mat-icon>notifications_active</mat-icon>
+              </button>
+              <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
+                <mat-icon>person_add</mat-icon>
+              </button>
+              <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+                <mat-icon>color_lens</mat-icon>
+              </button>
+              <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
+                <mat-icon>archive</mat-icon>
+              </button>
+              <button class="deleteIcon" mat-icon-button matTooltip="Delete" (click)="deleteNote(item)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-card-footer>
+        </div>
+      </mat-card>
+    </div>
+    <!-- <div *ngIf="pinValue==true" style="width: 700px">Others</div> -->
+    <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">OTHERS</div>
+
+    <div class="ngForDiv" *ngFor="let item of data">
+      <mat-card *ngIf="!item.archive && !item.trash && !item.pin" [ngClass]="{'matCardGrid': rowCol=='row',
     'matCardList': rowCol=='column'}">
         <div class="noteCard">
           <div>
             <mat-card-header>
               <mat-card-title>{{item.title}}</mat-card-title>
-              <!-- <mat-icon class="mat-18"></mat-icon> -->
+              <button class="pinIcon" mat-icon-button matTooltip="Pin" (click)="pinNote(item)">
+                <mat-icon>check_box_outline_blank</mat-icon>
+              </button>
             </mat-card-header>
             <mat-card-content> {{item.note}} </mat-card-content>
           </div>

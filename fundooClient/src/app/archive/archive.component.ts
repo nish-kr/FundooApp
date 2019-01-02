@@ -42,12 +42,28 @@ export class ArchiveComponent implements OnInit {
 
   unarchiveNote(item) {
     // console.log(item);
-    item.archive=false;
-    console.log(item);
+    item.archive = false;
+    // console.log(item);
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('archive: ', data);
         this.snackBar.open("Note Unarchived!", "Okay!", { duration: 2000 });
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  deleteNote(item) {
+    item.trash = true;
+    item.archive = false;
+    item.pin = false;
+    // console.log(item);
+    this.httpService.post(item, 'deleteNote').subscribe(
+      data => {
+        console.log('deleted: ', data);
+        this.snackBar.open("Note Moved to Trash!", "Okay!", { duration: 2000 });
       },
       error => {
         console.log(error);

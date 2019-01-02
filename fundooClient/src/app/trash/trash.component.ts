@@ -62,7 +62,7 @@ export class TrashComponent implements OnInit {
         var index = this.data.indexOf(item);
         // console.log(index);
         this.data.splice(index);
-        this.snackBar.open("Note Delete Permanently!", "Okay!", { duration: 2000 });
+        this.snackBar.open("Note Deleted Permanently!", "Okay!", { duration: 2000 });
       },
       error => {
         console.log(error);

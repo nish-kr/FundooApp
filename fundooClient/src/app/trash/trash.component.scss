@@ -26,6 +26,11 @@
     border-radius: 8px;
 }
 
+/deep/ .ng-star-inserted .ngForDiv {
+    margin-right: 0px !important;
+}
+
+
 .matCardGrid .reminderIcon,
 .matCardGrid .collaboratorIcon,
 .matCardGrid .changeColorIcon,

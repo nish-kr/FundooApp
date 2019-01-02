@@ -8,9 +8,9 @@
       {{item.note}}
     </div>
   </mat-card> -->
-    <div *ngFor="let item of data">
-      <mat-card *ngIf="item.archive" [ngClass]="{'matCardGrid': rowCol=='row',
-  'matCardList': rowCol=='column'}">
+    <div *ngFor="let item of data" class="ngForDiv">
+      <mat-card *ngIf="item.archive && !item.trash" [ngClass]="{'matCardGrid': rowCol=='row',
+  'matCardList': rowCol=='column'}" style="background-color: {{backgroundColor}}">
         <div class="noteCard">
           <div>
             <mat-card-header>
@@ -35,7 +35,7 @@
               <button class="archiveIcon" mat-icon-button matTooltip="Unarchive" (click)="unarchiveNote(item)">
                 <mat-icon>unarchive</mat-icon>
               </button>
-              <button class="deleteIcon" mat-icon-button matTooltip="Delete">
+              <button class="deleteIcon" mat-icon-button matTooltip="Delete" (click)="deleteNote(item)">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>

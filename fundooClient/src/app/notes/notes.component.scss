@@ -5,7 +5,6 @@
 //     margin-left: 5px;
 //     padding: 5px;
 // }
-
 .matCardGrid {
     width: 200px;
     display: flex;
@@ -16,10 +15,8 @@
 }
 
 .matCardList {
-    width: 570px;
-    // display: flex;
-    margin-bottom: 10px;
-    // margin-top: 10px;
+    width: 570px; // display: flex;
+    margin-bottom: 10px; // margin-top: 10px;
     margin-left: 50px;
     margin-right: 80px;
     border: 1px solid rgb(223, 223, 223);
@@ -27,8 +24,15 @@
 }
 
 /deep/ .ng-star-inserted .ngForDiv {
-    margin-right: 0px !important;    
+    margin-right: 0px !important;
 }
+
+.pinnedOthers {
+    margin-top: 30px;
+    height: 20px;
+    font-size: 15px;
+}
+
 
 .matCardGrid .reminderIcon,
 .matCardGrid .collaboratorIcon,
@@ -68,15 +72,22 @@
     margin: none;
 }
 
+.noteCard {
+    // word-wrap: break-word; 
+    word-break: break-all;
+    // overflow-wrap: break-word;
+}
+
 .notesIcons {
     // position: absolute;
     display: none;
-    transition:opacity 0.5s linear;
+    transition: opacity 0.5s linear;
 }
+
 .noteCard:hover .notesIcons {
     // position: absolute;
     opacity: 1;
-    transition:opacity 0.5s linear;
+    transition: opacity 0.5s linear;
     display: block;
 }
 

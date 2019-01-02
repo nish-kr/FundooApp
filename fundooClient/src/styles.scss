@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+.noteCard {
+    // word-wrap: break-word; 
+    word-break: break-all;
+    // overflow-wrap: break-word;
+}
 // @import "~@angular/material/prebuilt-themes/purple-green.css";
 // html {
 //     background: url('../src/assets/background.jpeg');

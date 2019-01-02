@@ -8,8 +8,8 @@
       {{item.note}}
     </div>
   </mat-card> -->
-    <div *ngFor="let item of data">
-      <mat-card *ngIf="item.trash" [ngClass]="{'matCardGrid': rowCol=='row',
+    <div *ngFor="let item of data" class="ngForDiv">
+      <mat-card *ngIf="item.trash && !item.pin" [ngClass]="{'matCardGrid': rowCol=='row',
   'matCardList': rowCol=='column'}">
         <div class="noteCard">
           <div>

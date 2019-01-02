@@ -76,7 +76,7 @@ notesDB.prototype.getNotes = (req, callback) => {
         } else {
 
             // Checking if there is any data in the database of that username.
-            console.log(data);
+            // console.log(data);
 
             // Returning the data.
             return callback(null, data);
@@ -94,7 +94,7 @@ notesDB.prototype.archiveNote = (req, callback) => {
         } else {
 
             // Checking if there is any data in the database of that username.
-            console.log(data);
+            // console.log(data);
 
             // Returning the data.
             return callback(null, data);
@@ -127,7 +127,7 @@ notesDB.prototype.deleteNote = (req, callback) => {
         } else {
 
             // Checking if there is any data in the database of that username.
-            console.log(data);
+            // console.log(data);
 
             // Returning the data.
             return callback(null, data);
@@ -146,7 +146,25 @@ notesDB.prototype.deleteNoteForever = (req, callback) => {
         } else {
 
             // Checking if there is any data in the database of that username.
-            console.log(data);
+            // console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.pinNote = (req, callback) => {
+
+    notes.findByIdAndUpdate(req._id, { pin: req.pin }, function (err, data) {
+
+        if (err) {
+            console.log("Archive Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            // console.log(data);
 
             // Returning the data.
             return callback(null, data);
