@@ -53,3 +53,12 @@ exports.pinNoteMiddleware = (req, res, next) => {
         next();
     }
 }
+
+exports.changeColorMiddleware = (req, res, next) => {
+    console.log('deleteNote middleware');
+    
+    // If the body of the request is not null, then only next() will be called.
+    if (req.body != null) {
+        next();
+    }
+}

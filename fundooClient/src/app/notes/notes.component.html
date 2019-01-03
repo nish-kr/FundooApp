@@ -12,7 +12,8 @@
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">PINNED</div>
     <div class="ngForDiv" *ngFor="let item of data">
       <mat-card *ngIf="!item.archive && !item.trash && item.pin" [ngClass]="{'matCardGrid': rowCol=='row',
-        'matCardList': rowCol=='column'}">
+        'matCardList': rowCol=='column'}"
+        [ngStyle]="{'color': item.color}">
         <div class="noteCard">
           <div class="matCardTitleContent">
             <mat-card-header>
@@ -34,7 +35,7 @@
               <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
                 <mat-icon>person_add</mat-icon>
               </button>
-              <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+              <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
                 <mat-icon>color_lens</mat-icon>
               </button>
               <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
@@ -75,7 +76,7 @@
               <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
                 <mat-icon>person_add</mat-icon>
               </button>
-              <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+              <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
                 <mat-icon>color_lens</mat-icon>
               </button>
               <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
@@ -92,7 +93,20 @@
   </div>
 </div>
 
-<!-- [matMenuTriggerFor]="reminderMenu" -->
+<mat-menu #colorMenu="matMenu" class="colorMenu">
+  <!-- <div *ngIf="colorMenu.context"> -->
+  <div *ngFor="let color of colorCode">
+    <!-- <button mat-oicon>{{color.name}}</button> -->
+    <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode,colorMenu.context)">
+      <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
+    </button>
+  </div>
+  <!-- </div> -->
+</mat-menu>
+
+
+<!-- [matMenuTriggerFor]="reminderMenu" 
+[matMenuTriggerContext]="item"-->
 
 <div class="reminderMenu">
   <mat-menu #reminderMenu="matMenu" class="reminderMenu">

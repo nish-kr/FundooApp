@@ -172,4 +172,22 @@ notesDB.prototype.pinNote = (req, callback) => {
     });
 }
 
+notesDB.prototype.changeColor = (req, callback) => {
+
+    notes.findByIdAndUpdate(req._id, { color: req.color }, function (err, data) {
+
+        if (err) {
+            console.log("Archive Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            // console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
 module.exports = new notesDB;

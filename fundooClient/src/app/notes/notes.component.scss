@@ -30,9 +30,8 @@
 .pinnedOthers {
     margin-top: 30px;
     height: 20px;
-    font-size: 15px;
+    font-size: 12px;
 }
-
 
 .matCardGrid .reminderIcon,
 .matCardGrid .collaboratorIcon,
@@ -74,8 +73,7 @@
 
 .noteCard {
     // word-wrap: break-word; 
-    word-break: break-all;
-    // overflow-wrap: break-word;
+    word-break: break-all; // overflow-wrap: break-word;
 }
 
 .notesIcons {
@@ -93,4 +91,14 @@
 
 /deep/ .mat-icon-button .mat-icon {
     font-size: 20px;
+}
+
+/deep/ .mat-menu-content:not(:empty) {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 160px;
+}
+
+.colorIcons {
+    font-size: 32px !important;
 }

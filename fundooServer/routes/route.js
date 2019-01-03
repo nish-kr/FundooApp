@@ -39,5 +39,7 @@ router.post('/deleteNoteForever', notesMiddleware.deleteNoteForeverMiddleware,
     notesController.deleteNoteForeverController);
 
 router.post('/pinNote', notesMiddleware.pinNoteMiddleware, notesController.pinNoteController);
+
+router.post('/changeColor', notesMiddleware.changeColorMiddleware, notesController.changeColorController);
 // Exporting the router module.
 module.exports = router;
