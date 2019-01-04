@@ -22,6 +22,23 @@ export class AddnoteComponent implements OnInit {
   title: String;
   note: String;
   data: any;
+  color: any = "white";
+
+  colorCode: Array<Object> = [
+    { name: "white", colorCode: "rgb(255, 255, 255)" },
+    { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
+    { name: "purple", colorCode: "rgb(215, 174, 251)" },
+    { name: "red", colorCode: "rgb(242, 139, 130)" },
+    { name: "Teal", colorCode: "rgb(167, 255, 235)" },
+    { name: "pink", colorCode: "rgb(253, 207, 232)" },
+    { name: "orange", colorCode: "rgb(251, 188, 4)" },
+    { name: "blue", colorCode: "rgb(203, 240, 248)" },
+    { name: "brown", colorCode: "rgb(230, 201, 168)" },
+    { name: "yellow", colorCode: "rgb(255, 244, 117)" },
+    { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
+    { name: "gray", colorCode: "rgb(232, 234, 237)" }
+  ]
+
   constructor(
     private httpService: HttpService,
     private router: Router,
@@ -35,7 +52,7 @@ export class AddnoteComponent implements OnInit {
   ngOnInit() {
     const isOpen = false;
     this.getNotes();
-    
+
   }
 
   addNote() {
@@ -50,7 +67,7 @@ export class AddnoteComponent implements OnInit {
         pin: false,
         trash: false,
         archive: false,
-        color: "white",
+        color: this.color,
         userId: userCredentials.userId
       }
 
@@ -59,6 +76,7 @@ export class AddnoteComponent implements OnInit {
           console.log("Data sent", data);
           // alert("Registration Successful");
           this.snackBar.open("Note addition Successful!", "Okay!", { duration: 2000 })
+          this.color = "white";
           // this.router.navigateByUrl('/login');
         },
         error => {
@@ -71,6 +89,7 @@ export class AddnoteComponent implements OnInit {
       this.notes.note = null;
       this.getNotes();
     } else {
+      this.color = "white";
       console.log("Empty note!");
     }
   }
@@ -95,4 +114,7 @@ export class AddnoteComponent implements OnInit {
     return this.data;
   }
 
+  changeColor(color) {
+    this.color = color;
+  }
 }

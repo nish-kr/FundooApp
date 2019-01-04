@@ -9,8 +9,8 @@
     </div>
   </mat-card> -->
     <div *ngFor="let item of data" class="ngForDiv">
-      <mat-card *ngIf="item.trash && !item.pin" [ngClass]="{'matCardGrid': rowCol=='row',
-  'matCardList': rowCol=='column'}">
+      <mat-card *ngIf="item.trash" [ngClass]="{'matCardGrid': rowCol=='row',
+  'matCardList': rowCol=='column'}" [ngStyle]="{'background-color': item.color}">
         <div class="noteCard">
           <div>
             <mat-card-header>

@@ -76,20 +76,26 @@
     word-break: break-all; // overflow-wrap: break-word;
 }
 
-.notesIcons {
+.notesIcons,
+.pinIcon {
     // position: absolute;
     display: none;
-    transition: opacity 0.5s linear;
 }
 
-.noteCard:hover .notesIcons {
+.noteCard:hover .notesIcons,
+.noteCard:hover .pinIcon {
     // position: absolute;
     opacity: 1;
     transition: opacity 0.5s linear;
     display: block;
 }
 
-/deep/ .mat-icon-button .mat-icon {
+.pinIcon {
+    height: 30px;
+    margin-left: auto;
+}
+
+/deep/ .mat-icon-button .mat-icon .notesIcons {
     font-size: 20px;
 }
 
@@ -101,4 +107,10 @@
 
 .colorIcons {
     font-size: 32px !important;
+}
+
+/deep/ .colorMenu .mat-menu-content div {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 160px;
 }

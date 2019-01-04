@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 
 /** In-app Modules & Components */
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +44,7 @@ import { AddnoteComponent } from './addnote/addnote.component';
     RemindersComponent,
     ArchiveComponent,
     TrashComponent,
-    AddnoteComponent
+    AddnoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ import { AddnoteComponent } from './addnote/addnote.component';
     FlexLayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    AngularSvgIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

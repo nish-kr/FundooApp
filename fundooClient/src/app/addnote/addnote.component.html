@@ -1,4 +1,4 @@
-<div class="mainNotes">
+<div class="mainNotes" [ngStyle]="{'background-color':color}">
   <div *ngIf="!isOpen">
     <div class="noteTitle">
       <textarea matTextareaAutosize placeholder="Take a note..." (click)="isOpen=true"></textarea>
@@ -6,10 +6,11 @@
   </div>
   <div *ngIf="isOpen">
     <div class="noteTitle">
-      <textarea matTextareaAutosize placeholder="Title" [(ngModel)]="notes.title"></textarea>
+      <textarea [ngStyle]="{'background-color':color}" matTextareaAutosize placeholder="Title" [(ngModel)]="notes.title"></textarea>
     </div>
     <div class="noteContent">
-      <textarea matTextareaAutosize required placeholder="Take a note..." [(ngModel)]="notes.note"></textarea>
+      <textarea [ngStyle]="{'background-color':color}" matTextareaAutosize required placeholder="Take a note..."
+        [(ngModel)]="notes.note"></textarea>
     </div>
     <div class="addNotesIcons">
       <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
@@ -18,7 +19,8 @@
       <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
         <mat-icon>person_add_outline</mat-icon>
       </button>
-      <button class="changeColorIcon" mat-icon-button matTooltip="Change color">
+      <button class="changeColorIcon" mat-icon-button matTooltip="Change color" #menuTrigger="matMenuTrigger"
+        [matMenuTriggerFor]="colorMenu" [matMenuTriggerData]="{item:item}">
         <mat-icon>color_lens</mat-icon>
       </button>
       <button class="archiveIcon" mat-icon-button matTooltip="Archive">
@@ -29,6 +31,19 @@
     </div>
   </div>
 </div>
+
+<mat-menu #colorMenu="matMenu" class="colorMenu">
+  <!-- <div class="another"> -->
+  <ng-template matMenuContent let-item="item">
+    <div *ngFor="let color of colorCode">
+      <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+        <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+  <!-- </div> -->
+</mat-menu>
+
 <div class="notes">
   <app-notes #child></app-notes>
 </div>

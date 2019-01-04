@@ -85,3 +85,23 @@
 /deep/ .mat-icon-button .mat-icon {
     font-size: 20px;
 }
+
+/deep/ .mat-menu-content:not(:empty) {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 160px;
+}
+
+.colorIcons {
+    font-size: 32px !important;
+}
+
+/deep/ .colorMenu .mat-menu-content div{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 160px;
+}
+
+.pinIcon {
+    margin-left: auto;
+}

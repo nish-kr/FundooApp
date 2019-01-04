@@ -135,6 +135,16 @@ export class NotesComponent implements OnInit {
 
   changeColor(color,item){
     item.color=color;
-    console.log(item," ",color);
+    // console.log(item," ",color);
+    this.httpService.post(item, 'changeColor').subscribe(
+      data => {
+        console.log('colorchange: ', data);
+        // this.getNotes();
+        // this.snackBar.open("Color Changed!", "Okay!", { duration: 2000 });
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
