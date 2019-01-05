@@ -58,6 +58,7 @@ export class AddnoteComponent implements OnInit {
   addNote() {
 
     if (this.notes.note || this.notes.title) {
+      // this.notes.note.replace(new RegExp('\n', 'g'), "<br />");
       let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
 
       this.noteData = {

@@ -50,7 +50,6 @@
 .matCardList .moreIcon,
 .matCardList .deleteIcon {
     color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
-    width: 60px !important;
 }
 
 /deep/ .mat-icon-button .mat-icon {
@@ -79,15 +78,16 @@
 .notesIcons,
 .pinIcon {
     // position: absolute;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.2s linear; // display: none;
 }
 
 .noteCard:hover .notesIcons,
 .noteCard:hover .pinIcon {
-    // position: absolute;
-    opacity: 1;
-    transition: opacity 0.5s linear;
-    display: block;
+    visibility: visible;
+    opacity: 1; // transition: opacity 0.5s linear;
+    // display: block;
 }
 
 .pinIcon {
@@ -113,4 +113,8 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 160px;
+}
+
+.matCardContent {
+    word-wrap: break-word;
 }

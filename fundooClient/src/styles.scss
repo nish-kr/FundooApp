@@ -2,8 +2,9 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 .noteCard {
-    // word-wrap: break-word; 
+    // word-wrap: break-word;
     word-break: break-all;
+    word-wrap: break-word;
     // overflow-wrap: break-word;
 }
 
