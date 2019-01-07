@@ -22,7 +22,8 @@
                 <svg-icon src="../../assets/Icons/pinIcon.svg"> </svg-icon>
               </button>
             </mat-card-header>
-            <mat-card-content class="matCardContent"> {{item.note}} </mat-card-content>
+            <mat-card-content class="matCardContent"> {{item.note}}
+            </mat-card-content>
           </div>
           <mat-card-footer class="matCardFooter">
             <div class="notesIcons">
@@ -33,8 +34,8 @@
                 <mat-icon>person_add</mat-icon>
               </button>
               <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu"
-                [matMenuTriggerData]="{item:item}" (mouseenter)="menuTrigger.openMenu()" (mouseleave)="menuTrigger.closeMenu()">
-                <mat-icon (mouseenter)="menuTrigger.openMenu()" (mouseleave)="menuTrigger.closeMenu()">color_lens</mat-icon>
+                [matMenuTriggerData]="{item:item}">
+                <mat-icon>color_lens</mat-icon>
               </button>
               <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
                 <mat-icon>archive</mat-icon>
@@ -66,13 +67,14 @@
           </div>
           <mat-card-footer class="matCardFooter">
             <div class="notesIcons">
-              <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
+              <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()"
+                (click)="toggleShowReminder()">
                 <mat-icon>notifications_active</mat-icon>
               </button>
               <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
                 <mat-icon>person_add</mat-icon>
               </button>
-              <button class="changeColorIcon" mat-icon-button matTooltip="Change color" #menuTrigger="matMenuTrigger"
+              <button class="changeColorIcon" mat-icon-button matTooltip="Change color" #colorMenuTrigger="matMenuTrigger"
                 [matMenuTriggerFor]="colorMenu" [matMenuTriggerData]="{item:item}">
                 <mat-icon>color_lens</mat-icon>
               </button>
@@ -88,43 +90,65 @@
       </mat-card>
     </div>
   </div>
-</div>
 
-<mat-menu #colorMenu="matMenu" class="colorMenu">
-  <!-- <div class="another"> -->
-  <ng-template matMenuContent let-item="item">
-    <div *ngFor="let color of colorCode">
-      <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode,item)">
-        <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
-      </button>
-    </div>
-  </ng-template>
-  <!-- </div> -->
-</mat-menu>
+  <mat-menu #colorMenu="matMenu" class="colorMenu">
+    <ng-template matMenuContent let-item="item">
+      <div *ngFor="let color of colorCode">
+        <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode,item)">
+          <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </mat-menu>
 
 
-<!-- [matMenuTriggerFor]="reminderMenu" 
-  [matMenuTriggerData]="item"
-  (mouseenter)="menuTrigger.openMenu()"
-  (mouseleave)="menuTrigger.closeMenu()"
-[matMenuTriggerContext]="item"-->
-
-<div class="reminderMenu">
-  <mat-menu #reminderMenu="matMenu" class="reminderMenu">
-    <button mat-menu-item class="reminderMenu" [matMenuTriggerFor]="dateMenu">
+  <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu">
+    <!-- <mat-menu> -->
+    <div>Reminder:</div>
+    <button mat-menu-item mat-menu-item>
+      Later Today:
+    </button>
+    <button mat-menu-item mat-menu-item>
+      Tommorow
+    </button>
+    <button mat-menu-item mat-menu-item>
+      Next Week
+    </button>
+    <button mat-menu-item mat-menu-item (click)="toggleReminderMenu()">
       <mat-icon>access_time</mat-icon>
       Pick date & time
     </button>
-  </mat-menu>
-</div>
+    <!-- </mat-menu> -->
+  </div>
 
-<div class="dateMenu">
-  <mat-menu #dateMenu="matMenu" class="dateMenu">
+
+
+  <div class="dateMenu" *ngIf="reminderMenuBool && showReminderMenu">
+    <!-- <mat-menu> -->
+    <button mat-icon-button (click)="toggleReminderMenu()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div>Pick Date & Time:</div>
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Choose a date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-button>Action</button>
-  </mat-menu>
+    <div>
+      <mat-form-field>
+        <input type="time" matInput atp-time-picker placeholder="Choose a time" />
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button>Action</button>
+    </div>
+    <!-- </mat-menu> -->
+  </div>
 </div>
+
+<!-- [matMenuTriggerFor]="reminderMenu"
+   (clickOutside)="showReminderMenu = false"
+  [matMenuTriggerData]="item"
+  (mouseenter)="colorMenuTrigger.openMenu()"
+  (mouseleave)="colorMenuTrigger.closeMenu()"
+[matMenuTriggerContext]="item"-->

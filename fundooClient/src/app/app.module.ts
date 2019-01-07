@@ -30,6 +30,8 @@ import { RemindersComponent } from './reminders/reminders.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { TrashComponent } from './trash/trash.component';
 import { AddnoteComponent } from './addnote/addnote.component';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { AddnoteComponent } from './addnote/addnote.component';
     FlexLayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    AngularSvgIconModule
+    AngularSvgIconModule,
+    AmazingTimePickerModule,
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent]

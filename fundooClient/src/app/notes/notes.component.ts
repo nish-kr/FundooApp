@@ -15,6 +15,9 @@ export class NotesComponent implements OnInit {
   rowCol: any = "column";
   pinValue: Boolean = false;
   counter: number = 0;
+  reminderMenuBool: Boolean = true;
+  showReminderMenu: Boolean;
+  reminderMenu: String = "reminderMenu";
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -67,6 +70,30 @@ export class NotesComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  // toggleReminderMenu() {
+  //   if (this.reminderMenu == "reminderMenu") {
+  //     this.reminderMenu = "dateMenu";
+  //   } else {
+  //     this.reminderMenu = "reminderMenu";
+  //   }
+  // }  
+
+  toggleReminderMenu() {
+    if (this.reminderMenuBool == true) {
+      this.reminderMenuBool = false;
+    } else {
+      this.reminderMenuBool = true;
+    }
+  }
+
+  toggleShowReminder() {
+    if (this.showReminderMenu == true) {
+      this.showReminderMenu = false;
+    } else {
+      this.showReminderMenu = true;
+    }
   }
 
   archiveNote(item) {
@@ -133,8 +160,8 @@ export class NotesComponent implements OnInit {
     )
   }
 
-  changeColor(color,item){
-    item.color=color;
+  changeColor(color, item) {
+    item.color = color;
     // console.log(item," ",color);
     this.httpService.post(item, 'changeColor').subscribe(
       data => {
