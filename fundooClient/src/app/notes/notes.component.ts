@@ -18,6 +18,8 @@ export class NotesComponent implements OnInit {
   reminderMenuBool: Boolean = true;
   showReminderMenu: Boolean;
   reminderMenu: String = "reminderMenu";
+  days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  nextWeekDay: String = this.days[new Date().getDay()];
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -94,6 +96,12 @@ export class NotesComponent implements OnInit {
     } else {
       this.showReminderMenu = true;
     }
+  }
+
+  setReminder(dateInput, timeInput) {
+    console.log(dateInput, "++++", timeInput);
+
+
   }
 
   archiveNote(item) {

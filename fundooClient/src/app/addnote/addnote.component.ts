@@ -5,9 +5,31 @@ import { MatSnackBar } from '@angular/material';
 import { NotesModel } from "../models/notes.model";
 import { log } from 'util';
 import { NotesComponent } from '../notes/notes.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-addnote',
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        height: '200px',
+        opacity: 1,
+        backgroundColor: 'yellow'
+      })),
+      state('closed', style({
+        height: '100px',
+        opacity: 0.5,
+        backgroundColor: 'green'
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ],
   templateUrl: './addnote.component.html',
   styleUrls: ['./addnote.component.scss']
 })
@@ -15,6 +37,7 @@ import { NotesComponent } from '../notes/notes.component';
 @Injectable()
 export class AddnoteComponent implements OnInit {
 
+  isOpen: Boolean;
   parentMessage: boolean;
   noteData: any;
   rowCol: any;
@@ -23,7 +46,8 @@ export class AddnoteComponent implements OnInit {
   note: String;
   data: any;
   color: any = "white";
-
+  pinValue: Boolean = false;
+  archiveValue: Boolean = false;
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -65,9 +89,9 @@ export class AddnoteComponent implements OnInit {
         title: this.notes.title,
         note: this.notes.note,
         reminder: "",
-        pin: false,
+        pin: this.pinValue,
         trash: false,
-        archive: false,
+        archive: this.archiveValue,
         color: this.color,
         userId: userCredentials.userId
       }
@@ -75,8 +99,14 @@ export class AddnoteComponent implements OnInit {
       this.httpService.post(this.noteData, "addNote").subscribe(
         data => {
           console.log("Data sent", data);
+          this.isOpen = false;
           // alert("Registration Successful");
-          this.snackBar.open("Note addition Successful!", "Okay!", { duration: 2000 })
+          if (this.archiveValue) {
+            this.snackBar.open("Note Archived!", "Okay!", { duration: 2000 })
+          } else {
+            this.snackBar.open("Note addition Successful!", "Okay!", { duration: 2000 })
+          }
+
           this.color = "white";
           // this.router.navigateByUrl('/login');
         },
@@ -117,5 +147,15 @@ export class AddnoteComponent implements OnInit {
 
   changeColor(color) {
     this.color = color;
+  }
+
+  changePinValue() {
+    if (this.pinValue == true) {
+      // console.log(this.pinValue);
+      this.pinValue = false;
+    } else {
+      // console.log(this.pinValue);
+      this.pinValue = true;
+    }
   }
 }

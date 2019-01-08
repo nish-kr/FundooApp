@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   public email: String;
   public viewToolTip = 'Grid View';
   public view = 'row';
+  public headerName = "Fundoo Notes";
   constructor(
     private router: Router,
     // media: MediaMatcher,

@@ -71,6 +71,52 @@
                 (click)="toggleShowReminder()">
                 <mat-icon>notifications_active</mat-icon>
               </button>
+
+              <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
+                <!-- <mat-menu> -->
+                <div>Reminder:</div>
+                <button mat-menu-item>
+                  Later Today
+                  <span class="timings">20:00</span>
+                </button>
+                <button mat-menu-item>
+                  Tommorow
+                  <span class="timings">08:00</span>
+                </button>
+                <button mat-menu-item>
+                  Next Week
+                  <span class="timings">{{nextWeekDay}}, 08:00</span>
+                </button>
+                <button mat-menu-item (click)="toggleReminderMenu()">
+                  <mat-icon>access_time</mat-icon>
+                  Pick date & time
+                </button>
+                <!-- </mat-menu> -->
+              </div>
+
+              <div class="dateMenu" *ngIf="reminderMenuBool && showReminderMenu">
+                <!-- <mat-menu> -->
+                <button mat-icon-button (click)="toggleReminderMenu()">
+                  <mat-icon>arrow_back</mat-icon>
+                </button>
+                <div>Pick Date & Time:</div>
+                <mat-form-field>
+
+                  <input matInput id="dateInput" [matDatepicker]="picker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                  <mat-form-field>
+                    <input matInput id="timeInput" atp-time-picker placeholder="Choose a time" />
+                  </mat-form-field>
+                </div>
+                <div>
+                  <button mat-button (click)="setReminder(dateInput,timeInput)">Action</button>
+                </div>
+                <!-- </mat-menu> -->
+              </div>
+
               <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
                 <mat-icon>person_add</mat-icon>
               </button>
@@ -88,8 +134,11 @@
           </mat-card-footer>
         </div>
       </mat-card>
+
     </div>
+
   </div>
+
 
   <mat-menu #colorMenu="matMenu" class="colorMenu">
     <ng-template matMenuContent let-item="item">
@@ -102,53 +151,14 @@
   </mat-menu>
 
 
-  <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu">
-    <!-- <mat-menu> -->
-    <div>Reminder:</div>
-    <button mat-menu-item mat-menu-item>
-      Later Today:
-    </button>
-    <button mat-menu-item mat-menu-item>
-      Tommorow
-    </button>
-    <button mat-menu-item mat-menu-item>
-      Next Week
-    </button>
-    <button mat-menu-item mat-menu-item (click)="toggleReminderMenu()">
-      <mat-icon>access_time</mat-icon>
-      Pick date & time
-    </button>
-    <!-- </mat-menu> -->
-  </div>
 
 
-
-  <div class="dateMenu" *ngIf="reminderMenuBool && showReminderMenu">
-    <!-- <mat-menu> -->
-    <button mat-icon-button (click)="toggleReminderMenu()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <div>Pick Date & Time:</div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <div>
-      <mat-form-field>
-        <input type="time" matInput atp-time-picker placeholder="Choose a time" />
-      </mat-form-field>
-    </div>
-    <div>
-      <button mat-button>Action</button>
-    </div>
-    <!-- </mat-menu> -->
-  </div>
-</div>
-
-<!-- [matMenuTriggerFor]="reminderMenu"
+  <!-- [matMenuTriggerFor]="reminderMenu"
    (clickOutside)="showReminderMenu = false"
   [matMenuTriggerData]="item"
   (mouseenter)="colorMenuTrigger.openMenu()"
   (mouseleave)="colorMenuTrigger.closeMenu()"
 [matMenuTriggerContext]="item"-->
+
+
+</div>
