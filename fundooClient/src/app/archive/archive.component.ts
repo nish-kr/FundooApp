@@ -61,7 +61,12 @@ export class ArchiveComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('archive: ', data);
-        this.snackBar.open("Note Unarchived!", "Okay!", { duration: 2000 });
+        if(item.pin){
+          this.snackBar.open("Note Unarchived & Pinned!", "Okay!", { duration: 2000 });
+        }else{
+          this.snackBar.open("Note Unarchived!", "Okay!", { duration: 2000 });
+        }
+        
       },
       error => {
         console.log(error);

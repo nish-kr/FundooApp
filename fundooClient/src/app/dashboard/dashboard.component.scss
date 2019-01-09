@@ -77,7 +77,6 @@
 .refreshIcon,
 .viewIcon,
 .settingsIcon,
-.accountIcon,
 .logoutIcon,
 .fundooNotesText {
     color: #5f6368;
@@ -89,7 +88,6 @@
 .refreshIcon:hover,
 .viewIcon:hover,
 .settingsIcon:hover,
-.accountIcon:hover,
 .logoutIcon:hover,
 .fundooNotesText:hover {
     color: rgba(0, 0, 0, 0.8);
@@ -118,11 +116,72 @@
 
 .accountIcon {
     margin-left: 30px;
+    margin-right: 10px; 
 }
 
-// .accountMenu {
-//     background-color: #ffffff;
+.accountIcon {
+    border: 1px solid #b1b1b1;
+    /* box-shadow: none; */
+    height: 30px;
+    width: 33px;
+    border-radius: 16px;
+    font-size: inherit;
+    color: white;
+    background-color: #1494dede;
+}
+
+/deep/ .mat-menu-panel {
+    min-width: 300px !important;
+    justify-content: space-around;
+}
+
+.accountMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.accountMenuImage {
+    height: 96px;
+    width: 96px;
+    border: 1px solid;
+    border-radius: 50px;
+    font-size: 50px;
+    color: white;
+    background-color: #1494dede;
+    margin: 10px;
+}
+
+// .accountMenuImageChange {
+//     font-size: 12px;
 // }
+
+.accountMenuItems {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.accountMenuName {
+    font-weight: bold;
+    margin: 2px;
+}
+
+.accountMenuEmail {
+    color: #626262;
+    margin: 2px;
+}
+
+.logoutIcon {
+    margin-top: auto;
+    border: 1px solid rgb(202, 202, 202) !important;
+}
+
+/deep/ .mat-menu-content div {
+    display: flex; // flex-wrap: wrap;
+    // max-width: 160px;
+}
+
 /deep/ .mat-menu-panel {
     // min-width: 112px;
     // max-width: 280px;

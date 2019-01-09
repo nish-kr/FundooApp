@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   public viewToolTip = 'Grid View';
   public view = 'row';
   public headerName = "Fundoo Notes";
+  public accountImage: any;
   constructor(
     private router: Router,
     // media: MediaMatcher,
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
     let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
     this.data.currentMessage.subscribe(message => this.view = message);
     // let userCredentials = this.login.userNameEmail;
+    this.accountImage = userCredentials.name[0];
     this.name = userCredentials.name;
     this.email = userCredentials.email;
   }
@@ -55,6 +57,20 @@ export class DashboardComponent implements OnInit {
       this.viewToolTip = "List View";
       this.data.changeMessage("column");
       // console.log("column");
+    }
+  }
+
+  url: string;
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        console.log("adsssssssssssssss");
+        
+      }
     }
   }
 }

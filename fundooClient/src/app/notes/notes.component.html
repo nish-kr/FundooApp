@@ -40,8 +40,9 @@
               <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
                 <mat-icon>archive</mat-icon>
               </button>
-              <button class="deleteIcon" mat-icon-button matTooltip="Delete" (click)="deleteNote(item)">
-                <mat-icon>delete</mat-icon>
+              <button class="deleteIcon" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreNotesMenu"
+                [matMenuTriggerData]="{item:item}">
+                <mat-icon>more_vert</mat-icon>
               </button>
             </div>
           </mat-card-footer>
@@ -127,16 +128,15 @@
               <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
                 <mat-icon>archive</mat-icon>
               </button>
-              <button class="deleteIcon" mat-icon-button matTooltip="Delete" (click)="deleteNote(item)">
-                <mat-icon>delete</mat-icon>
+              <button class="deleteIcon" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreNotesMenu"
+                [matMenuTriggerData]="{item:item}">
+                <mat-icon>more_vert</mat-icon>
               </button>
             </div>
           </mat-card-footer>
         </div>
       </mat-card>
-
-    </div>
-
+      </div>
   </div>
 
 
@@ -150,8 +150,16 @@
     </ng-template>
   </mat-menu>
 
-
-
+  <mat-menu #moreNotesMenu="matMenu" class="moreNotesMenu">
+    <ng-template matMenuContent let-item="item">
+      <button mat-menu-item (click)="deleteNote(item)">
+        Delete note
+      </button>
+      <button mat-menu-item>
+        Add label
+      </button>
+    </ng-template>
+  </mat-menu>
 
   <!-- [matMenuTriggerFor]="reminderMenu"
    (clickOutside)="showReminderMenu = false"

@@ -23,9 +23,8 @@
     <mat-icon>settings</mat-icon>
   </button> -->
 
-  <button class="accountIcon" mat-icon-button [matMenuTriggerFor]="accountMenu" matTooltip="Your Account">
-    <mat-icon>account_circle_outline</mat-icon>
-  </button>
+  <button class="accountIcon" [matMenuTriggerFor]="accountMenu" [matMenuTriggerData]="{accountImage:accountImage}"
+    matTooltip="Your Account">{{accountImage}}</button>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenavBar">
@@ -68,12 +67,22 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<div class="accountMenu">
-  <mat-menu #accountMenu="matMenu" class="accountMenu">
-    <button mat-menu-item class="accountMenu"> {{name}} </button>
-    <button mat-menu-item class="accountMenu"> {{email}} </button>
-    <button mat-menu-item class="logoutIcon" (click)="logout()" matTooltip="Logout">
-      <mat-icon>power_settings_new</mat-icon> Logout
-    </button>
-  </mat-menu>
-</div>
+<mat-menu #accountMenu="matMenu" class="accountMenuMain">
+  <ng-template matMenuContent let-accountImage="accountImage">
+    <div class="accountMenu">
+      <button class="accountMenuImage" matTooltip="Change Image">{{accountImage}}
+        <!-- <span class="accountMenuImageChange">Change</span> -->
+      </button>
+      <!-- <img [src]="url"> -->
+      <!-- <input type='file' (change)="onSelectFile($event)"> -->
+      <div class="accountMenuItems">
+        <div class="accountMenuName"> {{name}} </div>
+        <div class="accountMenuEmail"> {{email}} </div>
+        <button mat-button class="logoutIcon" (click)="logout()" matTooltip="Logout">
+          <mat-icon>power_settings_new</mat-icon> Logout
+        </button>
+      </div>
+
+    </div>
+  </ng-template>
+</mat-menu>

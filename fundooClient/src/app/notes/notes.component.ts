@@ -56,7 +56,7 @@ export class NotesComponent implements OnInit {
         // console.log('notesComponent: ', data);
         let count = 0;
         for (let i = 0; i < this.data.length; i++) {
-          if (this.data[i].pin == true) {
+          if (this.data[i].pin && !this.data[i].trash && !this.data[i].archive) {
             this.pinValue = true;
             this.counter++;
             count++;
@@ -111,7 +111,27 @@ export class NotesComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('archived: ', data);
-        this.snackBar.open("Note Archived!", "Okay!", { duration: 2000 });
+        this.getNotes();
+        let snackBarRef = this.snackBar.open("Note Archived!", "Undo", { duration: 3000 });
+        snackBarRef.onAction().subscribe(() => {
+          // console.log("action cliked!");
+          this.unarchiveNote(item);
+        })
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  unarchiveNote(item) {
+    // console.log(item);
+    item.archive = false;
+    // console.log(item);
+    this.httpService.post(item, 'archiveNote').subscribe(
+      data => {
+        console.log('unarchive: ', data);
+        this.getNotes();
       },
       error => {
         console.log(error);
@@ -126,7 +146,27 @@ export class NotesComponent implements OnInit {
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
         console.log('deleted: ', data);
-        this.snackBar.open("Note Moved to Trash!", "Okay!", { duration: 2000 });
+        this.getNotes();
+        let snackBarRef = this.snackBar.open("Note Moved to Trash!", "Undo", { duration: 3000 });
+        snackBarRef.onAction().subscribe(() => {
+          // console.log("action cliked!");
+          this.restoreNote(item);
+        })
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  restoreNote(item) {
+    // console.log(item);
+    item.trash = false;
+    console.log(item);
+    this.httpService.post(item, 'deleteNote').subscribe(
+      data => {
+        console.log('delete: ', data);
+        this.getNotes();
       },
       error => {
         console.log(error);
@@ -143,7 +183,7 @@ export class NotesComponent implements OnInit {
       data => {
         console.log('pinned: ', data);
         // this.getNotes();
-        this.snackBar.open("Note Pinned!", "Okay!", { duration: 2000 });
+        let snackBarRef = this.snackBar.open("Note Pinned!", "", { duration: 3000 });
       },
       error => {
         console.log(error);
@@ -160,7 +200,7 @@ export class NotesComponent implements OnInit {
       data => {
         console.log('unpinned: ', data);
         // this.getNotes();
-        this.snackBar.open("Note Unpinned!", "Okay!", { duration: 2000 });
+        let snackBarRef = this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
       },
       error => {
         console.log(error);
@@ -175,7 +215,7 @@ export class NotesComponent implements OnInit {
       data => {
         console.log('colorchange: ', data);
         // this.getNotes();
-        // this.snackBar.open("Color Changed!", "Okay!", { duration: 2000 });
+        // let snackBarRef =this.snackBar.open("Color Changed!", "Undo", { duration: 3000 });
       },
       error => {
         console.log(error);

@@ -46,7 +46,11 @@ export class TrashComponent implements OnInit {
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
         console.log('delete: ', data);
-        this.snackBar.open("Note Restored!", "Okay!", { duration: 2000 });
+        if(item.pin){
+          this.snackBar.open("Note Restored & Pinned!", "Okay!", { duration: 2000 });
+        }else{
+          this.snackBar.open("Note Restored!", "Okay!", { duration: 2000 });
+        }
       },
       error => {
         console.log(error);
