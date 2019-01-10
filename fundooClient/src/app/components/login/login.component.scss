@@ -2,19 +2,17 @@
 
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 html {
-    background: url('../../assets/background.jpeg');
+    background: url('../../../assets/background.jpeg');
 }
 
 html,
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    
 }
 
 .list-viewer-wrapper {
-    // text-align: center; // display: flex;
-    // flex-direction: column;
-    // margin: auto;
+  text-align: center;
+  margin: auto;
     color: rgb(0, 0, 0);
     width: 400px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -22,51 +20,55 @@ body {
 }
 
 .list-header-title {
-    //   display: inline-block;
     border-radius: 10px;
     color: rgb(255, 255, 255);
     background: rgb(0, 0, 0);
     padding: 20px;
     font-weight: bold;
-    // align-content: center;
+    align-content: center;
 }
 
 .form-container {
-    // display: inline-block;
+  display: inline-block;
+
     border-radius: 10px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.57);
-    text-decoration-color: aliceblue;
     display: flex;
     flex-direction: column;
 }
 
-// @media screen and (max-width: 500px) {
+// @media screen and (min-width: 500px) {
 //   .list-viewer-wrapper {
-//     margin: 45% auto;
+//     margin: 25% auto;
 //   }
 // }
-// @media screen and (max-width: 600px) {
+
+// @media screen and (min-width: 600px) {
 //   .list-viewer-wrapper {
-//     margin: 39% auto;
+//     margin: 29% auto;
 //   }
 // }
-// @media screen and (max-width: 700px) {
+
+// @media screen and (min-width: 700px) {
 //   .list-viewer-wrapper {
 //     margin: 34% auto;
 //   }
 // }
-// @media screen and (max-width: 800px) {
+
+// @media screen and (min-width: 800px) {
 //   .list-viewer-wrapper {
-//     margin: 28% auto;
+//     margin: 40% auto;
 //   }
 // }
-// @media screen and (max-width: 900px) {
+
+// @media screen and (min-width: 900px) {
 //   .list-viewer-wrapper {
-//     margin: 22% auto;
+//     margin: 45% auto;
 //   }
 // }
-// @media screen and (max-width: 1000px) {
+
+// @media screen and (min-width: 1000px) {
 //   .list-viewer-wrapper {
 //     margin: 20% auto;
 //   }

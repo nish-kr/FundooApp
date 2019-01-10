@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Router, ROUTES } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ForgotpasswordComponent } from "./forgotpassword/forgotpassword.component";
-import { NotesComponent } from './notes/notes.component';
-import { RemindersComponent } from './reminders/reminders.component';
-import { ArchiveComponent } from './archive/archive.component';
-import { TrashComponent } from './trash/trash.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { AddnoteComponent } from './addnote/addnote.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddnoteComponent } from './components/addnote/addnote.component';
+import { RemindersComponent } from './components/reminders/reminders.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 
 @NgModule({

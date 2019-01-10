@@ -1,11 +1,11 @@
 import { Component, OnInit, Injectable, SimpleChanges, ViewChild } from '@angular/core';
-import { HttpService } from '../http.service';
 import { Router, ChildActivationEnd } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { NotesModel } from "../models/notes.model";
 import { log } from 'util';
 import { NotesComponent } from '../notes/notes.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { NotesModel } from 'src/app/models/notes.model';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-addnote',

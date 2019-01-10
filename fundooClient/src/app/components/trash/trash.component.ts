@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
 import { MatSnackBar } from '@angular/material';
-import { ChangeviewService } from '../changeview.service';
+import { HttpService } from 'src/app/services/http.service';
+import { ChangeviewService } from 'src/app/services/changeview.service';
 
 @Component({
   selector: 'app-trash',

@@ -46,7 +46,7 @@
 .matCardGrid .changeColorIcon,
 .matCardGrid .archiveIcon,
 .matCardGrid .moreIcon,
-.matCardGrid .deleteIcon {
+.matCardGrid .moreIcon {
     color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
     width: 46px !important;
 }
@@ -56,7 +56,7 @@
 .matCardList .changeColorIcon,
 .matCardList .archiveIcon,
 .matCardList .moreIcon,
-.matCardList .deleteIcon {
+.matCardList .moreIcon {
     color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
 }
 
@@ -152,7 +152,12 @@
     float: right;
 }
 
-.moreNotesMenu {
+/deep/ .mat-menu-panel {
+    min-width: 100px; //          min-width: auto !important;
+    justify-content: space-around;
+}
+
+/deep/ .moreNotesMenu .mat-menu-content div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }

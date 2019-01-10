@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
-import { ForgotPasswordModel } from "../models/forgotpassword.model";
+import { ForgotPasswordModel } from 'src/app/models/forgotpassword.model';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-forgotpassword',

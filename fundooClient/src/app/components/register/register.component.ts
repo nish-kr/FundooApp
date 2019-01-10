@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterModel } from "../models/register.model";
 import { FormGroup, FormBuilder, Validators, FormGroupDirective, NgForm, FormControl } from '@angular/forms';
-import { HttpService } from "../http.service";
 import { Router } from '@angular/router';
 import { MatSnackBar, ErrorStateMatcher } from '@angular/material';
+import { RegisterModel } from 'src/app/models/register.model';
+import { HttpService } from 'src/app/services/http.service';
 
 // export class MyErrorStateMatcher implements ErrorStateMatcher {
 //   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

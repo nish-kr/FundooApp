@@ -4,14 +4,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { AddnoteComponent } from "../addnote/addnote.component";
-import { ChangeviewService } from '../changeview.service';
+import { ChangeviewService } from 'src/app/services/changeview.service';
+import { ViewEncapsulation } from '@angular/core';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [LoginComponent, AddnoteComponent]
+  providers: [LoginComponent, AddnoteComponent],
+  encapsulation: ViewEncapsulation.Emulated
   // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
@@ -69,7 +71,7 @@ export class DashboardComponent implements OnInit {
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         console.log("adsssssssssssssss");
-        
+
       }
     }
   }

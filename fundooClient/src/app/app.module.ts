@@ -6,13 +6,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
-
 /** In-app Modules & Components */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
 
 /** Angular Material & Animations modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,16 +18,22 @@ import {
   MatButtonModule, MatCheckboxModule, MatSidenavModule,
   MatInputModule, MatToolbarModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule
 } from "@angular/material";
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+
 import { CofirmpasswordDirective } from './cofirmpassword.directive';
-import { NotesComponent } from './notes/notes.component';
-import { RemindersComponent } from './reminders/reminders.component';
-import { ArchiveComponent } from './archive/archive.component';
-import { TrashComponent } from './trash/trash.component';
-import { AddnoteComponent } from './addnote/addnote.component';
+
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { ClickOutsideModule } from 'ng-click-outside';
+// import { SimpleImageUploadModule } from 'ngx-simple-image-upload';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { RemindersComponent } from './components/reminders/reminders.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
+import { AddnoteComponent } from './components/addnote/addnote.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
     MatNativeDateModule,
     AngularSvgIconModule,
     AmazingTimePickerModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    // SimpleImageUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

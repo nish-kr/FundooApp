@@ -116,7 +116,7 @@
 
 .accountIcon {
     margin-left: 30px;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 .accountIcon {
@@ -130,8 +130,12 @@
     background-color: #1494dede;
 }
 
+// /deep/ .mat-menu-panel .ng-trigger .ng-trigger-transformMenu .ng-tns-c8-1 .accountMenuMain .mat-menu-below .ng-star-inserted \ .mat-elevation-z4 .mat-menu-before {
+//     min-width: 300px !important;
+//     //     justify-content: space-around;
+// }
 /deep/ .mat-menu-panel {
-    min-width: 300px !important;
+    min-width: 300px !important; //          min-width: auto !important;
     justify-content: space-around;
 }
 
@@ -155,7 +159,6 @@
 // .accountMenuImageChange {
 //     font-size: 12px;
 // }
-
 .accountMenuItems {
     display: flex;
     flex-direction: column;

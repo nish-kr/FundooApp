@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ServerUrl } from './backend.url';
+import { ServerUrl } from '../backend.url';
 
 @Injectable({
   providedIn: 'root'
