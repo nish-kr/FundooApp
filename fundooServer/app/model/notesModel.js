@@ -123,7 +123,7 @@ notesDB.prototype.deleteNote = (req, callback) => {
 
 notesDB.prototype.deleteNoteForever = (req, callback) => {
     console.log('req on model to delete', req);
-    
+
     notes.deleteOne({ _id: req._id }, function (err, data) {
 
         if (err) {
@@ -169,6 +169,25 @@ notesDB.prototype.changeColor = (req, callback) => {
 
             // Checking if there is any data in the database of that username.
             // console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.updateNote = (req, callback) => {
+    console.log("request on update note", req);
+
+    notes.findByIdAndUpdate(req._id, { ...req }, function (err, data) {
+
+        if (err) {
+            console.log("Update Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            console.log("update notes", data);
 
             // Returning the data.
             return callback(null, data);

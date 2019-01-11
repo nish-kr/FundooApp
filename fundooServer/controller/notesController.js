@@ -153,3 +153,23 @@ exports.changeColorController = (req, res) => {
         }
     })
 }
+
+exports.updateNoteController = (req, res) => {
+
+    notesService.updateNoteService(req.body, (err, data) => {
+
+        // If error is found, send error back in the response.
+        if (err) {
+            res.status(404).send('Error');
+        }
+
+        // Else, send object of the data back in response.
+        else {
+
+            // Creating obj object to store just the email of the data.
+            
+            // Sending the object back in response.
+            res.status(200).send(data);
+        }
+    })
+}

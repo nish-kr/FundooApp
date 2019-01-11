@@ -34,6 +34,7 @@ import { RemindersComponent } from './components/reminders/reminders.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { AddnoteComponent } from './components/addnote/addnote.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AddnoteComponent } from './components/addnote/addnote.component';
     ArchiveComponent,
     TrashComponent,
     AddnoteComponent,
+    CardsComponent,
   ],
   imports: [
     BrowserModule,
