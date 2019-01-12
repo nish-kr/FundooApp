@@ -12,14 +12,14 @@
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">PINNED</div>
     <div class="ngForDiv" *ngFor="let item of data">
       <div *ngIf="!item.archive && !item.trash && item.pin">
-        <app-cards item="item"></app-cards>
+        <app-cards [item]=item></app-cards>
       </div>
     </div>
     <!-- <div *ngIf="pinValue==true" style="width: 700px">Others</div> -->
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">OTHERS</div>
     <div class="ngForDiv" *ngFor="let item of data">
       <div *ngIf="!item.archive && !item.trash && !item.pin"></div>
-      <app-cards item="item"></app-cards>
+      <app-cards [item]=item></app-cards>
     </div>
   </div>
 

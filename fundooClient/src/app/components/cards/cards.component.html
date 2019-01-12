@@ -1,11 +1,10 @@
-<div [class]="item">
-  <mat-card [ngClass]="{'matCardGrid': rowCol=='row',
-        'matCardList': rowCol=='column'}" [ngStyle]="{'background-color': item.color}">
+<div [class]=item>
+  <mat-card  [ngStyle]="{'background-color': item.color}">
     <div class="noteCard">
       <div class="matCardTitleContent">
         <mat-card-header>
           <mat-card-title class="matCardTitle">{{item.title}}</mat-card-title>
-          <button class="pinIcon" mat-icon-button matTooltip="Unpin" (click)="unpinNote(item)">
+          <button class="pinIcon" mat-icon-button matTooltip="Unpin" (click)="changePin(item)">
             <svg-icon src="../../assets/Icons/pinIcon.svg"> </svg-icon>
           </button>
         </mat-card-header>
@@ -14,9 +13,50 @@
       </div>
       <mat-card-footer class="matCardFooter">
         <div class="notesIcons">
-          <button class="reminderIcon" mat-icon-button matTooltip="Remind me">
+          <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
             <mat-icon>notifications_active</mat-icon>
           </button>
+          <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
+            <div>Reminder:</div>
+            <button mat-menu-item>
+              Later Today
+              <span class="timings">20:00</span>
+            </button>
+            <button mat-menu-item>
+              Tommorow
+              <span class="timings">08:00</span>
+            </button>
+            <button mat-menu-item>
+              Next Week
+              <span class="timings">{{nextWeekDay}}, 08:00</span>
+            </button>
+            <button mat-menu-item (click)="toggleReminderMenu()">
+              <mat-icon>access_time</mat-icon>
+              Pick date & time
+            </button>
+          </div>
+
+          <div class="dateMenu" *ngIf="reminderMenuBool && showReminderMenu">
+            <button mat-icon-button (click)="toggleReminderMenu()">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+            <div>Pick Date & Time:</div>
+            <mat-form-field>
+
+              <input matInput id="dateInput" [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+              <mat-form-field>
+                <input matInput id="timeInput" atp-time-picker placeholder="Choose a time" />
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button (click)="setReminder(dateInput,timeInput)">Action</button>
+            </div>
+          </div>
+
           <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
             <mat-icon>person_add</mat-icon>
           </button>

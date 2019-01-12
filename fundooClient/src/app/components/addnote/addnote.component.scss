@@ -2,6 +2,7 @@
 html,
 body {
     background-image: rgb(255, 255, 255);
+    font-family: 'Product Sans', Arial, sans-serif;
 }
 
 .mainNotes {
@@ -23,6 +24,7 @@ body {
     border: none;
     max-height: 200px;
     overflow-y: overlay;
+    font-family: 'Product Sans', Arial, sans-serif;
 }
 
 /deep/ textarea.cdk-textarea-autosize {
@@ -34,11 +36,11 @@ body {
     font-size: medium;
     padding: 10px;
     overflow-y: hidden;
+    font-family: 'Product Sans', Arial, sans-serif;
 }
 
 .pinIcon {
-    position: absolute;
-    // line-height: 10px;
+    position: absolute; // line-height: 10px;
     padding: 6px;
     height: 30px !important;
 }
@@ -84,7 +86,6 @@ body {
 //     max-width: 500px;
 //     display: flex;
 // }
-
 /deep/ .mat-menu-content:not(:empty) {
     display: flex;
     flex-wrap: wrap;

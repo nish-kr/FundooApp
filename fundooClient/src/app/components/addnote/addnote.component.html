@@ -1,19 +1,20 @@
 <div class="mainNotes" [ngStyle]="{'background-color':color}">
   <div *ngIf="!isOpen">
     <div class="noteTitle">
-      <textarea matTextareaAutosize placeholder="Take a note..." (click)="isOpen=true"></textarea>
+      <textarea class="noteTitle" matTextareaAutosize placeholder="Take a note..." (click)="isOpen=true"></textarea>
     </div>
   </div>
   <div *ngIf="isOpen">
     <div class="noteTitle">
-      <textarea [ngStyle]="{'background-color':color}" matTextareaAutosize placeholder="Title" [(ngModel)]="notes.title"></textarea>
+      <textarea class="noteTitle" [ngStyle]="{'background-color':color}" matTextareaAutosize placeholder="Title"
+        [(ngModel)]="notes.title"></textarea>
       <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin" (click)="changePinValue()">
         <svg-icon [src]="pinValue ? '../../assets/Icons/pinIcon.svg' : '../../assets/Icons/unpinIcon.svg' "> </svg-icon>
         <!-- <svg-icon [src]="../../assets/Icons/pinIcon.svg" > </svg-icon> -->
       </button>
     </div>
     <div class="noteContent">
-      <textarea [ngStyle]="{'background-color':color}" matTextareaAutosize required placeholder="Take a note..."
+      <textarea class="noteContent" [ngStyle]="{'background-color':color}" matTextareaAutosize required placeholder="Take a note..."
         [(ngModel)]="notes.note"></textarea>
     </div>
     <div class="addNotesIcons">
