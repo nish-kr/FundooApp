@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { HttpService } from 'src/app/services/http.service';
 import { ChangeviewService } from 'src/app/services/changeview.service';
+// import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-cards',
@@ -11,6 +12,8 @@ import { ChangeviewService } from 'src/app/services/changeview.service';
 export class CardsComponent implements OnInit {
 
   @Input() item: any;
+
+  @Output() messageEvent = new EventEmitter<String>();
 
   data: any;
   rowCol: any = "column";
@@ -43,7 +46,7 @@ export class CardsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getNotes();
+    // this.messageEvent.emit("Emitted from child")
   }
 
   getNotes() {
@@ -113,7 +116,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('archived: ', data);
-        this.getNotes();
+        this.messageEvent.emit("Emitted from child")
         let snackBarRef = this.snackBar.open("Note Archived!", "Undo", { duration: 3000 });
         snackBarRef.onAction().subscribe(() => {
           // console.log("action cliked!");
@@ -133,7 +136,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('unarchive: ', data);
-        this.getNotes();
+        this.messageEvent.emit("Emitted from child")
       },
       error => {
         console.log(error);
@@ -148,7 +151,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
         console.log('deleted: ', data);
-        this.getNotes();
+        this.messageEvent.emit("Emitted from child")
         let snackBarRef = this.snackBar.open("Note Moved to Trash!", "Undo", { duration: 3000 });
         snackBarRef.onAction().subscribe(() => {
           // console.log("action cliked!");
@@ -168,7 +171,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
         console.log('delete: ', data);
-        this.getNotes();
+        this.messageEvent.emit("Emitted from child")
       },
       error => {
         console.log(error);
@@ -189,7 +192,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'pinNote').subscribe(
       data => {
         console.log('pinned: ', data);
-        // this.getNotes();
+        // this.messageEvent.emit("Emitted from child")
         let snackBarRef = this.snackBar.open("Note Pinned!", "", { duration: 3000 });
       },
       error => {
@@ -206,7 +209,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'pinNote').subscribe(
       data => {
         console.log('pinned: ', data);
-        // this.getNotes();
+        // this.messageEvent.emit("Emitted from child")
         let snackBarRef = this.snackBar.open("Note Pinned!", "", { duration: 3000 });
       },
       error => {
@@ -223,7 +226,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'pinNote').subscribe(
       data => {
         console.log('unpinned: ', data);
-        // this.getNotes();
+        // this.messageEvent.emit("Emitted from child")
         let snackBarRef = this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
       },
       error => {
@@ -238,7 +241,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'changeColor').subscribe(
       data => {
         console.log('colorchange: ', data);
-        // this.getNotes();
+        // this.messageEvent.emit("Emitted from child")
         // let snackBarRef =this.snackBar.open("Color Changed!", "Undo", { duration: 3000 });
       },
       error => {

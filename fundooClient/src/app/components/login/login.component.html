@@ -1,36 +1,32 @@
-  <div layout="column" layoutAlign="center center" class="list-viewer-wrapper">
-    <div class="list-header-title">Login</div>
+<div layout="column" layoutAlign="center center" class="list-viewer-wrapper">
+  <div class="list-header-title">Login</div>
 
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
-      <div class="form-container">
+  <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+    <div class="form-container">
 
-        <mat-form-field>
-            <input id="email"
-                   matInput
-                   formControlName="email"
-                   [(ngModel)]="user.email"
-                   placeholder="Enter your email"
-                   autocomplete="off" />
-          </mat-form-field>
+      <mat-form-field>
+        <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email"
+          autocomplete="off" />
+      </mat-form-field>
 
-        <mat-form-field>
-            <input id="password"
-                   matInput
-                   formControlName="password"
-                   [(ngModel)]="user.password"
-                   placeholder="Enter your password"
-                   autocomplete="off"
-                   [type]="hide ? 'password':'text'" />
-              <mat-icon matSuffix (click)="hide = !hide">
-                {{hide ? 'visibility' : 'visibility_off'}}
-              </mat-icon>
-          </mat-form-field>
+      <mat-form-field>
+        <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Enter your password"
+          autocomplete="off" [type]="hide ? 'password':'text'" />
+        <mat-icon matSuffix (click)="hide = !hide">
+          {{hide ? 'visibility' : 'visibility_off'}}
+        </mat-icon>
+      </mat-form-field>
 
-          <button mat-button type="submit"
-                  class="mat-raised-button mat-primary"
-                  [disabled]="!registerForm.valid">Login</button>
-          <button mat-button routerLink="/register" class="divider">Register</button>
-          <!-- <button mat-button routerLink="/forgotPassword" class="divider">Forgot Password?</button> -->
-      </div>
-    </form>
-  </div>
+      <button mat-button type="submit" class="mat-raised-button mat-primary" [disabled]="!registerForm.valid">Login</button>
+      <button mat-button routerLink="/register" class="divider">Register</button>
+      <button mat-button (click)="socialSignIn('google')">Sign in with Google</button>
+
+      <!-- <button mat-button routerLink="/forgotPassword" class="divider">Forgot Password?</button> -->
+
+    </div>
+
+  </form>
+  <!-- <button mat-button (click)="signInWithGoogle()">Google Login</button> -->
+  <!-- <button mat-button (click)="socialSignIn('facebook')">Sign in with Facebook</button> -->
+  <!-- <button mat-button (click)="socialSignIn('google')">Sign in with Google</button> -->
+</div>

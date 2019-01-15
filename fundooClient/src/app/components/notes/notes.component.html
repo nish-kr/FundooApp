@@ -1,5 +1,5 @@
 <div class="notesDiv">
-  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px">
+  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px" fxFlex="" fxLayoutAlign="space-between center">
     <!-- <mat-card *ngFor="let item of data">
     <div>
       {{item.title}}
@@ -10,16 +10,16 @@
   </mat-card> -->
     <!-- <div *ngIf="pinValue==true" style="width: 700px">Pinned</div> -->
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">PINNED</div>
-    <div class="ngForDiv" *ngFor="let item of data">
+    <div class="ngForDiv" *ngFor="let item of data" fxLayoutAlign="space-around center">
       <div *ngIf="!item.archive && !item.trash && item.pin">
-        <app-cards [item]=item></app-cards>
+        <app-cards [item]=item (messageEvent)="receiveMessage($event)"></app-cards>
       </div>
     </div>
     <!-- <div *ngIf="pinValue==true" style="width: 700px">Others</div> -->
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">OTHERS</div>
-    <div class="ngForDiv" *ngFor="let item of data">
+    <div class="ngForDiv" *ngFor="let item of data" fxFlex="" fxLayoutAlign="space-between center">
       <div *ngIf="!item.archive && !item.trash && !item.pin"></div>
-      <app-cards [item]=item></app-cards>
+      <app-cards [item]=item (messageEvent)="receiveMessage($event)"></app-cards>
     </div>
   </div>
 

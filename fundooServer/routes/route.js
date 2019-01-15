@@ -9,6 +9,7 @@
 /**
  * Required Dependencies.
  */
+// const cache = require('express-redis-cache')();
 const express = require('express'); // Importing express module.
 var router = express.Router(); // Creating router using express' router() function.
 
@@ -21,6 +22,8 @@ const notesMiddleware = require('../middleware/notesMiddleware');
 // Using router.post() function for '/login' request.
 router.post('/login', userController.loginController);
 
+// router.post('/socialLogin', userController.loginController);
+
 // Using router.post() function for '/signup' request.
 router.post('/register', userController.signupController);
 
@@ -29,7 +32,12 @@ router.post('/forgotPassword', userController.forgotPasswordController);
 
 router.post('/addNote', notesMiddleware.addNoteMiddleware, notesController.addNoteController);
 
-router.post('/getNotes', notesMiddleware.addNoteMiddleware, notesController.getNotesController);
+router.post('/getNotes', notesMiddleware.addNoteMiddleware,
+    // cache({
+    //     name: 'getNotes',
+    //     expire: 60
+    // }),
+    notesController.getNotesController);
 
 router.post('/updateNote', notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
 

@@ -5,7 +5,11 @@ import { MatSnackBar } from '@angular/material';
 import { LoginModel } from 'src/app/models/login.model';
 import { HttpService } from 'src/app/services/http.service';
 // import { DashboardComponent } from '../dashboard/dashboard.component';
-
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular-6-social-login';
 /** @title Input with a custom ErrorStateMatcher */
 @Component({
   selector: 'app-login',
@@ -29,6 +33,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     // private dashboard: DashboardComponent
+    private socialAuthService: AuthService
   ) { }
 
   ngOnInit() {
@@ -43,6 +48,51 @@ export class LoginComponent implements OnInit {
         Validators.maxLength(30)
       ]]
     });
+  }
+
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    // if(socialPlatform == "facebook"){
+    //   socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    // }else 
+    if (socialPlatform == "google") {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + " sign in data : ", userData);
+        this.onSocialLogin(userData);
+      }
+    );
+  }
+
+
+  // signInWithFB() {
+  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // }
+
+  // signOut() {
+  //   this.authService.signOut();
+  // }
+
+  onSocialLogin(data) {
+    var firstName = data.name.split(' ')[0];
+    var lastName = data.name.split(' ')[1];
+
+    let userData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: data.email,
+      image: data.image
+    }
+
+    console.log(userData);
+
+    localStorage.setItem("loginToken", JSON.stringify(userData));
+
+    // this.router.navigateByUrl('/dashboard');
+
   }
 
   onRegisterSubmit() {
@@ -61,6 +111,7 @@ export class LoginComponent implements OnInit {
         //  = userNameEmail;
         // this.dashboard.name = userNameEmail.name;
         console.log("Login successful", data);
+
         localStorage.setItem("loginToken", JSON.stringify(data));
 
         console.log("token on client side", localStorage.getItem("loginToken"));

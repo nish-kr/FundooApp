@@ -19,6 +19,8 @@ const mongoose = require('mongoose'); // Importing mongoose module to connect to
 const url = require('./config/dbconfig'); // Importing dbconfig module to get the url of the database.
 const cors = require('cors') // Importing cors module to check the request timed out while reaching the host.
 const expressValidator = require('express-validator');
+// const cache = require('express-redis-cache')();
+
 require('dotenv').config();
 
 // const nodemailer = require('nodemailer');
@@ -50,6 +52,23 @@ function mongofunction(url) {
     })
 }
 
+// cache.on('error', function (error) {
+//     throw new Error('Cache error!');
+// });
+
+// cache.on('message', function (message) {
+//     // ...
+// });
+
+// cache.on('connected', function () {
+//     // ....
+// });
+
+// cache.on('disconnected', function () {
+//     // ....
+// });
+
+
 // Using body parser to convert the request data into JSON format.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -68,3 +87,4 @@ var server = app.listen(port, () => {
     // And establishing connection with the url.
     mongofunction(url);
 })
+

@@ -35,6 +35,31 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { AddnoteComponent } from './components/addnote/addnote.component';
 import { CardsComponent } from './components/cards/cards.component';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+
+
+// Configs 
+export function getAuthServiceConfigs() {
+let config = new AuthServiceConfig(
+    [
+      // {
+      //   id: FacebookLoginProvider.PROVIDER_ID,
+      //   provider: new FacebookLoginProvider("Your-Facebook-app-id")
+      // },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("779882706195-q6kvdahh19ab5dn6di8sf45b075mu6t8.apps.googleusercontent.com")
+      }
+    ]
+);
+return config;
+}
+
 
 @NgModule({
   declarations: [
@@ -72,9 +97,16 @@ import { CardsComponent } from './components/cards/cards.component';
     AngularSvgIconModule,
     AmazingTimePickerModule,
     ClickOutsideModule,
+    SocialLoginModule
+
     // SimpleImageUploadModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
