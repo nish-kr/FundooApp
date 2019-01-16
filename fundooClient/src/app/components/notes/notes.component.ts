@@ -11,8 +11,10 @@ import { ChangeviewService } from 'src/app/services/changeview.service';
 
 export class NotesComponent implements OnInit {
 
+  pinnedIconSrc = "../../assets/Icons/pinIcon.svg";
+  unpinnedIconSrc = "../../assets/Icons/unpinIcon.svg";
   data: any;
-  notes: Array<Object>;
+  notes: Array<Object> = [];
   rowCol: any = "column";
   pinValue: Boolean = false;
   counter: number = 0;
@@ -43,6 +45,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.view.currentMessage.subscribe(message => this.rowCol = message);
+    this.getNotes();
   }
 
   getNotes() {

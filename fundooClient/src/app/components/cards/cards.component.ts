@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { HttpService } from 'src/app/services/http.service';
 import { ChangeviewService } from 'src/app/services/changeview.service';
+import { EditCardComponent } from '../edit-card/edit-card.component';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -12,12 +13,15 @@ import { ChangeviewService } from 'src/app/services/changeview.service';
 export class CardsComponent implements OnInit {
 
   @Input() item: any;
+  @Input() pinIconSrc: any;
 
   @Output() messageEvent = new EventEmitter<String>();
 
+  // pinIconSrc: any = "../../assets/Icons/unpinIcon.svg";
   data: any;
   rowCol: any = "column";
   pinValue: Boolean = false;
+  pinToolTip: any;
   counter: number = 0;
   reminderMenuBool: Boolean = true;
   showReminderMenu: Boolean;
@@ -42,42 +46,43 @@ export class CardsComponent implements OnInit {
   constructor(
     private httpService: HttpService,
     private snackBar: MatSnackBar,
-    private view: ChangeviewService
+    private view: ChangeviewService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     // this.messageEvent.emit("Emitted from child")
   }
 
-  getNotes() {
-    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-    var getNotesObj = {
-      userId: userCredentials.userId,
-      token: userCredentials.loginToken
-    }
-    this.httpService.post(getNotesObj, 'getNotes').subscribe(
-      data => {
-        this.data = data;
-        // console.log('notesComponent: ', data);
-        let count = 0;
-        for (let i = 0; i < this.data.length; i++) {
-          if (this.data[i].pin && !this.data[i].trash && !this.data[i].archive) {
-            this.pinValue = true;
-            this.counter++;
-            count++;
-            break;
-          }
-        }
-        if (count == 0) {
-          this.counter = 0;
-          this.pinValue = false;
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  // getNotes() {
+  //   let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+  //   var getNotesObj = {
+  //     userId: userCredentials.userId,
+  //     token: userCredentials.loginToken
+  //   }
+  //   this.httpService.post(getNotesObj, 'getNotes').subscribe(
+  //     data => {
+  //       this.data = data;
+  //       // console.log('notesComponent: ', data);
+  //       let count = 0;
+  //       for (let i = 0; i < this.data.length; i++) {
+  //         if (this.data[i].pin && !this.data[i].trash && !this.data[i].archive) {
+  //           this.pinValue = true;
+  //           this.counter++;
+  //           count++;
+  //           break;
+  //         }
+  //       }
+  //       if (count == 0) {
+  //         this.counter = 0;
+  //         this.pinValue = false;
+  //       }
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
   // toggleReminderMenu() {
   //   if (this.reminderMenu == "reminderMenu") {
@@ -86,6 +91,14 @@ export class CardsComponent implements OnInit {
   //     this.reminderMenu = "reminderMenu";
   //   }
   // }  
+
+  editCard() {
+    const dialogRef = this.dialog.open(EditCardComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   toggleReminderMenu() {
     if (this.reminderMenuBool == true) {
@@ -191,9 +204,14 @@ export class CardsComponent implements OnInit {
     // console.log(item);
     this.httpService.post(item, 'pinNote').subscribe(
       data => {
-        console.log('pinned: ', data);
-        // this.messageEvent.emit("Emitted from child")
-        let snackBarRef = this.snackBar.open("Note Pinned!", "", { duration: 3000 });
+        this.messageEvent.emit("Emitted from child")
+        if (item.pin) {
+          this.snackBar.open("Note Pinned!", "", { duration: 3000 });
+          console.log('pinned: ', data);
+        } else {
+          this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
+          console.log('unpinned: ', data);
+        }
       },
       error => {
         console.log(error);
@@ -201,39 +219,39 @@ export class CardsComponent implements OnInit {
     )
   }
 
-  pinNote(item) {
-    item.pin = true;
-    // this.pinValue = true;
-    this.counter++;
-    // console.log(item);
-    this.httpService.post(item, 'pinNote').subscribe(
-      data => {
-        console.log('pinned: ', data);
-        // this.messageEvent.emit("Emitted from child")
-        let snackBarRef = this.snackBar.open("Note Pinned!", "", { duration: 3000 });
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  // pinNote(item) {
+  //   item.pin = true;
+  //   // this.pinValue = true;
+  //   this.counter++;
+  //   // console.log(item);
+  //   this.httpService.post(item, 'pinNote').subscribe(
+  //     data => {
+  //       console.log('pinned: ', data);
+  //       this.messageEvent.emit("Emitted from child")
+  //       let snackBarRef = this.snackBar.open("Note Pinned!", "", { duration: 3000 });
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
-  unpinNote(item) {
-    item.pin = false;
-    // this.pinValue = false;
-    this.counter--;
-    // console.log(item);
-    this.httpService.post(item, 'pinNote').subscribe(
-      data => {
-        console.log('unpinned: ', data);
-        // this.messageEvent.emit("Emitted from child")
-        let snackBarRef = this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  // unpinNote(item) {
+  //   item.pin = false;
+  //   // this.pinValue = false;
+  //   this.counter--;
+  //   // console.log(item);
+  //   this.httpService.post(item, 'pinNote').subscribe(
+  //     data => {
+  //       console.log('unpinned: ', data);
+  //       this.messageEvent.emit("Emitted from child")
+  //       let snackBarRef = this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
   changeColor(color, item) {
     item.color = color;

@@ -1,29 +1,32 @@
 <div class="notesDiv">
-  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px" fxFlex="" fxLayoutAlign="space-between center">
+  <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px" fxFlex="">
     <!-- <mat-card *ngFor="let item of data">
     <div>
       {{item.title}}
     </div>
+    fxFlex="" fxLayoutAlign="space-around center"
     <div>
       {{item.note}}
     </div>
   </mat-card> -->
     <!-- <div *ngIf="pinValue==true" style="width: 700px">Pinned</div> -->
+
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">PINNED</div>
-    <div class="ngForDiv" *ngFor="let item of data" fxLayoutAlign="space-around center">
-      <div *ngIf="!item.archive && !item.trash && item.pin">
-        <app-cards [item]=item (messageEvent)="receiveMessage($event)"></app-cards>
+    <!-- <div *ngIf="counter>0"> -->
+    <div class="ngForDiv" *ngFor="let item of data">
+      <div *ngIf="!item.archive && !item.trash && item.pin" class="cardComponent">
+        <app-cards [item]=item [pinIconSrc]=pinnedIconSrc (messageEvent)="receiveMessage($event)" [ngClass]="{'matCardGrid': rowCol=='row','matCardList': rowCol=='column'}"></app-cards>
       </div>
     </div>
+    <!-- </div> -->
     <!-- <div *ngIf="pinValue==true" style="width: 700px">Others</div> -->
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">OTHERS</div>
-    <div class="ngForDiv" *ngFor="let item of data" fxFlex="" fxLayoutAlign="space-between center">
-      <div *ngIf="!item.archive && !item.trash && !item.pin"></div>
-      <app-cards [item]=item (messageEvent)="receiveMessage($event)"></app-cards>
+    <div class="ngForDiv" *ngFor="let item of data">
+      <div *ngIf="!item.archive && !item.trash && !item.pin" class="cardComponent">
+        <app-cards [item]=item [pinIconSrc]=unpinnedIconSrc (messageEvent)="receiveMessage($event)" [ngClass]="{'matCardGrid': rowCol=='row','matCardList': rowCol=='column'}"></app-cards>
+      </div>
     </div>
-  </div>
-
-  <!-- [matMenuTriggerFor]="reminderMenu"
+    <!-- [matMenuTriggerFor]="reminderMenu"
    (clickOutside)="showReminderMenu = false"
   [matMenuTriggerData]="item"
   (mouseenter)="colorMenuTrigger.openMenu()"
@@ -31,4 +34,4 @@
 [matMenuTriggerContext]="item"-->
 
 
-</div>
+  </div>

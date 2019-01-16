@@ -41,11 +41,12 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from "angular-6-social-login";
+import { EditCardComponent } from './components/edit-card/edit-card.component';
 
 
 // Configs 
 export function getAuthServiceConfigs() {
-let config = new AuthServiceConfig(
+  let config = new AuthServiceConfig(
     [
       // {
       //   id: FacebookLoginProvider.PROVIDER_ID,
@@ -56,8 +57,8 @@ let config = new AuthServiceConfig(
         provider: new GoogleLoginProvider("779882706195-q6kvdahh19ab5dn6di8sf45b075mu6t8.apps.googleusercontent.com")
       }
     ]
-);
-return config;
+  );
+  return config;
 }
 
 
@@ -76,6 +77,7 @@ return config;
     TrashComponent,
     AddnoteComponent,
     CardsComponent,
+    EditCardComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +102,9 @@ return config;
     SocialLoginModule
 
     // SimpleImageUploadModule
+  ],
+  entryComponents: [
+    EditCardComponent
   ],
   providers: [
     {
