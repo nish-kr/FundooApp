@@ -92,9 +92,10 @@ export class CardsComponent implements OnInit {
   //   }
   // }  
 
-  editCard() {
-    const dialogRef = this.dialog.open(EditCardComponent);
-
+  editCard(item) {
+    const dialogRef = this.dialog.open(EditCardComponent, {
+      data: item,
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -206,10 +207,10 @@ export class CardsComponent implements OnInit {
       data => {
         this.messageEvent.emit("Emitted from child")
         if (item.pin) {
-          this.snackBar.open("Note Pinned!", "", { duration: 3000 });
+          // this.snackBar.open("Note Pinned!", "", { duration: 3000 });
           console.log('pinned: ', data);
         } else {
-          this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
+          // this.snackBar.open("Note Unpinned!", "", { duration: 3000 });
           console.log('unpinned: ', data);
         }
       },

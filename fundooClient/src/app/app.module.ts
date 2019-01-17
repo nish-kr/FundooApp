@@ -77,7 +77,7 @@ export function getAuthServiceConfigs() {
     TrashComponent,
     AddnoteComponent,
     CardsComponent,
-    EditCardComponent
+    EditCardComponent,
   ],
   imports: [
     BrowserModule,

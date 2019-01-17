@@ -1,6 +1,20 @@
+
+/deep/ .mat-dialog-container {
+    display: block;
+    padding: 0px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+}
+
 .mainEditArea {
-    top: 1;
-    left: 1;
-    right: 1;
-    bottom: 1;
+    // top: 1;
+    // left: 1;
+    // right: 1;
+    // bottom: 1;
 }

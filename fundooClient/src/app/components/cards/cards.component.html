@@ -1,7 +1,7 @@
 <div [class]=item>
   <mat-card [ngStyle]="{'background-color': item.color}">
     <div class="noteCard">
-      <div class="matCardTitleContent" (click)="editCard()">
+      <div class="matCardTitleContent" (click)="editCard(item)">
         <mat-card-header>
           <mat-card-title class="matCardTitle">{{item.title}}</mat-card-title>
           <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePin(item)">
