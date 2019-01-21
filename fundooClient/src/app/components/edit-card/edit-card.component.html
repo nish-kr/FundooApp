@@ -1,88 +1,92 @@
-<body>
-  <div class="mainEditArea" [ngStyle]="{'background': data.color}">
-    <mat-dialog-content>
-      <div>
-        <textarea mat-dialog-title id="" cols="40" rows="1" placeholder="Title" [ngStyle]="{'background': data.color}">{{data.title}}</textarea>
-        <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note">
-          <!-- <svg-icon [src]="pinIconSrc"> </svg-icon> -->
-          <mat-icon class="mat-18">ligature</mat-icon>
-        </button>
-      </div>
-      <div>
-        <textarea mat-dialog-title id="" cols="50" rows="2" placeholder="Note" [ngStyle]="{'background': data.color}">{{data.note}}</textarea>
-      </div>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <!-- align="end" -->
-      <div class="notesIcons">
-        <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
-          <mat-icon>notifications_active</mat-icon>
-        </button>
-        <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
-          <div>Reminder:</div>
-          <button mat-menu-item>
-            Later Today
-            <span class="timings">20:00</span>
-          </button>
-          <button mat-menu-item>
-            Tommorow
-            <span class="timings">08:00</span>
-          </button>
-          <button mat-menu-item>
-            Next Week
-            <span class="timings">{{nextWeekDay}}, 08:00</span>
-          </button>
-          <button mat-menu-item (click)="toggleReminderMenu()">
-            <mat-icon>access_time</mat-icon>
-            Pick date & time
-          </button>
-        </div>
-
-        <div class="dateMenu" *ngIf="reminderMenuBool && showReminderMenu">
-          <button mat-icon-button (click)="toggleReminderMenu()">
-            <mat-icon>arrow_back</mat-icon>
-          </button>
-          <div>Pick Date & Time:</div>
-          <mat-form-field>
-
-            <input matInput id="dateInput" [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <div>
-            <mat-form-field>
-              <input matInput id="timeInput" atp-time-picker placeholder="Choose a time" />
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button (click)="setReminder(dateInput,timeInput)">Action</button>
-          </div>
-        </div>
-
-        <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
-          <mat-icon>person_add</mat-icon>
-        </button>
-        <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu"
-          [matMenuTriggerData]="{item:item}">
-          <mat-icon>color_lens</mat-icon>
-        </button>
-        <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
-          <mat-icon>archive</mat-icon>
-        </button>
-        <button class="moreIcon" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreNotesMenu"
-          [matMenuTriggerData]="{item:item}">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </div>
-      <button mat-button mat-dialog-close>Cancel</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>oK</button>
-    </mat-dialog-actions>
+<div class="mainEditArea" [ngStyle]="{'background': data.color}">
+  <div>
+    <div class="editNoteTitleDiv">
+      <textarea class="editNoteTitleInput" matTextareaAutosize [(ngModel)]="data.title" id="" cols="40" rows="1"
+        placeholder="Title" [ngStyle]="{'background': data.color}">{{data.title}}</textarea>
+      <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePinValue()">
+        <!-- <svg-icon [src]="pinIconSrc"> </svg-icon> -->
+        <svg-icon [src]="data.pin ? '../../assets/Icons/pinIcon.svg' : '../../assets/Icons/unpinIcon.svg' "> </svg-icon>
+        <!-- <mat-icon class="mat-18">ligature</mat-icon>  mat-dialog-title
+mat-dialog-title-->
+      </button>
+    </div>
+    <div>
+      <textarea class="editNoteContentInput" matTextareaAutosize [(ngModel)]="data.note" id="" cols="50" rows="2"
+        placeholder="Note" [ngStyle]="{'background': data.color}">{{data.note}}</textarea>
+    </div>
   </div>
-</body>
+  <mat-dialog-actions>
+    <!-- align="end" -->
+    <div class="notesIcons">
+      <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
+        <mat-icon>notifications_active</mat-icon>
+      </button>
+      <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
+        <div>Reminder:</div>
+        <button mat-menu-item>
+          Later Today
+          <span class="timings">20:00</span>
+        </button>
+        <button mat-menu-item>
+          Tommorow
+          <span class="timings">08:00</span>
+        </button>
+        <button mat-menu-item>
+          Next Week
+          <span class="timings">{{nextWeekDay}}, 08:00</span>
+        </button>
+        <button mat-menu-item (click)="toggleReminderMenu()">
+          <mat-icon>access_time</mat-icon>
+          Pick date & time
+        </button>
+      </div>
+
+      <div class="dateMenu" *ngIf="reminderMenuBool && showReminderMenu">
+        <button mat-icon-button (click)="toggleReminderMenu()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div>Pick Date & Time:</div>
+        <mat-form-field>
+
+          <input matInput id="dateInput" [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <mat-form-field>
+            <input matInput id="timeInput" atp-time-picker placeholder="Choose a time" />
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button (click)="setReminder(dateInput,timeInput)">Action</button>
+        </div>
+      </div>
+
+      <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
+        <mat-icon>person_add</mat-icon>
+      </button>
+      <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu"
+        [matMenuTriggerData]="{item:item}">
+        <mat-icon>color_lens</mat-icon>
+      </button>
+      <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="data.archive=true" mat-dialog-close>
+        <mat-icon>archive</mat-icon>
+      </button>
+      <button class="moreIcon" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreNotesMenu"
+        [matMenuTriggerData]="{item:item}">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <!-- <button class="saveButton" mat-button mat-dialog-close>Save</button> -->
+    </div>
+    <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial mat-dialog-close>Cancel</button> -->
+    <button class="saveButton" mat-button mat-dialog-close>Save</button>
+  </mat-dialog-actions>
+</div>
+
 <mat-menu #colorMenu="matMenu" class="colorMenu">
   <ng-template matMenuContent let-item="item">
     <div *ngFor="let color of colorCode">
-      <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode,item)">
+      <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="data.color=color.colorCode">
         <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
       </button>
     </div>
@@ -92,7 +96,7 @@
 <mat-menu #moreNotesMenu="matMenu" class="moreNotesMenu">
 
   <ng-template matMenuContent let-item="item">
-    <button mat-menu-item (click)="deleteNote(item)">
+    <button mat-menu-item mat-dialog-close (click)="data.trash=true">
       Delete note
     </button>
     <button mat-menu-item>

@@ -8,8 +8,8 @@
             <svg-icon [src]="pinIconSrc"> </svg-icon>
           </button>
         </mat-card-header>
-        <mat-card-content class="matCardContent"> {{item.note}}
-        </mat-card-content>
+        <mat-card-content class="matCardContent"> {{item.note}} </mat-card-content>
+
       </div>
       <mat-card-footer class="matCardFooter">
         <div class="notesIcons">
@@ -43,13 +43,16 @@
             <div>Pick Date & Time:</div>
             <mat-form-field>
 
-              <input matInput id="dateInput" [matDatepicker]="picker" placeholder="Choose a date">
+              <input matInput [(ngModel)]="dateInput" [matDatepicker]="picker" placeholder="Choose a date">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <div>
               <mat-form-field>
-                <input matInput id="timeInput" atp-time-picker placeholder="Choose a time" />
+                <input matInput value="{{timeInput}}" placeholder="Choose a time" />
+                <button mat-icon-button (click)="openTimeSelector()">
+                  <mat-icon class="mat-18">timer</mat-icon>
+                </button>
               </mat-form-field>
             </div>
             <div>

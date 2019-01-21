@@ -8,8 +8,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class EditCardComponent implements OnInit {
 
+  // noteTitle: any = this.data.title;
+  // noteContent: any = this.data.note;
+  pinnedIconSrc = "../../assets/Icons/pinIcon.svg";
+  unpinnedIconSrc = "../../assets/Icons/unpinIcon.svg";
+  // pinValue: Boolean = this.data.pin;
   title: any = "Title";
   content: any = "Note";
+  reminderMenuBool: Boolean = true;
+  showReminderMenu: Boolean;
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -33,4 +40,29 @@ export class EditCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  changePinValue() {
+    if (this.data.pin == true) {
+      // console.log(this.data.pin);
+      this.data.pin = false;
+    } else {
+      // console.log(this.data.pin);
+      this.data.pin = true;
+    }
+  }
+
+  toggleReminderMenu() {
+    if (this.reminderMenuBool == true) {
+      this.reminderMenuBool = false;
+    } else {
+      this.reminderMenuBool = true;
+    }
+  }
+
+  toggleShowReminder() {
+    if (this.showReminderMenu == true) {
+      this.showReminderMenu = false;
+    } else {
+      this.showReminderMenu = true;
+    }
+  }
 }

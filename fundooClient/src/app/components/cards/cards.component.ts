@@ -3,6 +3,8 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { HttpService } from 'src/app/services/http.service';
 import { ChangeviewService } from 'src/app/services/changeview.service';
 import { EditCardComponent } from '../edit-card/edit-card.component';
+import { AmazingTimePickerService } from 'amazing-time-picker';
+import { Time } from '@angular/common';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -26,6 +28,8 @@ export class CardsComponent implements OnInit {
   reminderMenuBool: Boolean = true;
   showReminderMenu: Boolean;
   reminderMenu: String = "reminderMenu";
+  dateInput: any = new Date();
+  timeInput: String;
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   nextWeekDay: String = this.days[new Date().getDay()];
   colorCode: Array<Object> = [
@@ -47,7 +51,8 @@ export class CardsComponent implements OnInit {
     private httpService: HttpService,
     private snackBar: MatSnackBar,
     private view: ChangeviewService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private atp: AmazingTimePickerService
   ) { }
 
   ngOnInit() {
@@ -94,11 +99,42 @@ export class CardsComponent implements OnInit {
 
   editCard(item) {
     const dialogRef = this.dialog.open(EditCardComponent, {
-      data: item,
+      data: item
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Dialog result: ${result}`, item);
+      this.httpService.post(item, 'updateNote').subscribe(
+        data => {
+          console.log('updated: ', data);
+          this.messageEvent.emit("Emitted from child");
+          if (item.archive) {
+            this.snackBar.open("Note Archived!", "Okay", { duration: 3000 });
+          } else if (item.trash) {
+            this.snackBar.open("Note Deleted!", "Okay", { duration: 3000 });
+          } else {
+            this.snackBar.open("Note Edited!", "Okay", { duration: 3000 });
+          }
+          // this.snackBar.open("Note Edited!", "Okay", { duration: 3000 });
+        },
+        error => {
+          console.log(error);
+        }
+      )
     });
+
+    // dialogRef.backdropClick().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`, item);
+    //   this.httpService.post(item, 'updateNote').subscribe(
+    //     data => {
+    //       console.log('updated: ', data);
+    //       this.messageEvent.emit("Emitted from child");
+    //       this.snackBar.open("Note Edited!", "Okay", { duration: 3000 });
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   )
+    // });
   }
 
   toggleReminderMenu() {
@@ -117,10 +153,15 @@ export class CardsComponent implements OnInit {
     }
   }
 
+  openTimeSelector() {
+    const amazingTimePicker = this.atp.open();
+    amazingTimePicker.afterClose().subscribe(time => {
+      this.timeInput = time;
+    });
+  }
+
   setReminder(dateInput, timeInput) {
     console.log(dateInput, "++++", timeInput);
-
-
   }
 
   archiveNote(item) {
