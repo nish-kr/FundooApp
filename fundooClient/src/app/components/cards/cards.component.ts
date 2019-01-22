@@ -5,6 +5,7 @@ import { ChangeviewService } from 'src/app/services/changeview.service';
 import { EditCardComponent } from '../edit-card/edit-card.component';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { Time } from '@angular/common';
+import { isDate } from 'util';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -28,7 +29,7 @@ export class CardsComponent implements OnInit {
   reminderMenuBool: Boolean = true;
   showReminderMenu: Boolean;
   reminderMenu: String = "reminderMenu";
-  dateInput: any = new Date();
+  dateInput: Date;
   timeInput: String;
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   nextWeekDay: String = this.days[new Date().getDay()];
@@ -160,8 +161,12 @@ export class CardsComponent implements OnInit {
     });
   }
 
-  setReminder(dateInput, timeInput) {
-    console.log(dateInput, "++++", timeInput);
+  setReminder() {
+    // if (this.dateInput('^((([1-2][0-9])|(3[0-1]))|([1-9]))/((1[0-2])|([1-9]))/[0-9]{4}$')) {
+    console.log(this.dateInput.toLocaleDateString(), "++++", this.timeInput);
+    // } else {
+    this.snackBar.open('Date Inputs Only!', 'Okay', { duration: 3000 });
+    // }
   }
 
   archiveNote(item) {

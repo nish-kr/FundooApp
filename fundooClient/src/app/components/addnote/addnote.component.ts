@@ -82,43 +82,47 @@ export class AddnoteComponent implements OnInit {
   addNote() {
 
     if (this.notes.note || this.notes.title) {
-      // this.notes.note.replace(new RegExp('\n', 'g'), "<br />");
-      let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+      if (this.notes.note.trim() || this.notes.title.trim()) {
+        // this.notes.note.replace(new RegExp('\n', 'g'), "<br />");
+        let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
 
-      this.noteData = {
-        title: this.notes.title,
-        note: this.notes.note,
-        reminder: "",
-        pin: this.pinValue,
-        trash: false,
-        archive: this.archiveValue,
-        color: this.color,
-        userId: userCredentials.userId
-      }
-
-      this.httpService.post(this.noteData, "addNote").subscribe(
-        data => {
-          console.log("Data sent", data);
-          this.isOpen = false;
-          // alert("Registration Successful");
-          if (this.archiveValue) {
-            this.snackBar.open("Note Archived!", "Okay!", { duration: 2000 })
-          } else {
-            this.snackBar.open("Note addition Successful!", "Okay!", { duration: 2000 })
-          }
-
-          this.color = "white";
-          // this.router.navigateByUrl('/login');
-        },
-        error => {
-          this.snackBar.open("Note addition Unsuccessful! Invalid Input(s) / Internal Error!", "Okay!", { duration: 2000 })
-          console.log("Internal HTTP Error: ", error);
+        this.noteData = {
+          title: this.notes.title,
+          note: this.notes.note,
+          reminder: "",
+          pin: this.pinValue,
+          trash: false,
+          archive: this.archiveValue,
+          color: this.color,
+          userId: userCredentials.userId
         }
-      )
-      console.log(this.notes.title, " title ", this.notes.note);
-      this.notes.title = null;
-      this.notes.note = null;
-      this.getNotes();
+
+        this.httpService.post(this.noteData, "addNote").subscribe(
+          data => {
+            console.log("Data sent", data);
+            this.isOpen = false;
+            // alert("Registration Successful");
+            if (this.archiveValue) {
+              this.snackBar.open("Note Archived!", "Okay!", { duration: 2000 })
+            } else {
+              this.snackBar.open("Note addition Successful!", "Okay!", { duration: 2000 })
+            }
+
+            this.color = "white";
+            // this.router.navigateByUrl('/login');
+          },
+          error => {
+            this.snackBar.open("Note addition Unsuccessful! Invalid Input(s) / Internal Error!", "Okay!", { duration: 2000 })
+            console.log("Internal HTTP Error: ", error);
+          }
+        )
+        console.log(this.notes.title, " title ", this.notes.note);
+        this.notes.title = null;
+        this.notes.note = null;
+        this.getNotes();
+      } else {
+        console.log("Empty Space");
+      }
     } else {
       this.color = "white";
       console.log("Empty note!");
