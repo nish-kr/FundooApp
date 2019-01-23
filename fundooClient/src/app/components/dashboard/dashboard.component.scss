@@ -1,6 +1,4 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-
-
 .matToolbar {
     text-emphasis-color: inherit;
     text-decoration-color: black;
@@ -137,12 +135,14 @@
 //     //     justify-content: space-around;
 // }
 /deep/ .mat-menu-panel {
-    min-width: 300px !important; //          min-width: auto !important;
+    max-width: unset !important;
+    min-width: 340px !important;
     justify-content: space-around;
 }
 
-.accountMenu {
+.accountMenuMain {
     display: flex;
+    width: 300px;
     flex-direction: row;
     justify-content: space-around;
 }

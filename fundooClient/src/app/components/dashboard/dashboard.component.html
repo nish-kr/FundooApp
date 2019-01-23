@@ -59,17 +59,12 @@
   </mat-sidenav>
   <mat-sidenav-content class="sidenavContent">
     <router-outlet></router-outlet>
-    <!--     
-    <router-outlet name="addNote"></router-outlet>
-    <router-outlet name="reminders"></router-outlet>
-    <router-outlet name="archive"></router-outlet>
-    <router-outlet name="trash"></router-outlet> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
 
 <mat-menu #accountMenu="matMenu" class="accountMenuMain">
   <ng-template matMenuContent let-accountImage="accountImage">
-    <div class="accountMenu">
+    <div class="accountMenuMain">
       <button type="file" class="accountMenuImage" matTooltip="Change Image">{{accountImage}}
         <!-- <span class="accountMenuImageChange">Change</span> -->
       </button>
