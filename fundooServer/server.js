@@ -27,8 +27,13 @@ require('dotenv').config();
 
 // Using cors() function
 app.use(cors());
+try {
+    console.log('db url : ', url); // Printing the url just to check.    
+} catch (error) {
+    console.log(error);
 
-console.log('db url : ', url); // Printing the url just to check.
+}
+
 
 /**
  * Function to connect to the database and process the data further.
@@ -42,7 +47,7 @@ function mongofunction(url) {
 
     // Passing error in case connection failed.
     mongoose.connection.on("error", () => {
-        console.log(error);
+        console.log("error");
     })
 
     // Passing connected in case connection is established.

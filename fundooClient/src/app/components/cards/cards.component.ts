@@ -212,7 +212,7 @@ export class CardsComponent implements OnInit {
       data => {
         console.log('deleted: ', data);
         this.messageEvent.emit("Emitted from child")
-        let snackBarRef = this.snackBar.open("Note Moved to Trash!", "Undo", { duration: 3000 });
+        let snackBarRef = this.snackBar.open("Note Trashed!", "Undo", { duration: 3000 });
         snackBarRef.onAction().subscribe(() => {
           // console.log("action cliked!");
           this.restoreNote(item);
