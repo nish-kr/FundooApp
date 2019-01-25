@@ -31,9 +31,7 @@ try {
     console.log('db url : ', url); // Printing the url just to check.    
 } catch (error) {
     console.log(error);
-
 }
-
 
 /**
  * Function to connect to the database and process the data further.
@@ -85,8 +83,9 @@ app.use('/', routes);
 
 // Defining the port of the connection.
 var port = 3000;
+var host = '0.0.0.0';
 // Function to initialize the connection at 'port'
-var server = app.listen(port, () => {
+app.listen(port, host, () => {
     console.log(`Example app listening on port ${port}!`)
 
     // And establishing connection with the url.
