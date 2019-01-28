@@ -46,7 +46,7 @@
 .matCardGrid .changeColorIcon,
 .matCardGrid .archiveIcon,
 .matCardGrid .moreIcon,
-.matCardGrid .moreIcon {
+.matCardGrid .imageIcon {
     color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
     width: 46px !important;
 }
@@ -56,12 +56,16 @@
 .matCardList .changeColorIcon,
 .matCardList .archiveIcon,
 .matCardList .moreIcon,
-.matCardList .moreIcon {
+.matCardList .imageIcon {
     color: rgba(0, 0, 0, 0.8); // font-size: 10px !important;
 }
 
 /deep/ .mat-icon-button .mat-icon {
     font-size: 20px !important;
+}
+
+/deep/ .mat-icon-button {
+    width: 38px;
 }
 
 .notes {
@@ -91,14 +95,12 @@
 //     opacity: 0;
 //     transition: visibility 0.5s, opacity 0.2s linear; // display: none;
 // }
-
 // .noteCard:hover .notesIcons,
 // .noteCard:hover .pinIcon {
 //     visibility: visible;
 //     opacity: 1; // transition: opacity 0.5s linear;
 //     // display: block;
 // }
-
 .pinIcon {
     height: 30px;
     margin-left: auto;
@@ -160,4 +162,11 @@
 /deep/ .moreNotesMenu .mat-menu-content div {
     display: flex;
     flex-direction: column;
+}
+
+.reminderDisplay {
+    font-size: 12px;
+    border: 1px solid rgba($color: #ffffff, $alpha: 0.0);
+    border-radius: 20px;
+    background: rgba($color: #909090, $alpha: 0.4);
 }

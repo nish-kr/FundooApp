@@ -3,15 +3,26 @@
     <div class="noteCard">
       <div class="matCardTitleContent" (click)="editCard(item)">
         <mat-card-header>
+          <div>
+            <img [src]="imageUrl" height="200">
+          </div>
           <mat-card-title class="matCardTitle">{{item.title}}</mat-card-title>
           <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePin(item)">
             <svg-icon [src]="pinIconSrc"> </svg-icon>
           </button>
         </mat-card-header>
         <mat-card-content class="matCardContent"> {{item.note}} </mat-card-content>
-
       </div>
       <mat-card-footer class="matCardFooter">
+        <div *ngIf="item.reminder" class="reminderDisplay">
+          <button mat-icon-button>
+            <mat-icon class="mat-18">access_time</mat-icon>
+          </button>
+          {{item.reminder}}
+          <button mat-icon-button (click)="removeReminder()" matTooltip="Delete Reminder">
+            <mat-icon class="mat-18">cancel_outline</mat-icon>
+          </button>
+        </div>
         <div class="notesIcons">
           <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
             <mat-icon>notifications_active</mat-icon>
@@ -56,7 +67,7 @@
               </mat-form-field>
             </div>
             <div>
-              <button mat-button (click)="setReminder(dateInput,timeInput)">Action</button>
+              <button mat-button (click)="setReminder()">Action</button>
             </div>
           </div>
 
@@ -67,6 +78,12 @@
             [matMenuTriggerData]="{item:item}">
             <mat-icon>color_lens</mat-icon>
           </button>
+
+          <input style="display: none" type="file" (change)="onUpload($event)" #fileInput>
+          <button class="imageIcon" mat-icon-button matTooltip="Add Image" (click)="fileInput.click()">
+            <mat-icon>image</mat-icon>
+          </button>
+
           <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="archiveNote(item)">
             <mat-icon>archive</mat-icon>
           </button>

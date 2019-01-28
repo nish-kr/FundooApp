@@ -42,6 +42,7 @@ import {
   FacebookLoginProvider,
 } from "angular-6-social-login";
 import { EditCardComponent } from './components/edit-card/edit-card.component';
+import { EditLabelComponent } from './components/edit-label/edit-label.component';
 
 
 // Configs 
@@ -78,6 +79,7 @@ export function getAuthServiceConfigs() {
     AddnoteComponent,
     CardsComponent,
     EditCardComponent,
+    EditLabelComponent,
   ],
   imports: [
     BrowserModule,

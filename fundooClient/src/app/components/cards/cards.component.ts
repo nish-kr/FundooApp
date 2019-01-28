@@ -33,6 +33,7 @@ export class CardsComponent implements OnInit {
   timeInput: String;
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   nextWeekDay: String = this.days[new Date().getDay()];
+  imageUrl: any;
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -162,11 +163,34 @@ export class CardsComponent implements OnInit {
   }
 
   setReminder() {
-    // if (this.dateInput('^((([1-2][0-9])|(3[0-1]))|([1-9]))/((1[0-2])|([1-9]))/[0-9]{4}$')) {
+    this.item.reminder = this.dateInput.toLocaleDateString() + ", " + this.timeInput;
+
     console.log(this.dateInput.toLocaleDateString(), "++++", this.timeInput);
-    // } else {
-    this.snackBar.open('Date Inputs Only!', 'Okay', { duration: 3000 });
-    // }
+
+    this.httpService.post(this.item, 'updateNote').subscribe(
+      data => {
+        console.log(data);
+        this.messageEvent.emit("Emitted from child");
+        // this.snackBar.open("Note Edited!", "Okay", { duration: 3000 });
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  removeReminder() {
+    this.item.reminder = "";
+    this.httpService.post(this.item, 'updateNote').subscribe(
+      data => {
+        console.log(data);
+        this.messageEvent.emit("Emitted from child");
+        // this.snackBar.open("Note Edited!", "Okay", { duration: 3000 });
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   archiveNote(item) {
@@ -176,7 +200,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('archived: ', data);
-        this.messageEvent.emit("Emitted from child")
+        this.messageEvent.emit("Emitted from child");
         let snackBarRef = this.snackBar.open("Note Archived!", "Undo", { duration: 3000 });
         snackBarRef.onAction().subscribe(() => {
           // console.log("action cliked!");
@@ -313,5 +337,23 @@ export class CardsComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  onUpload(event) {
+
+    const file = event.target.files[0];
+
+    console.log(event);
+
+    if (file) {
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (even) => { // called once readAsDataURL is completed
+        this.imageUrl = even.target.result;
+      }
+    }
   }
 }

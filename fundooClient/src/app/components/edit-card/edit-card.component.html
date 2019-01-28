@@ -15,8 +15,18 @@ mat-dialog-title-->
         placeholder="Note" [ngStyle]="{'background': data.color}">{{data.note}}</textarea>
     </div>
   </div>
+  <div *ngIf="data.reminder" class="reminderDisplay">
+    <button mat-icon-button>
+      <mat-icon class="mat-18">access_time</mat-icon>
+    </button>
+    {{data.reminder}}
+    <button mat-icon-button (click)="removeReminder()" matTooltip="Delete Reminder">
+      <mat-icon class="mat-18">cancel_outline</mat-icon>
+    </button>
+  </div>
   <mat-dialog-actions>
     <!-- align="end" -->
+
     <div class="notesIcons">
       <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
         <mat-icon>notifications_active</mat-icon>
@@ -69,6 +79,12 @@ mat-dialog-title-->
         [matMenuTriggerData]="{item:item}">
         <mat-icon>color_lens</mat-icon>
       </button>
+
+      <!-- <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+      <button class="imageIcon" mat-icon-button matTooltip="Add Image" (click)="fileInput.click()">
+        <mat-icon>image</mat-icon>
+      </button> -->
+
       <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="data.archive=true" mat-dialog-close>
         <mat-icon>archive</mat-icon>
       </button>

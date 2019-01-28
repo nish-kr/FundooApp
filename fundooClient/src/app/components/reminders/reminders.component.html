@@ -1,0 +1,9 @@
+<div class="notesDiv">
+    <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px" fxFlex="">
+        <div class="ngForDiv" *ngFor="let item of data">
+            <div *ngIf="!item.archive && !item.trash && item.reminder" class="cardComponent">
+                <app-cards [item]=item [pinIconSrc]=pinnedIconSrc (messageEvent)="receiveMessage($event)" [ngClass]="{'matCardGrid': rowCol=='row','matCardList': rowCol=='column'}"></app-cards>
+            </div>
+        </div>
+    </div>
+</div>

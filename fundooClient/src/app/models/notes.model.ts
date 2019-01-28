@@ -6,4 +6,5 @@ export class NotesModel {
     trash: Boolean;
     archive: Boolean;
     color: String;
+    image: ImageBitmap
 }
