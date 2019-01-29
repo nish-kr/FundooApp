@@ -26,7 +26,8 @@ var noteSchema = new mongoose.Schema({
     userId: {
         type: schema.Types.ObjectId,
         ref: 'user'
-    }
+    },
+    image: String
 });
 
 // Defining model for mongoose using the userSchema.

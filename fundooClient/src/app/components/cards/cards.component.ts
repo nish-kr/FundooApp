@@ -33,7 +33,7 @@ export class CardsComponent implements OnInit {
   timeInput: String;
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   nextWeekDay: String = this.days[new Date().getDay()];
-  imageUrl: any;
+  imageUrl: File;
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -193,6 +193,48 @@ export class CardsComponent implements OnInit {
     )
   }
 
+  onUpload(event) {
+
+    const file = event.target.files[0];
+
+    console.log(event);
+
+    if (file) {
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        this.imageUrl = event.target.result;
+      }
+
+      const fd = new FormData();
+      fd.append('image', file, file.name);
+      // console.log(fd);
+
+      this.httpService.post(fd, 'updateNote').subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log('image upload', err);
+        })
+    }
+  }
+
+
+  //   var FormData = require('form-data');
+  // var http = require('http');
+
+  // var form = new FormData();
+
+  // http.request('http://nodejs.org/images/logo.png', function(response) {
+  //   form.append('my_field', 'my value');
+  //   form.append('my_buffer', new Buffer(10));
+  //   form.append('my_logo', response);
+  // });
+
   archiveNote(item) {
     item.archive = true;
     item.pin = false;
@@ -339,21 +381,5 @@ export class CardsComponent implements OnInit {
     )
   }
 
-  onUpload(event) {
 
-    const file = event.target.files[0];
-
-    console.log(event);
-
-    if (file) {
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (even) => { // called once readAsDataURL is completed
-        this.imageUrl = even.target.result;
-      }
-    }
-  }
 }

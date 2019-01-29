@@ -22,6 +22,7 @@ const expressValidator = require('express-validator');
 // const cache = require('express-redis-cache')();
 
 require('dotenv').config();
+// console.log(process.env.emailId);
 
 // const nodemailer = require('nodemailer');
 

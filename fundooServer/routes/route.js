@@ -13,11 +13,43 @@
 const express = require('express'); // Importing express module.
 var router = express.Router(); // Creating router using express' router() function.
 
+const multer = require('multer');
+var multerS3 = require('multer-s3')
+
+
 // Importing the controller module to set the control for each request type.
 const userController = require('../controller/userController');
 const notesController = require('../controller/notesController');
 
 const notesMiddleware = require('../middleware/notesMiddleware');
+
+const fs = require('fs');
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3({
+    accessKeyId: process.env.Access_Key_ID,
+    secretAccessKey: process.env.Secret_Access_Key
+});
+
+var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'fundoo-image-upload',
+
+        metadata: function (req, file, cb) {
+            console.log('file in metadata-----', file);
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: function (req, file, cb) {
+            console.log('file in key-----', file);
+            cb(null, Date.now().toString())
+        }
+    })
+})
+
+router.post('/imageUpload', notesController.updateNoteController);
+
+
+//upload.single('image)
 
 // Using router.post() function for '/login' request.
 router.post('/login', userController.loginController);
@@ -39,7 +71,19 @@ router.post('/getNotes', notesMiddleware.addNoteMiddleware,
     // }),
     notesController.getNotesController);
 
-router.post('/updateNote', notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
+// router.post('/updateNote', notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
+
+router.post('/updateNote', upload.single(('image'), (err, data) => {
+    if (err) {
+        console.log('78 err routes file upload', err);
+    }
+    else {
+        console.log('81 data while upload', data);
+    }
+}), (req, res, next) => {
+    console.log('req.file', req.file);
+    next();
+}, notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
 
 router.post('/deleteNote', notesMiddleware.deleteNoteMiddleware, notesController.deleteNoteController);
 
