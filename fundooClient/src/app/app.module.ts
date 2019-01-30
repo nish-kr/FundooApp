@@ -43,6 +43,7 @@ import {
 } from "angular-6-social-login";
 import { EditCardComponent } from './components/edit-card/edit-card.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
+import { LabelComponent } from './components/label/label.component';
 
 
 // Configs 
@@ -80,6 +81,7 @@ export function getAuthServiceConfigs() {
     CardsComponent,
     EditCardComponent,
     EditLabelComponent,
+    LabelComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ export function getAuthServiceConfigs() {
     // SimpleImageUploadModule
   ],
   entryComponents: [
-    EditCardComponent
+    EditCardComponent,
+    EditLabelComponent
   ],
   providers: [
     {

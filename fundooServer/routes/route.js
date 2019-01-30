@@ -15,6 +15,7 @@ var router = express.Router(); // Creating router using express' router() functi
 
 const multer = require('multer');
 var multerS3 = require('multer-s3')
+const auth = require('../middleware/authentication');
 
 
 // Importing the controller module to set the control for each request type.
@@ -46,7 +47,15 @@ var upload = multer({
     })
 })
 
-router.post('/imageUpload', notesController.updateNoteController);
+// router.post('/labelAdd', auth, notesController.addLabelController);
+router.post('/addLabel', notesController.addLabelController);
+
+router.post('/getLabel', notesController.getLabelController);
+
+router.post('/deleteLabel', notesController.deleteLabelController);
+
+
+// router.post('/imageUpload', notesController.updateNoteController);
 
 
 //upload.single('image)
@@ -73,7 +82,10 @@ router.post('/getNotes', notesMiddleware.addNoteMiddleware,
 
 // router.post('/updateNote', notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
 
-router.post('/updateNote', upload.single(('image'), (err, data) => {
+router.post('/updateNote', (req, res, next) => {
+    console.log('req.body on routes', req);
+    next();
+}, upload.single(('image'), (err, data) => {
     if (err) {
         console.log('78 err routes file upload', err);
     }
@@ -97,3 +109,5 @@ router.post('/pinNote', notesMiddleware.pinNoteMiddleware, notesController.pinNo
 router.post('/changeColor', notesMiddleware.changeColorMiddleware, notesController.changeColorController);
 // Exporting the router module.
 module.exports = router;
+
+

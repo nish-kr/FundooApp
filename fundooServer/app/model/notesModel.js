@@ -30,8 +30,22 @@ var noteSchema = new mongoose.Schema({
     image: String
 });
 
+var labelSchema = new mongoose.Schema({
+    labelName: { type: String },
+    userId: {
+        type: schema.Types.ObjectId,
+        ref: 'user'
+    },
+    noteId: {
+        type: schema.Types.ObjectId,
+        ref: 'notes'
+    }
+});
+
 // Defining model for mongoose using the userSchema.
 var notes = mongoose.model('notes', noteSchema);
+
+var label = mongoose.model('label', labelSchema);
 
 /**
  * Creating userDB empty function.
@@ -50,6 +64,8 @@ notesDB.prototype.addNote = (req, callback) => {
         color: req.color,
         userId: req.userId,
     });
+
+
 
     // Using model.save function to save the data into the database.
     newNote.save(function (error, result) {
@@ -189,6 +205,67 @@ notesDB.prototype.updateNote = (req, callback) => {
 
             // Checking if there is any data in the database of that username.
             console.log("update notes", data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.addLabel = (req, callback) => {
+    // console.log("request on add label", req);
+
+    var newLabel = new label({
+        labelName: req.labelName,
+        userId: req.userId
+        // noteId: req.noteId
+    });
+
+    newLabel.save(function (err, data) {
+
+        if (err) {
+            console.log("Update Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            console.log("update notes", data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.getLabel = (req, callback) => {
+    // console.log("request on add label", req);
+    label.find({ userId: req.userId }, function (err, data) {
+
+        if (err) {
+            console.log("LAbel Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            // console.log(data);
+
+            // Returning the data.
+            return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.deleteLabel = (req, callback) => {
+    // console.log("request on add label", req);
+    label.findOneAndRemove({ labelName: req.labelName }, function (err, data) {
+
+        if (err) {
+            console.log("Label Request Error");
+            return callback(err);
+        } else {
+
+            // Checking if there is any data in the database of that username.
+            // console.log(data);
 
             // Returning the data.
             return callback(null, data);

@@ -84,9 +84,9 @@ app.use('/', routes);
 
 // Defining the port of the connection.
 var port = 3000;
-var host = '0.0.0.0';
+// var host = '0.0.0.0';
 // Function to initialize the connection at 'port'
-app.listen(port, host, () => {
+app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 
     // And establishing connection with the url.

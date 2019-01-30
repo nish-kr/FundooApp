@@ -41,7 +41,15 @@
         </button>
       </div>
       <div>
-        <button class="sideNavListItems" mat-button>
+        <span>Labels</span>
+        <div *ngFor="let item of labelName">
+          <button [routerLink]="['label']" class="sideNavListItems" mat-button (click)="navigateToLabel(item)">
+            <mat-icon>label</mat-icon>{{item}}
+          </button>
+        </div>
+      </div>
+      <div>
+        <button class="sideNavListItems" mat-button (click)="editLabel()">
           <mat-icon>edit</mat-icon> Edit Labels
         </button>
       </div>

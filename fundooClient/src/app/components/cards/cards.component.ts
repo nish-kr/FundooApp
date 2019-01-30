@@ -193,35 +193,33 @@ export class CardsComponent implements OnInit {
     )
   }
 
-  onUpload(event) {
+  // onUpload(event) {
 
-    const file = event.target.files[0];
+  //   const file = event.target.files[0];
 
-    console.log(event);
+  //   console.log(file);
 
-    if (file) {
+  //   // if (file) {
 
-      var reader = new FileReader();
+  //   var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //   reader.readAsDataURL(event.target.files[0]);
 
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        this.imageUrl = event.target.result;
-      }
+  //   reader.onload = (event: any) => {
+  //     this.imageUrl = event.target.result;
+  //   }
+  //   const fd = new FormData();
+  //   fd.append('image', file);
+  //   // console.log(fd);
 
-      const fd = new FormData();
-      fd.append('image', file, file.name);
-      // console.log(fd);
-
-      this.httpService.post(fd, 'updateNote').subscribe(
-        data => {
-          console.log(data);
-        },
-        err => {
-          console.log('image upload', err);
-        })
-    }
-  }
+  //   this.httpService.post(fd, 'updateNote').subscribe(
+  //     data => {
+  //       console.log(data);
+  //     },
+  //     err => {
+  //       console.log('image upload error', err);
+  //     })
+  // }
 
 
   //   var FormData = require('form-data');

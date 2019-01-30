@@ -1,3 +1,25 @@
-<p>
-  edit-label works!
-</p>
+<div class="mainEditLabel">
+  <div>
+    Edit labels
+  </div>
+  <div>
+    <button mat-icon-button>
+      <mat-icon class="clearButton">clear</mat-icon>
+    </button>
+    <mat-form-field floatLabel="never" hideRequiredMarker="true">
+      <input matInput #label placeholder="Create new label" required autocomplete="off">
+    </mat-form-field>
+    <button mat-icon-button matTooltip="Create label" (click)="createLabel(label.value)">
+      <mat-icon class="clearButton">check</mat-icon>
+    </button>
+  </div>
+  <div *ngFor="let item of labelNames">
+    <button class="deleteButton" mat-icon-button matTooltip="Delete label" (click)="deleteLabel(item)">
+      <mat-icon>label</mat-icon>
+    </button>
+    {{item.labelName}}
+    <button class="renameButton" mat-icon-button matTooltip="Rename label">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</div>

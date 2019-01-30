@@ -9,6 +9,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { LabelComponent } from './components/label/label.component';
 
 
 @NgModule({
@@ -45,7 +46,10 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
           path: 'trash',
           component: TrashComponent,
         },
-
+        {
+          path:'label',
+          component: LabelComponent,
+        }
       ]
     },
     {

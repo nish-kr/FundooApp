@@ -7,4 +7,4 @@
  ***********************************************************************************/
 
 // Exporting the databse port/url.
-module.exports = "mongodb://0.0.0.0:27017/user";
+module.exports = "mongodb://localhost:27017/user";

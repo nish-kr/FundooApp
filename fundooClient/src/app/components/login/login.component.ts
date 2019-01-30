@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   public userNameEmail = {
     name: String,
-    email: String
+    userId: String
   };
   constructor(
     private formBuilder: FormBuilder,
@@ -117,6 +117,7 @@ export class LoginComponent implements OnInit {
         console.log("token on client side", localStorage.getItem("loginToken"));
 
         this.userNameEmail.name = JSON.parse(localStorage.getItem("loginToken")).name;
+
         // this.userNameEmail.email = JSON.parse(this.user.email);
 
         this.snackBar.open("Login Successful!", "Okay!", { duration: 2000 })
@@ -125,8 +126,8 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log("Invalid Credentials! ", error);
-        alert("Login Unsuccessful! Invalid Credentials!");
-        alert('Invalid Credentials');
+        this.snackBar.open("Login Unsuccessful! Invalid Credentials!", "Okay!", { duration: 2000 });
+        // alert('Invalid Credentials');
       }
     );
   }

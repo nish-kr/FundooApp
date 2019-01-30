@@ -61,7 +61,7 @@ export class NotesComponent implements OnInit {
         let count = 0;
         for (let i = 0; i < this.data.length; i++) {
           if (this.data[i].pin && !this.data[i].trash && !this.data[i].archive) {
-            this.notes.push(this.data[i]);
+            // this.notes.push(this.data[i]);
             this.pinValue = true;
             this.counter++;
             count++;
