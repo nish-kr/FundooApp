@@ -52,7 +52,14 @@ router.post('/addLabel', notesController.addLabelController);
 
 router.post('/getLabel', notesController.getLabelController);
 
+router.post('/getChosenLabel', notesController.getChosenLabelController);
+
 router.post('/deleteLabel', notesController.deleteLabelController);
+
+router.post('/removeLabelFromNote', notesController.removeLabelFromNoteController);
+
+router.post('/getLabelNotes', notesController.getLabelNotesController);
+
 
 
 // router.post('/imageUpload', notesController.updateNoteController);

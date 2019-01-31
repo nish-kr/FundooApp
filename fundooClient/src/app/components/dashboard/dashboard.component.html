@@ -43,8 +43,10 @@
       <div>
         <span>Labels</span>
         <div *ngFor="let item of labelName">
-          <button [routerLink]="['label']" class="sideNavListItems" mat-button (click)="navigateToLabel(item)">
+          <!-- [routerLink]="['label']" -->
+          <button class="sideNavListItems" mat-button (click)="navigateToLabel(item)">
             <mat-icon>label</mat-icon>{{item}}
+            <!-- <app-label [childMessage]="item"></app-label> -->
           </button>
         </div>
       </div>

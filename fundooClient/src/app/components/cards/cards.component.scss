@@ -24,6 +24,15 @@
 //     border: 1px solid rgb(223, 223, 223);
 //     border-radius: 8px;
 // }
+.reminderDisplay {
+    width: fit-content;
+    padding: none !important;
+}
+
+.addLabelItems {
+    display: flex;
+    flex-direction: row;
+}
 
 /deep/ .ng-star-inserted .ngForDiv {
     margin-right: 0px !important;
@@ -164,8 +173,19 @@
 }
 
 .reminderDisplay {
+    display: flex;
+    // flex-wrap: wrap;
     font-size: 12px;
     border: 1px solid rgba($color: #ffffff, $alpha: 0.0);
     border-radius: 20px;
     background: rgba($color: #909090, $alpha: 0.4);
+}
+
+.labelsInNote {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.textReminderLabel {
+    align-self: center;
 }

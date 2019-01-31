@@ -9,6 +9,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { EditLabelComponent } from '../edit-label/edit-label.component';
 import { HttpService } from 'src/app/services/http.service';
+import { LabelComponent } from '../label/label.component';
 
 
 @Component({
@@ -29,6 +30,9 @@ export class DashboardComponent implements OnInit {
   public accountImage: any;
   public labels: any;
   public labelName = [];
+
+
+
   constructor(
     private router: Router,
     // media: MediaMatcher,
@@ -60,12 +64,23 @@ export class DashboardComponent implements OnInit {
     this.httpService.post(userData, 'getLabel').subscribe(
       data => {
         console.log(data);
-        this.labels = data;
         this.labelName = [];
+        this.labels = data;
         for (let i = 0; i < this.labels.length; i++) {
-          this.labelName.push(this.labels[i].labelName);
+          if (this.labelName.indexOf(this.labels[i].labelName) === -1) {
+            this.labelName.push(this.labels[i].labelName);
+            // console.log(this.labelName)
+          } else {
+            console.log('else');
+
+          }
         }
-        console.log(this.labelName);
+        // this.labels = data;
+
+        // for (let i = 0; i < this.labels.length; i++) {
+        //   this.labelName.push(this.labels[i].labelName);
+        // }
+        // console.log(this.labelName);
       },
       err => {
         console.log(err);
@@ -76,7 +91,7 @@ export class DashboardComponent implements OnInit {
 
   editLabel() {
     const dialogRef = this.dialog.open(EditLabelComponent, {
-      data: this.labels
+      data: this.labelName
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -96,7 +111,29 @@ export class DashboardComponent implements OnInit {
   navigateToLabel(item) {
     console.log(item);
     this.headerName = item;
-    // this.router.navigateByUrl('/label');
+
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+
+
+    const label = {
+      labelName: item,
+      userId: userCredentials.userId
+    }
+
+    console.log('label details', label);
+
+
+    this.httpService.post(label, 'getLabelNotes').subscribe(
+      data => {
+        console.log(data);
+        // this.router.navigateByUrl('dashboard/label'), data;
+      },
+      err => {
+
+      })
+
+    // this.router.navigateByUrl('dashboard/label');
+    // this.child.labelName = item;
   }
 
   logout() {

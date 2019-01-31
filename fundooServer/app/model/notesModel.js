@@ -214,17 +214,26 @@ notesDB.prototype.updateNote = (req, callback) => {
 
 notesDB.prototype.addLabel = (req, callback) => {
     // console.log("request on add label", req);
-
     var newLabel = new label({
         labelName: req.labelName,
-        userId: req.userId
-        // noteId: req.noteId
+        userId: req.userId,
+        noteId: null
     });
+
+    if (req.noteId) {
+        newLabel.noteId = req.noteId
+    }
+
+    // var newLabel = new label({
+    //     labelName: req.labelName,
+    //     userId: req.userId,
+    //     noteId: req.noteId
+    // });
 
     newLabel.save(function (err, data) {
 
         if (err) {
-            console.log("Update Request Error");
+            console.log("Add Label Error");
             return callback(err);
         } else {
 
@@ -255,12 +264,107 @@ notesDB.prototype.getLabel = (req, callback) => {
     });
 }
 
-notesDB.prototype.deleteLabel = (req, callback) => {
+notesDB.prototype.getChosenLabel = (req, callback) => {
     // console.log("request on add label", req);
-    label.findOneAndRemove({ labelName: req.labelName }, function (err, data) {
+    label.find({ userId: req.userId }, function (err, data) {
 
         if (err) {
-            console.log("Label Request Error");
+            console.log("LAbel Request Error");
+            return callback(err);
+        } else {
+
+            label.find({ noteId: req.noteId }, function (err, data) {
+
+                if (err) {
+                    console.log("LAbel Request Error");
+                    return callback(err);
+                } else {
+
+                    // Checking if there is any data in the database of that username.
+                    // console.log(data);
+
+                    // Returning the data.
+                    return callback(null, data);
+                }
+            });
+            // Checking if there is any data in the database of that username.
+            // console.log(data);
+
+            // Returning the data.
+            // return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.deleteLabel = (req, callback) => {
+    console.log("request on delete label", req);
+    // label.find({ labelName: req.labelName }, function (err, data) {
+
+    //     if (err) {
+    //         console.log("Label Request Error");
+    //         return callback(err);
+    //     } else {
+    const count = 1;
+    // while (count != 0) {
+
+    try {
+        label.bulkWrite(
+            [
+                {
+                    deleteMany: { "filter": { "labelName": req.labelName } }
+                }
+            ]
+        )
+        return callback(null, true);
+    } catch (e) {
+        console.log(e);
+    }
+    // finally {
+    //     return callback(null, true);
+    // }
+}
+
+notesDB.prototype.removeLabelFromNote = (req, callback) => {
+    // console.log("request on add label", req);
+    label.findOneAndUpdate({ labelName: req.labelName, noteId: req.noteId, userId: req.userId }, { noteId: null }, function (err, data) {
+        if (err) {
+            console.log("userId wrong");
+            return callback(err);
+        } else {
+            // console.log('req coming',req);
+
+            // label.find({ userId: req.userId }, function (err, data) {
+            //     if (err) {
+            //         console.log("Note ID not found");
+            //         return callback(err);
+            //     } else {
+            //         label.findOneAndUpdate({ noteId: req.noteId }, { noteId: null }, function (err, data) {
+            //             if (err) {
+            //                 console.log("labelName not found");
+            //                 return callback(err);
+            //             } else {
+            console.log('returning data after deletion', data);
+
+            return callback(null, data);
+            //             }
+            //         });
+            //     }
+            // });
+            // Checking if there is any data in the database of that username.
+            // console.log(data);
+
+            // Returning the data.
+            // return callback(null, data);
+        }
+    });
+}
+
+notesDB.prototype.getLabelNotes = (req, callback) => {
+    console.log("request on add label", req);
+    label.find({ userId: req.userId, labelName: req.labelName }, function (err, data) {
+
+        if (err) {
+            console.log("LAbel Request Error");
             return callback(err);
         } else {
 

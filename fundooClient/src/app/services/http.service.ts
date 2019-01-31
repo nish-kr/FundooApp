@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ServerUrl } from '../backend.url';
 
 @Injectable({
@@ -8,10 +8,12 @@ import { ServerUrl } from '../backend.url';
 
 export class HttpService {
   private url = new ServerUrl().serverUrl;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    // private httpHeaders= new HttpHeaders()
+    ) { }
 
   post(data: Object, purpose: String) {
-    return this.http.post(this.url + "/" + purpose, data);
+    return this.http.post(this.url + "/" + purpose, data, {});
   }
 
   get(purpose: String) {

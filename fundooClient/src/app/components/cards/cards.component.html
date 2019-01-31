@@ -18,11 +18,21 @@
           <button mat-icon-button>
             <mat-icon class="mat-18">access_time</mat-icon>
           </button>
-          {{item.reminder}}
+          <span class="textReminderLabel">{{item.reminder}}</span>
           <button mat-icon-button (click)="removeReminder()" matTooltip="Delete Reminder">
             <mat-icon class="mat-18">cancel_outline</mat-icon>
           </button>
         </div>
+
+        <div class="labelsInNote" *ngIf="chosenLabel.length>0">
+          <div *ngFor="let item of chosenLabel" class="reminderDisplay">
+            <span class="textReminderLabel">{{item.labelName}}</span>
+            <button mat-icon-button (click)="removeLabelFromNote(item)" matTooltip="Delete Reminder">
+              <mat-icon class="mat-18">cancel_outline</mat-icon>
+            </button>
+          </div>
+        </div>
+
         <div class="notesIcons">
           <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
             <mat-icon>notifications_active</mat-icon>
@@ -193,8 +203,23 @@
     <button mat-menu-item (click)="deleteNote(item)">
       Delete note
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item [matMenuTriggerFor]="addLabelMenu" [matMenuTriggerData]="{item:item}">
       Add label
     </button>
   </ng-template>
+</mat-menu>
+
+<mat-menu #addLabelMenu="matMenu" class="addLabelMenu">
+
+  <!-- <ng-template matMenuContent let-item="item"> -->
+  <div *ngFor="let item of labels">
+    <div class="addLabelItems" (click)="addThisLabel(item)">
+      <button mat-menu-item>
+        <mat-icon class="">check_box_outline_blank</mat-icon>
+        {{item}}
+      </button>
+
+    </div>
+  </div>
+  <!-- </ng-template> -->
 </mat-menu>

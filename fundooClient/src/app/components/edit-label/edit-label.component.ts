@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class EditLabelComponent implements OnInit {
 
-  labelNames: Array<String> = [];
+  labelNames: Array<any> = [];
   constructor(
     public dialogRef: MatDialogRef<EditLabelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -47,6 +47,8 @@ export class EditLabelComponent implements OnInit {
     this.httpService.post(newLabel, 'addLabel').subscribe(
       data => {
         console.log(data);
+        this.labelNames.push(newLabel.labelName);
+        // console.log(this.labelNames)
       },
       err => {
         console.log('add label error', err);
@@ -61,9 +63,17 @@ export class EditLabelComponent implements OnInit {
 
     let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
     console.log(item);
+    var label = {
+      labelName: item
+    }
 
-    this.httpService.post(item, 'deleteLabel').subscribe(
+    this.httpService.post(label, 'deleteLabel').subscribe(
       data => {
+        const i = this.labelNames.indexOf(item);
+        if (i !== -1) {
+          this.data.splice(i, 1);
+        }
+        // this.labelNames.
         console.log('deleted! ', data);
 
       },

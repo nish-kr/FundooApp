@@ -28,12 +28,15 @@ export class CardsComponent implements OnInit {
   counter: number = 0;
   reminderMenuBool: Boolean = true;
   showReminderMenu: Boolean;
-  reminderMenu: String = "reminderMenu";
+  // reminderMenu: String = "reminderMenu";
   dateInput: Date;
   timeInput: String;
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   nextWeekDay: String = this.days[new Date().getDay()];
   imageUrl: File;
+  allLabels: any;
+  labels: any = [];
+  chosenLabel: any = [];
   colorCode: Array<Object> = [
     { name: "white", colorCode: "rgb(255, 255, 255)" },
     { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
@@ -58,6 +61,8 @@ export class CardsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getLabel();
+    this.getChosenLabel();
     // this.messageEvent.emit("Emitted from child")
   }
 
@@ -98,6 +103,147 @@ export class CardsComponent implements OnInit {
   //     this.reminderMenu = "reminderMenu";
   //   }
   // }  
+
+  getLabel() {
+
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+
+    var userData = {
+      userId: userCredentials.userId,
+    }
+
+    this.httpService.post(userData, 'getLabel').subscribe(
+      data => {
+        // console.log(data);
+        this.allLabels = data;
+        for (let i = 0; i < this.allLabels.length; i++) {
+          if (this.labels.indexOf(this.allLabels[i].labelName) === -1) {
+            this.labels.push(this.allLabels[i].labelName);
+            // console.log(this.labels);
+          }
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    // this.labels
+  }
+
+  getChosenLabel() {
+
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+
+    var userData = {
+      userId: userCredentials.userId,
+      noteId: this.item._id
+    }
+
+    this.httpService.post(userData, 'getChosenLabel').subscribe(
+      data => {
+        // console.log(data);
+        this.chosenLabel = data;
+        // console.log('chosenLabels',this.chosenLabel);
+
+        // this.allLabels = data;
+        // for (let i = 0; i < this.allLabels.length; i++) {
+        //   if (this.labels.indexOf(this.allLabels[i].labelName) === -1) {
+        //     this.labels.push(this.allLabels[i].labelName);
+        //     // console.log(this.labels);
+        //   }
+        // }
+      },
+      err => {
+        console.log(err);
+      }
+    )
+
+  }
+
+  addThisLabel(label) {
+
+    console.log(label);
+
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+
+    var newLabel = {
+      labelName: label,
+      userId: userCredentials.userId,
+      noteId: this.item._id
+    }
+
+    console.log(newLabel);
+
+    this.httpService.post(newLabel, 'addLabel').subscribe(
+      data => {
+        // console.log(data);
+
+        const labelNow: any = data;
+        for (let i = 0; i < labelNow.length; i++) {
+          if (this.chosenLabel.indexOf(labelNow[i].labelName) === -1) {
+            this.chosenLabel.push(labelNow[i].labelName);
+            // console.log(this.labels);
+          }
+        }
+        this.chosenLabel.push(newLabel);
+        // console.log("after adding label in note", this.chosenLabel);
+
+        // this.labels.push(newLabel);
+        // console.log(this.labelNames)
+      },
+      err => {
+        console.log('add label error', err);
+      });
+
+  }
+
+  removeLabelFromNote(label) {
+
+    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+
+    const toRemove = {
+      _id: label._id,
+      labelName: label.labelName,
+      userId: userCredentials.userId,
+      noteId: this.item._id,
+      __v: 0
+    }
+
+    console.log('To remove: ', toRemove);
+
+    this.httpService.post(toRemove, 'removeLabelFromNote').subscribe(
+      data => {
+        console.log('item to remove:', this.chosenLabel);
+        this.messageEvent.emit("Emitted from child");
+        console.log('Data from backend',data);
+        
+        // const i = this.chosenLabel.indexOf(toRemove);
+        // if (i !== -1) {
+        //   this.chosenLabel.splice(i, 1);
+        // }
+
+        // console.log(i, 'index & ', this.chosenLabel);
+
+
+        // const labelNow: any = data;
+        // for (let i = 0; i < labelNow.length; i++) {
+        //   if (this.chosenLabel.indexOf(labelNow[i].labelName) === -1) {
+        //     this.chosenLabel.push(labelNow[i].labelName);
+        //     // console.log(this.labels);
+        //   }
+        // }
+        // this.chosenLabel.push(toRemove);
+        // console.log("after adding label in note", this.chosenLabel);
+
+        // this.labels.push(newLabel);
+        // console.log(this.labelNames)
+      },
+      err => {
+        console.log('add label error', err);
+      });
+
+
+  }
 
   editCard(item) {
     const dialogRef = this.dialog.open(EditCardComponent, {

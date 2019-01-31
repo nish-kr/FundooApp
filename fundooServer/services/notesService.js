@@ -185,10 +185,67 @@ exports.getLabelService = (req,callback) => {
     })
 }
 
+exports.getChosenLabelService = (req,callback) => {
+    
+    // Calling loginUser() function of usermodel passing the request.
+    notesmodel.getChosenLabel(req, (err, data) => {
+
+        // If any error occurs, callback the error
+        if (err) {
+            return callback(err);
+        } else {
+
+            // console.log("data in service callbnack", data);
+
+            // else callback the data.
+            return callback(null, data);
+        }
+    })
+}
+
 exports.deleteLabelService = (req,callback) => {
     
     // Calling loginUser() function of usermodel passing the request.
     notesmodel.deleteLabel(req, (err, data) => {
+
+        // If any error occurs, callback the error
+        if (err) {
+            return callback(err);
+        } else {
+
+            // console.log("data in service callbnack", data);
+
+            // else callback the data.
+            return callback(null, data);
+        }
+    })
+}
+
+
+exports.removeLabelFromNoteService = (req,callback) => {
+    
+    // Calling loginUser() function of usermodel passing the request.
+    notesmodel.removeLabelFromNote(req, (err, data) => {
+
+        // If any error occurs, callback the error
+        if (err) {
+            return callback(err);
+        } else {
+
+            // console.log("data in service callbnack", data);
+
+            // else callback the data.
+            return callback(null, data);
+        }
+    })
+}
+
+
+
+exports.getLabelNotesService = (req,callback) => {
+    
+    // Calling loginUser() function of usermodel passing the request.
+    notesmodel.getLabelNotes(req, (err, data) => {
 
         // If any error occurs, callback the error
         if (err) {
