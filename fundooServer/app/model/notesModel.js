@@ -117,7 +117,6 @@ notesDB.prototype.archiveNote = (req, callback) => {
             return callback(null, data);
         }
     });
-
 }
 
 notesDB.prototype.deleteNote = (req, callback) => {

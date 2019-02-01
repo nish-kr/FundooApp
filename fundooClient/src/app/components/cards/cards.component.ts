@@ -33,7 +33,7 @@ export class CardsComponent implements OnInit {
   timeInput: String;
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   nextWeekDay: String = this.days[new Date().getDay()];
-  imageUrl: File;
+  imageUrl: any;
   allLabels: any;
   labels: any = [];
   chosenLabel: any = [];
@@ -215,8 +215,8 @@ export class CardsComponent implements OnInit {
       data => {
         console.log('item to remove:', this.chosenLabel);
         this.messageEvent.emit("Emitted from child");
-        console.log('Data from backend',data);
-        
+        console.log('Data from backend', data);
+
         // const i = this.chosenLabel.indexOf(toRemove);
         // if (i !== -1) {
         //   this.chosenLabel.splice(i, 1);
@@ -339,33 +339,36 @@ export class CardsComponent implements OnInit {
     )
   }
 
-  // onUpload(event) {
+  onUpload(event) {
 
-  //   const file = event.target.files[0];
+    const file = event.target.files[0];
 
-  //   console.log(file);
+    console.log(file);
 
-  //   // if (file) {
+    // if (file) {
 
-  //   var reader = new FileReader();
+    var reader = new FileReader();
 
-  //   reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(event.target.files[0]);
 
-  //   reader.onload = (event: any) => {
-  //     this.imageUrl = event.target.result;
-  //   }
-  //   const fd = new FormData();
-  //   fd.append('image', file);
-  //   // console.log(fd);
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    }
 
-  //   this.httpService.post(fd, 'updateNote').subscribe(
-  //     data => {
-  //       console.log(data);
-  //     },
-  //     err => {
-  //       console.log('image upload error', err);
-  //     })
-  // }
+    console.log('imageUrl: ', this.imageUrl);
+
+    const fd = new FormData();
+    fd.append('image', file);
+    // console.log(fd);
+
+    this.httpService.post(fd, 'imageUpload').subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log('image upload error', err);
+      })
+  }
 
 
   //   var FormData = require('form-data');
@@ -406,7 +409,7 @@ export class CardsComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('unarchive: ', data);
-        this.messageEvent.emit("Emitted from child")
+        this.messageEvent.emit("Emitted from child");
       },
       error => {
         console.log(error);

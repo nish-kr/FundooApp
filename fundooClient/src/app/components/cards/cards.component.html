@@ -1,11 +1,14 @@
 <div [class]=item>
+
   <mat-card [ngStyle]="{'background-color': item.color}">
+
     <div class="noteCard">
       <div class="matCardTitleContent" (click)="editCard(item)">
+        <div>
+          <img class="cardImage" [src]="imageUrl">
+        </div>
         <mat-card-header>
-          <!-- <div>
-            <img [src]="imageUrl" height="200">
-          </div> -->
+
           <mat-card-title class="matCardTitle">{{item.title}}</mat-card-title>
           <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePin(item)">
             <svg-icon [src]="pinIconSrc"> </svg-icon>

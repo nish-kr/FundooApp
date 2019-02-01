@@ -47,6 +47,19 @@ var upload = multer({
     })
 })
 
+router.post('/imageUpload', upload.single(('image'), (err, data) => {
+    if (err) {
+        console.log('78 err routes file upload', err);
+    }
+    else {
+        console.log('81 data while upload', data);
+    }
+}), (req, res, next) => {
+    console.log('req.file', req.file);
+    next();
+}, notesController.updateNoteController);
+
+
 // router.post('/labelAdd', auth, notesController.addLabelController);
 router.post('/addLabel', notesController.addLabelController);
 
@@ -62,7 +75,6 @@ router.post('/getLabelNotes', notesController.getLabelNotesController);
 
 
 
-// router.post('/imageUpload', notesController.updateNoteController);
 
 
 //upload.single('image)
@@ -89,31 +101,17 @@ router.post('/getNotes', notesMiddleware.addNoteMiddleware,
 
 // router.post('/updateNote', notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
 
-router.post('/updateNote', (req, res, next) => {
-    console.log('req.body on routes', req);
-    next();
-}, upload.single(('image'), (err, data) => {
-    if (err) {
-        console.log('78 err routes file upload', err);
-    }
-    else {
-        console.log('81 data while upload', data);
-    }
-}), (req, res, next) => {
-    console.log('req.file', req.file);
-    next();
-}, notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
+router.post('/updateNote', notesController.updateNoteController);
 
-router.post('/deleteNote', notesMiddleware.deleteNoteMiddleware, notesController.deleteNoteController);
+router.post('/deleteNote', notesController.deleteNoteController);
 
-router.post('/archiveNote', notesMiddleware.archiveNoteMiddleware, notesController.archiveNoteController);
+router.post('/archiveNote', notesController.archiveNoteController);
 
-router.post('/deleteNoteForever', notesMiddleware.deleteNoteForeverMiddleware,
-    notesController.deleteNoteForeverController);
+router.post('/deleteNoteForever', notesController.deleteNoteForeverController);
 
-router.post('/pinNote', notesMiddleware.pinNoteMiddleware, notesController.pinNoteController);
+router.post('/pinNote', notesController.pinNoteController);
 
-router.post('/changeColor', notesMiddleware.changeColorMiddleware, notesController.changeColorController);
+router.post('/changeColor', notesController.changeColorController);
 // Exporting the router module.
 module.exports = router;
 

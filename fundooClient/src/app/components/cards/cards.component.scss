@@ -173,8 +173,7 @@
 }
 
 .reminderDisplay {
-    display: flex;
-    // flex-wrap: wrap;
+    display: flex; // flex-wrap: wrap;
     font-size: 12px;
     border: 1px solid rgba($color: #ffffff, $alpha: 0.0);
     border-radius: 20px;
@@ -188,4 +187,14 @@
 
 .textReminderLabel {
     align-self: center;
+}
+
+.cardImage {
+    // max-width: 200px;
+    width: 234px;
+    margin: 0px;
+    margin-top: -15px;
+    margin-left: -18px;
+    margin-right: -18px;
+    border-radius: 10px;
 }

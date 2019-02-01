@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
 
     this.httpService.post(userData, 'getLabel').subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.labelName = [];
         this.labels = data;
         for (let i = 0; i < this.labels.length; i++) {
@@ -71,8 +71,7 @@ export class DashboardComponent implements OnInit {
             this.labelName.push(this.labels[i].labelName);
             // console.log(this.labelName)
           } else {
-            console.log('else');
-
+            // console.log('else');
           }
         }
         // this.labels = data;
