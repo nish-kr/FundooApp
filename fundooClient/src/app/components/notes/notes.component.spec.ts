@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotesComponent } from './notes.component';
+import { MaterialModule } from 'src/app/material.module';
+import { CardsComponent } from '../cards/cards.component';
 
 describe('NotesComponent', () => {
   let component: NotesComponent;
@@ -8,9 +10,13 @@ describe('NotesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotesComponent ]
+      imports: [
+        MaterialModule,
+        CardsComponent
+      ],
+      declarations: [NotesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

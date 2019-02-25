@@ -54,14 +54,14 @@ export class LoginComponent implements OnInit {
     let socialPlatformProvider;
     // if(socialPlatform == "facebook"){
     //   socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    // }else 
-    if (socialPlatform == "google") {
+    // }else
+    if (socialPlatform == 'google') {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
 
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
+        console.log(socialPlatform + ' sign in data : ', userData);
         this.onSocialLogin(userData);
       }
     );
@@ -77,19 +77,19 @@ export class LoginComponent implements OnInit {
   // }
 
   onSocialLogin(data) {
-    var firstName = data.name.split(' ')[0];
-    var lastName = data.name.split(' ')[1];
+    const firstName = data.name.split(' ')[0];
+    const lastName = data.name.split(' ')[1];
 
-    let userData = {
+    const userData = {
       firstName: firstName,
       lastName: lastName,
       email: data.email,
       image: data.image
-    }
+    };
 
     console.log(userData);
 
-    localStorage.setItem("loginToken", JSON.stringify(userData));
+    localStorage.setItem('loginToken', JSON.stringify(userData));
 
     // this.router.navigateByUrl('/dashboard');
 
@@ -97,12 +97,12 @@ export class LoginComponent implements OnInit {
 
   onRegisterSubmit() {
 
-    var userData = {
+    const userData = {
       email: this.user.email,
       password: this.user.password
-    }
+    };
 
-    this.httpService.post(userData, "login").subscribe(
+    this.httpService.post(userData, 'login').subscribe(
       (data) => {
         // let userNameEmail = {
         //   name: data.name,
@@ -110,23 +110,23 @@ export class LoginComponent implements OnInit {
         // };
         //  = userNameEmail;
         // this.dashboard.name = userNameEmail.name;
-        console.log("Login successful", data);
+        console.log('Login successful', data);
 
-        localStorage.setItem("loginToken", JSON.stringify(data));
+        localStorage.setItem('loginToken', JSON.stringify(data));
 
-        console.log("token on client side", localStorage.getItem("loginToken"));
+        console.log('token on client side', localStorage.getItem('loginToken'));
 
-        this.userNameEmail.name = JSON.parse(localStorage.getItem("loginToken")).name;
+        this.userNameEmail.name = JSON.parse(localStorage.getItem('loginToken')).name;
 
         // this.userNameEmail.email = JSON.parse(this.user.email);
 
-        this.snackBar.open("Login Successful!", "Okay!", { duration: 2000 })
+        this.snackBar.open('Login Successful!', 'Okay!', { duration: 2000 });
 
         this.router.navigateByUrl('/dashboard');
       },
       (error) => {
-        console.log("Invalid Credentials! ", error);
-        this.snackBar.open("Login Unsuccessful! Invalid Credentials!", "Okay!", { duration: 2000 });
+        console.log('Invalid Credentials! ', error);
+        this.snackBar.open('Login Unsuccessful! Invalid Credentials!', 'Okay!', { duration: 2000 });
         // alert('Invalid Credentials');
       }
     );

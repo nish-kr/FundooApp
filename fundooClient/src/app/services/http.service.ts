@@ -13,11 +13,11 @@ export class HttpService {
     ) { }
 
   post(data: Object, purpose: String) {
-    return this.http.post(this.url + "/" + purpose, data, {});
+    return this.http.post(this.url + '/' + purpose, data, {});
   }
 
   get(purpose: String) {
-    return this.http.get(this.url + "/" + purpose);
+    return this.http.get(this.url + '/' + purpose);
   }
 }
 

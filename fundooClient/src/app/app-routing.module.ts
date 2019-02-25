@@ -15,6 +15,10 @@ import { LabelComponent } from './components/label/label.component';
 @NgModule({
   imports: [RouterModule.forRoot([
     {
+      path: '',
+      component: LoginComponent
+    },
+    {
       path: 'login',
       component: LoginComponent
     },
@@ -47,7 +51,7 @@ import { LabelComponent } from './components/label/label.component';
           component: TrashComponent,
         },
         {
-          path:'label',
+          path: 'label',
           component: LabelComponent,
         }
       ]
@@ -59,10 +63,6 @@ import { LabelComponent } from './components/label/label.component';
     {
       path: 'forgotPassword',
       component: ForgotpasswordComponent
-    },
-    {
-      path: '',
-      component: LoginComponent
     }
   ])],
   exports: [RouterModule]

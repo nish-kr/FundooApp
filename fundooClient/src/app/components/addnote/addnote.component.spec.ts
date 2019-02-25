@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddnoteComponent } from './addnote.component';
+import { MaterialModule } from 'src/app/material.module';
+import { SvgIconComponent, AngularSvgIconModule } from 'angular-svg-icon';
+import { NotesComponent } from '../notes/notes.component';
 
 describe('AddnoteComponent', () => {
   let component: AddnoteComponent;
@@ -8,9 +11,16 @@ describe('AddnoteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddnoteComponent ]
+      imports: [
+        MaterialModule,
+        AngularSvgIconModule,
+      ],
+      declarations: [
+        AddnoteComponent,
+        NotesComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

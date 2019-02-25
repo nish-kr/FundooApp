@@ -31,19 +31,19 @@ export class ForgotpasswordComponent implements OnInit {
 
   onForgotPassword() {
 
-    var userData = {
+    const userData = {
       email: this.user.email,
-    }
+    };
 
-    this.httpService.post(userData, "forgotPassword").subscribe(
+    this.httpService.post(userData, 'forgotPassword').subscribe(
       data => {
-        console.log("Data sent", data);
-        alert("Email Sent Successful! Check your inbox!");
+        console.log('Data sent', data);
+        alert('Email Sent Successful! Check your inbox!');
         this.router.navigateByUrl('/login');
       },
       error => {
-        alert("Email Sent Unsuccessful! Internal Error!");
-        console.log("Internal HTTP Error: ", error);
+        alert('Email Sent Unsuccessful! Internal Error!');
+        console.log('Internal HTTP Error: ', error);
       }
     );
   }

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TrashComponent } from './trash.component';
+import { MaterialModule } from 'src/app/material.module';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 describe('TrashComponent', () => {
   let component: TrashComponent;
@@ -8,9 +10,13 @@ describe('TrashComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrashComponent ]
+      imports: [
+        MaterialModule,
+        AngularSvgIconModule
+      ],
+      declarations: [TrashComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

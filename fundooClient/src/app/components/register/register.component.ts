@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) { }
- 
+
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       'firstName': [this.user.firstName, [
@@ -54,40 +54,40 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(6),
         Validators.maxLength(30)
       ]]
-    },{ validator: this.checkPasswords });
+    }, { validator: this.checkPasswords });
   }
 
   onRegisterSubmit() {
 
-    var userData = {
+    const userData = {
       firstName: this.user.firstName,
       lastName: this.user.lastName,
       email: this.user.email,
       password: this.user.password
-    }
+    };
 
-    this.httpService.post(userData, "register").subscribe(
+    this.httpService.post(userData, 'register').subscribe(
       data => {
-        console.log("Data sent", data);
+        console.log('Data sent', data);
         // alert("Registration Successful");
-        this.snackBar.open("Registration Successful!", "Okay!", { duration: 2000 })
+        this.snackBar.open('Registration Successful!', 'Okay!', { duration: 2000 });
         this.router.navigateByUrl('/login');
       },
       error => {
-        alert("Registration Unsuccessful! Invalid Input(s)!");
-        console.log("Internal HTTP Error: ", error);
+        alert('Registration Unsuccessful! Invalid Input(s)!');
+        console.log('Internal HTTP Error: ', error);
       }
     );
   }
 
   openSnackBar() {
-    this.snackBar.open("Login Page!", "Okay!", { duration: 2000 })
+    this.snackBar.open('Login Page!', 'Okay!', { duration: 2000 });
   }
 
   checkPasswords(group: FormGroup) {
-    let pass = group.controls.password.value;
-    let confirmPass = group.controls.confirmPassword.value;
+    const pass = group.controls.password.value;
+    const confirmPass = group.controls.confirmPassword.value;
 
-    return pass === confirmPass ? null : { notSame: true }
+    return pass === confirmPass ? null : { notSame: true };
   }
 }

@@ -12,10 +12,17 @@ import {
     MatProgressSpinnerModule,
     MatSliderModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   } from '@angular/material';
   import {NgModule} from '@angular/core';
-  
+import { FormsModule } from '@angular/forms';
+
   @NgModule({
     imports: [
       MatButtonModule,
@@ -47,9 +54,15 @@ import {
       MatProgressSpinnerModule,
       MatTooltipModule,
       MatListModule,
-      MatDialogModule
+      MatDialogModule,
+      MatToolbarModule,
+      MatSidenavModule,
+      MatInputModule,
+      MatExpansionModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
     ],
   })
-  
+
   export class MaterialModule {
   }

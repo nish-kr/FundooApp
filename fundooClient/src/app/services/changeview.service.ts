@@ -6,13 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class ChangeviewService {
-  
-  private messageSource = new BehaviorSubject("row");
+
+  private messageSource = new BehaviorSubject('row');
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
   changeMessage(message: string) {
-    this.messageSource.next(message)
+    this.messageSource.next(message);
   }
 }

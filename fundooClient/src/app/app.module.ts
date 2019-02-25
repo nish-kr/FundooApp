@@ -2,8 +2,8 @@
 /** Angular modules */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 /** In-app Modules & Components */
@@ -13,11 +13,11 @@ import { AppComponent } from './app.component';
 /** Angular Material & Animations modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from "./material.module";
+import { MaterialModule } from './material.module';
 import {
   MatButtonModule, MatCheckboxModule, MatSidenavModule,
   MatInputModule, MatToolbarModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule
-} from "@angular/material";
+} from '@angular/material';
 
 import { CofirmpasswordDirective } from './cofirmpassword.directive';
 
@@ -40,15 +40,38 @@ import {
   AuthServiceConfig,
   GoogleLoginProvider,
   FacebookLoginProvider,
-} from "angular-6-social-login";
+} from 'angular-6-social-login';
 import { EditCardComponent } from './components/edit-card/edit-card.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
 import { LabelComponent } from './components/label/label.component';
 
+import { L10nConfig, L10nLoader, TranslationModule, StorageStrategy, ProviderType, LogLevel } from 'angular-l10n';
 
-// Configs 
+const l10nConfig: L10nConfig = {
+  logger: {
+    level: LogLevel.Warn
+  },
+  locale: {
+    languages: [
+      { code: 'en', dir: 'ltr' },
+      { code: 'hi', dir: 'ltr' }
+    ],
+    language: 'en',
+    storage: StorageStrategy.Cookie
+  },
+  translation: {
+    providers: [
+      { type: ProviderType.Static, prefix: './assets/locale-' }
+    ],
+    caching: true,
+    composedKeySeparator: '.',
+    missingValue: 'No key'
+  }
+};
+
+// Configs
 export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
+  const config = new AuthServiceConfig(
     [
       // {
       //   id: FacebookLoginProvider.PROVIDER_ID,
@@ -56,7 +79,7 @@ export function getAuthServiceConfigs() {
       // },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("779882706195-q6kvdahh19ab5dn6di8sf45b075mu6t8.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider('779882706195-q6kvdahh19ab5dn6di8sf45b075mu6t8.apps.googleusercontent.com')
       }
     ]
   );
@@ -87,23 +110,16 @@ export function getAuthServiceConfigs() {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatSidenavModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatInputModule,
     HttpClientModule,
-    MatToolbarModule,
     FormsModule,
-    MatExpansionModule,
     FlexLayoutModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     AngularSvgIconModule,
     AmazingTimePickerModule,
     ClickOutsideModule,
-    SocialLoginModule
+    SocialLoginModule,
+    TranslationModule.forRoot(l10nConfig)
 
     // SimpleImageUploadModule
   ],
@@ -119,4 +135,8 @@ export function getAuthServiceConfigs() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(public l10nLoader: L10nLoader) {
+    this.l10nLoader.load();
+  }
+}

@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetpasswordComponent implements OnInit {
 
-  constructor() { 
-      
+  constructor() {
+
   }
 
   ngOnInit() {
-    
+
   }
 
 }

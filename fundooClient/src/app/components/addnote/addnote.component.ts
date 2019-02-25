@@ -45,23 +45,23 @@ export class AddnoteComponent implements OnInit {
   title: String;
   note: String;
   data: any;
-  color: any = "white";
+  color: any = 'white';
   pinValue: Boolean = false;
   archiveValue: Boolean = false;
   colorCode: Array<Object> = [
-    { name: "white", colorCode: "rgb(255, 255, 255)" },
-    { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
-    { name: "purple", colorCode: "rgb(215, 174, 251)" },
-    { name: "red", colorCode: "rgb(242, 139, 130)" },
-    { name: "Teal", colorCode: "rgb(167, 255, 235)" },
-    { name: "pink", colorCode: "rgb(253, 207, 232)" },
-    { name: "orange", colorCode: "rgb(251, 188, 4)" },
-    { name: "blue", colorCode: "rgb(203, 240, 248)" },
-    { name: "brown", colorCode: "rgb(230, 201, 168)" },
-    { name: "yellow", colorCode: "rgb(255, 244, 117)" },
-    { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
-    { name: "gray", colorCode: "rgb(232, 234, 237)" }
-  ]
+    { name: 'white', colorCode: 'rgb(255, 255, 255)' },
+    { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
+    { name: 'purple', colorCode: 'rgb(215, 174, 251)' },
+    { name: 'red', colorCode: 'rgb(242, 139, 130)' },
+    { name: 'Teal', colorCode: 'rgb(167, 255, 235)' },
+    { name: 'pink', colorCode: 'rgb(253, 207, 232)' },
+    { name: 'orange', colorCode: 'rgb(251, 188, 4)' },
+    { name: 'blue', colorCode: 'rgb(203, 240, 248)' },
+    { name: 'brown', colorCode: 'rgb(230, 201, 168)' },
+    { name: 'yellow', colorCode: 'rgb(255, 244, 117)' },
+    { name: 'darkBlue', colorCode: 'rgb(174, 203, 250)' },
+    { name: 'gray', colorCode: 'rgb(232, 234, 237)' }
+  ];
 
   constructor(
     private httpService: HttpService,
@@ -84,41 +84,41 @@ export class AddnoteComponent implements OnInit {
     if (this.notes.note || this.notes.title) {
       // if (this.notes.note.trim() || this.notes.title.trim()) {
       // this.notes.note.replace(new RegExp('\n', 'g'), "<br />");
-      let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+      const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
       this.noteData = {
         title: this.notes.title,
         note: this.notes.note,
-        reminder: "",
+        reminder: '',
         pin: this.pinValue,
         trash: false,
         archive: this.archiveValue,
         color: this.color,
         userId: userCredentials.userId
-      }
+      };
 
-      this.httpService.post(this.noteData, "addNote").subscribe(
+      this.httpService.post(this.noteData, 'addNote').subscribe(
         data => {
-          console.log("Data sent", data);
+          console.log('Data sent', data);
           this.isOpen = false;
           // alert("Registration Successful");
           if (this.archiveValue) {
-            this.snackBar.open("Note Archived!", "Okay!", { duration: 2000 })
+            this.snackBar.open('Note Archived!', 'Okay!', { duration: 2000 });
           } else {
-            this.snackBar.open("Note addition Successful!", "Okay!", { duration: 2000 })
+            this.snackBar.open('Note addition Successful!', 'Okay!', { duration: 2000 });
           }
 
-          this.color = "white";
+          this.color = 'white';
           this.child.getNotes();
           // this.router.navigateByUrl('/login');
         },
         error => {
-          this.snackBar.open("Note addition Unsuccessful! Invalid Input(s) / Internal Error!", "Okay!", { duration: 2000 })
-          console.log("Internal HTTP Error: ", error);
+          this.snackBar.open('Note addition Unsuccessful! Invalid Input(s) / Internal Error!', 'Okay!', { duration: 2000 });
+          console.log('Internal HTTP Error: ', error);
         }
-      )
+      );
 
-      console.log(this.notes.title, " title ", this.notes.note);
+      console.log(this.notes.title, ' title ', this.notes.note);
       this.notes.title = null;
       this.notes.note = null;
       // this.getNotes();
@@ -127,8 +127,8 @@ export class AddnoteComponent implements OnInit {
       //   console.log("Empty Space");
       // }
     } else {
-      this.color = "white";
-      console.log("Empty note!");
+      this.color = 'white';
+      console.log('Empty note!');
     }
   }
 

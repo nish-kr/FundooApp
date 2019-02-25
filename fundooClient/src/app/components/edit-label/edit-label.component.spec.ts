@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditLabelComponent } from './edit-label.component';
+import { MaterialModule } from 'src/app/material.module';
+import { MatDialogRef } from '@angular/material';
 
 describe('EditLabelComponent', () => {
   let component: EditLabelComponent;
@@ -8,9 +10,11 @@ describe('EditLabelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditLabelComponent ]
+      imports: [MaterialModule],
+      declarations: [EditLabelComponent],
+      providers: [MatDialogRef]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -13,9 +13,7 @@
 const express = require('express'); // Importing express module.
 var router = express.Router(); // Creating router using express' router() function.
 
-const multer = require('multer');
-var multerS3 = require('multer-s3')
-const auth = require('../middleware/authentication');
+
 
 
 // Importing the controller module to set the control for each request type.
@@ -24,6 +22,10 @@ const notesController = require('../controller/notesController');
 
 const notesMiddleware = require('../middleware/notesMiddleware');
 
+// AWS S3 Implementaion
+const multer = require('multer');
+var multerS3 = require('multer-s3');
+const auth = require('../middleware/authentication');
 const fs = require('fs');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({
@@ -42,7 +44,7 @@ var upload = multer({
         },
         key: function (req, file, cb) {
             console.log('file in key-----', file);
-            cb(null, Date.now().toString())
+            cb(null, Date.now().toString());
         }
     })
 })

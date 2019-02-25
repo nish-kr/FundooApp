@@ -12,21 +12,21 @@ import { ChangeviewService } from 'src/app/services/changeview.service';
 export class ArchiveComponent implements OnInit {
 
   data: any;
-  rowCol: any = "column";
+  rowCol: any = 'column';
   colorCode: Array<Object> = [
-    { name: "white", colorCode: "rgb(255, 255, 255)" },
-    { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
-    { name: "purple", colorCode: "rgb(215, 174, 251)" },
-    { name: "red", colorCode: "rgb(242, 139, 130)" },
-    { name: "Teal", colorCode: "rgb(167, 255, 235)" },
-    { name: "pink", colorCode: "rgb(253, 207, 232)" },
-    { name: "orange", colorCode: "rgb(251, 188, 4)" },
-    { name: "blue", colorCode: "rgb(203, 240, 248)" },
-    { name: "brown", colorCode: "rgb(230, 201, 168)" },
-    { name: "yellow", colorCode: "rgb(255, 244, 117)" },
-    { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
-    { name: "gray", colorCode: "rgb(232, 234, 237)" }
-  ]
+    { name: 'white', colorCode: 'rgb(255, 255, 255)' },
+    { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
+    { name: 'purple', colorCode: 'rgb(215, 174, 251)' },
+    { name: 'red', colorCode: 'rgb(242, 139, 130)' },
+    { name: 'Teal', colorCode: 'rgb(167, 255, 235)' },
+    { name: 'pink', colorCode: 'rgb(253, 207, 232)' },
+    { name: 'orange', colorCode: 'rgb(251, 188, 4)' },
+    { name: 'blue', colorCode: 'rgb(203, 240, 248)' },
+    { name: 'brown', colorCode: 'rgb(230, 201, 168)' },
+    { name: 'yellow', colorCode: 'rgb(255, 244, 117)' },
+    { name: 'darkBlue', colorCode: 'rgb(174, 203, 250)' },
+    { name: 'gray', colorCode: 'rgb(232, 234, 237)' }
+  ];
   constructor(
     private httpService: HttpService,
     private snackBar: MatSnackBar,
@@ -39,11 +39,11 @@ export class ArchiveComponent implements OnInit {
   }
 
   getNotes() {
-    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-    var getNotesObj = {
+    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
+    const getNotesObj = {
       userId: userCredentials.userId,
       token: userCredentials.loginToken
-    }
+    };
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;
@@ -51,7 +51,7 @@ export class ArchiveComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   unarchiveNote(item) {
@@ -61,17 +61,17 @@ export class ArchiveComponent implements OnInit {
     this.httpService.post(item, 'archiveNote').subscribe(
       data => {
         console.log('archive: ', data);
-        if(item.pin){
-          this.snackBar.open("Note Unarchived & Pinned!", "Okay!", { duration: 2000 });
-        }else{
-          this.snackBar.open("Note Unarchived!", "Okay!", { duration: 2000 });
+        if (item.pin) {
+          this.snackBar.open('Note Unarchived & Pinned!', 'Okay!', { duration: 2000 });
+        } else {
+          this.snackBar.open('Note Unarchived!', 'Okay!', { duration: 2000 });
         }
-        
+
       },
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   deleteNote(item) {
@@ -81,12 +81,12 @@ export class ArchiveComponent implements OnInit {
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
         console.log('deleted: ', data);
-        this.snackBar.open("Note Moved to Trash!", "Okay!", { duration: 2000 });
+        this.snackBar.open('Note Moved to Trash!', 'Okay!', { duration: 2000 });
       },
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   changeColor(color, item) {
@@ -101,6 +101,6 @@ export class ArchiveComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
   }
 }

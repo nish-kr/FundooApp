@@ -16,7 +16,7 @@ export class LabelComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.childMessage);
-    this.labelName=this.childMessage;
+    this.labelName = this.childMessage;
   }
 
   getLabelNotes() {

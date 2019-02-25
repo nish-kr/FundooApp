@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LabelComponent } from './label.component';
+import { MaterialModule } from 'src/app/material.module';
 
 describe('LabelComponent', () => {
   let component: LabelComponent;
@@ -8,6 +9,7 @@ describe('LabelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ MaterialModule ],
       declarations: [ LabelComponent ]
     })
     .compileComponents();

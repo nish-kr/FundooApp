@@ -12,29 +12,29 @@ export class EditCardComponent implements OnInit {
 
   // noteTitle: any = this.data.title;
   // noteContent: any = this.data.note;
-  pinnedIconSrc = "../../assets/Icons/pinIcon.svg";
-  unpinnedIconSrc = "../../assets/Icons/unpinIcon.svg";
+  pinnedIconSrc = '../../assets/Icons/pinIcon.svg';
+  unpinnedIconSrc = '../../assets/Icons/unpinIcon.svg';
   // pinValue: Boolean = this.data.pin;
-  title: any = "Title";
-  content: any = "Note";
+  title: any = 'Title';
+  content: any = 'Note';
   reminderMenuBool: Boolean = true;
   showReminderMenu: Boolean;
   dateInput: Date;
   timeInput: String;
   colorCode: Array<Object> = [
-    { name: "white", colorCode: "rgb(255, 255, 255)" },
-    { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
-    { name: "purple", colorCode: "rgb(215, 174, 251)" },
-    { name: "red", colorCode: "rgb(242, 139, 130)" },
-    { name: "Teal", colorCode: "rgb(167, 255, 235)" },
-    { name: "pink", colorCode: "rgb(253, 207, 232)" },
-    { name: "orange", colorCode: "rgb(251, 188, 4)" },
-    { name: "blue", colorCode: "rgb(203, 240, 248)" },
-    { name: "brown", colorCode: "rgb(230, 201, 168)" },
-    { name: "yellow", colorCode: "rgb(255, 244, 117)" },
-    { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
-    { name: "gray", colorCode: "rgb(232, 234, 237)" }
-  ]
+    { name: 'white', colorCode: 'rgb(255, 255, 255)' },
+    { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
+    { name: 'purple', colorCode: 'rgb(215, 174, 251)' },
+    { name: 'red', colorCode: 'rgb(242, 139, 130)' },
+    { name: 'Teal', colorCode: 'rgb(167, 255, 235)' },
+    { name: 'pink', colorCode: 'rgb(253, 207, 232)' },
+    { name: 'orange', colorCode: 'rgb(251, 188, 4)' },
+    { name: 'blue', colorCode: 'rgb(203, 240, 248)' },
+    { name: 'brown', colorCode: 'rgb(230, 201, 168)' },
+    { name: 'yellow', colorCode: 'rgb(255, 244, 117)' },
+    { name: 'darkBlue', colorCode: 'rgb(174, 203, 250)' },
+    { name: 'gray', colorCode: 'rgb(232, 234, 237)' }
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<EditCardComponent>,
@@ -70,9 +70,9 @@ export class EditCardComponent implements OnInit {
   }
 
   setReminder() {
-    this.data.reminder = this.dateInput.toLocaleDateString() + ", " + this.timeInput;
+    this.data.reminder = this.dateInput.toLocaleDateString() + ', ' + this.timeInput;
 
-    console.log(this.dateInput.toLocaleDateString(), "++++", this.timeInput);
+    console.log(this.dateInput.toLocaleDateString(), '++++', this.timeInput);
 
     this.httpService.post(this.data, 'updateNote').subscribe(
       data => {
@@ -83,11 +83,11 @@ export class EditCardComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   removeReminder() {
-    this.data.reminder = "";
+    this.data.reminder = '';
     this.httpService.post(this.data, 'updateNote').subscribe(
       data => {
         console.log(data);
@@ -97,7 +97,7 @@ export class EditCardComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   changePinValue() {

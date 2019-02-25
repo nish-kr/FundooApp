@@ -34,13 +34,13 @@ export class EditLabelComponent implements OnInit {
     console.log(label);
     // label = null;
 
-    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-    var newLabel = {
+    const newLabel = {
       labelName: label,
       userId: userCredentials.userId,
       noteId: ''
-    }
+    };
 
     console.log(newLabel);
 
@@ -61,11 +61,11 @@ export class EditLabelComponent implements OnInit {
   deleteLabel(item) {
     // item = null;
 
-    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
+    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
     console.log(item);
-    var label = {
+    const label = {
       labelName: item
-    }
+    };
 
     this.httpService.post(label, 'deleteLabel').subscribe(
       data => {

@@ -134,17 +134,15 @@
 //     min-width: 300px !important;
 //     //     justify-content: space-around;
 // }
-/deep/ .mat-menu-panel {
-    max-width: unset !important;
-    min-width: 340px !important;
-    justify-content: space-around;
-}
-
-.accountMenuMain {
-    display: flex;
-    width: 300px;
-    flex-direction: row;
-    justify-content: space-around;
+// .accountMenuMain {
+//     display: flex;
+//     width: 300px;
+//     flex-direction: row;
+//     justify-content: space-around;
+// }
+/deep/ .accountMenuMain .mat-menu-panel {
+    // max-width: unset !important;
+    min-width: 340px !important; // justify-content: space-around;
 }
 
 .accountMenuImage {
@@ -187,13 +185,13 @@
     // max-width: 160px;
 }
 
-/deep/ .mat-menu-panel {
-    // min-width: 112px;
-    // max-width: 280px;
-    // overflow: auto;
-    // -webkit-overflow-scrolling: touch;
-    // max-height: calc(100vh - 48px);
-    // border-radius: 4px;
-    // outline: 0;
-    background-color: white;
-}
+// /deep/ .mat-menu-panel {
+//     // min-width: 112px;
+//     // max-width: 280px;
+//     // overflow: auto;
+//     // -webkit-overflow-scrolling: touch;
+//     // max-height: calc(100vh - 48px);
+//     // border-radius: 4px;
+//     // outline: 0;
+//     background-color: white;
+// }

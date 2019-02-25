@@ -11,7 +11,7 @@ import { ChangeviewService } from 'src/app/services/changeview.service';
 export class TrashComponent implements OnInit {
 
   data: any;
-  rowCol: any = "column";
+  rowCol: any = 'column';
   constructor(
     private httpService: HttpService,
     private snackBar: MatSnackBar,
@@ -24,11 +24,11 @@ export class TrashComponent implements OnInit {
   }
 
   getNotes() {
-    let userCredentials = JSON.parse(localStorage.getItem("loginToken"));
-    var getNotesObj = {
+    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
+    const getNotesObj = {
       userId: userCredentials.userId,
       token: userCredentials.loginToken
-    }
+    };
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;
@@ -36,7 +36,7 @@ export class TrashComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   restoreNote(item) {
@@ -46,16 +46,16 @@ export class TrashComponent implements OnInit {
     this.httpService.post(item, 'deleteNote').subscribe(
       data => {
         console.log('delete: ', data);
-        if(item.pin){
-          this.snackBar.open("Note Restored & Pinned!", "Okay!", { duration: 2000 });
-        }else{
-          this.snackBar.open("Note Restored!", "Okay!", { duration: 2000 });
+        if (item.pin) {
+          this.snackBar.open('Note Restored & Pinned!', 'Okay!', { duration: 2000 });
+        } else {
+          this.snackBar.open('Note Restored!', 'Okay!', { duration: 2000 });
         }
       },
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   deleteForever(item) {
@@ -63,14 +63,14 @@ export class TrashComponent implements OnInit {
     this.httpService.post(item, 'deleteNoteForever').subscribe(
       data => {
         console.log('deleted: ', data);
-        var index = this.data.indexOf(item);
+        const index = this.data.indexOf(item);
         // console.log(index);
         this.data.splice(index);
-        this.snackBar.open("Note Deleted Permanently!", "Okay!", { duration: 2000 });
+        this.snackBar.open('Note Deleted Permanently!', 'Okay!', { duration: 2000 });
       },
       error => {
         console.log(error);
       }
-    )
+    );
   }
 }

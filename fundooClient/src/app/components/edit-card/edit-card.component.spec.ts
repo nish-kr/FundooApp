@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditCardComponent } from './edit-card.component';
+import { MaterialModule } from 'src/app/material.module';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { MatDialogRef } from '@angular/material';
 
 describe('EditCardComponent', () => {
   let component: EditCardComponent;
@@ -8,9 +11,14 @@ describe('EditCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditCardComponent ]
+      imports: [
+        MaterialModule,
+        AngularSvgIconModule
+      ],
+      declarations: [EditCardComponent],
+      providers: [MatDialogRef]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

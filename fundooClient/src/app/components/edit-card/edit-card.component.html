@@ -31,7 +31,7 @@ mat-dialog-title-->
       <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
         <mat-icon>notifications_active</mat-icon>
       </button>
-      <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
+      <!-- <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
         <div>Reminder:</div>
         <button mat-menu-item>
           Later Today
@@ -70,13 +70,12 @@ mat-dialog-title-->
         <div>
           <button mat-button (click)="setReminder(dateInput,timeInput)">Action</button>
         </div>
-      </div>
+      </div> -->
 
       <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
         <mat-icon>person_add</mat-icon>
       </button>
-      <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu"
-        [matMenuTriggerData]="{item:item}">
+      <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
         <mat-icon>color_lens</mat-icon>
       </button>
 
@@ -88,10 +87,10 @@ mat-dialog-title-->
       <button class="archiveIcon" mat-icon-button matTooltip="Archive" (click)="data.archive=true" mat-dialog-close>
         <mat-icon>archive</mat-icon>
       </button>
-      <button class="moreIcon" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreNotesMenu"
+      <!-- <button class="moreIcon" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreNotesMenu"
         [matMenuTriggerData]="{item:item}">
         <mat-icon>more_vert</mat-icon>
-      </button>
+      </button> -->
       <!-- <button class="saveButton" mat-button mat-dialog-close>Save</button> -->
     </div>
     <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial mat-dialog-close>Cancel</button> -->

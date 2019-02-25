@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardsComponent } from './cards.component';
+import { MaterialModule } from 'src/app/material.module';
+import {  AngularSvgIconModule } from 'angular-svg-icon';
 
 describe('CardsComponent', () => {
   let component: CardsComponent;
@@ -8,6 +10,10 @@ describe('CardsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MaterialModule,
+        AngularSvgIconModule
+      ],
       declarations: [ CardsComponent ]
     })
     .compileComponents();
