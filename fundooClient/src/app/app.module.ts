@@ -14,11 +14,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
-import {
-  MatButtonModule, MatCheckboxModule, MatSidenavModule,
-  MatInputModule, MatToolbarModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule
-} from '@angular/material';
-
 import { CofirmpasswordDirective } from './cofirmpassword.directive';
 
 import { AmazingTimePickerModule } from 'amazing-time-picker';
@@ -46,6 +41,8 @@ import { EditLabelComponent } from './components/edit-label/edit-label.component
 import { LabelComponent } from './components/label/label.component';
 
 import { L10nConfig, L10nLoader, TranslationModule, StorageStrategy, ProviderType, LogLevel } from 'angular-l10n';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AuthGuard } from './services/auth.guard';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -123,6 +120,7 @@ export function getAuthServiceConfigs() {
 
     // SimpleImageUploadModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
     EditCardComponent,
     EditLabelComponent
@@ -131,7 +129,8 @@ export function getAuthServiceConfigs() {
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TrashComponent } from './trash.component';
 import { MaterialModule } from 'src/app/material.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('TrashComponent', () => {
   let component: TrashComponent;
@@ -12,7 +14,9 @@ describe('TrashComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        FlexLayoutModule,
+        HttpClientModule
       ],
       declarations: [TrashComponent]
     })

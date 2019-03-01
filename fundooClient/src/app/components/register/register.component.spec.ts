@@ -2,12 +2,55 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 
-import { BrowserModule, By } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DebugElement } from '@angular/core';
 import { MaterialModule } from 'src/app/material.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { LoginComponent } from '../login/login.component';
+import { AddnoteComponent } from '../addnote/addnote.component';
+import { RemindersComponent } from '../reminders/reminders.component';
+import { ArchiveComponent } from '../archive/archive.component';
+import { TrashComponent } from '../trash/trash.component';
+import { LabelComponent } from '../label/label.component';
+import { EditLabelComponent } from '../edit-label/edit-label.component';
+import { EditCardComponent } from '../edit-card/edit-card.component';
+import { CardsComponent } from '../cards/cards.component';
+import { NotesComponent } from '../notes/notes.component';
+import { CofirmpasswordDirective } from 'src/app/cofirmpassword.directive';
+import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
+import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { AuthService, AuthServiceConfig } from 'angular-6-social-login';
+import { getAuthServiceConfigs } from 'src/app/app.module';
+import { LocaleService, TranslationModule, L10nConfig, LogLevel, StorageStrategy, ProviderType } from 'angular-l10n';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DebugElement } from '@angular/core';
 
-describe('RegisterComponent', () => {
+const l10nConfig: L10nConfig = {
+  logger: {
+    level: LogLevel.Warn
+  },
+  locale: {
+    languages: [
+      { code: 'en', dir: 'ltr' },
+      { code: 'hi', dir: 'ltr' }
+    ],
+    language: 'en',
+    storage: StorageStrategy.Cookie
+  },
+  translation: {
+    providers: [
+      { type: ProviderType.Static, prefix: './assets/locale-' }
+    ],
+    caching: true,
+    composedKeySeparator: '.',
+    missingValue: 'No key'
+  }
+};
+
+describe('AddnoteComponent', () => {
   let comp: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let de: DebugElement;
@@ -15,23 +58,45 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
       imports: [
-        BrowserModule,
+        MaterialModule,
+        AppRoutingModule,
+        HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule
-      ]
+        FlexLayoutModule,
+        AngularSvgIconModule,
+        TranslationModule.forRoot(l10nConfig),
+        BrowserAnimationsModule
+      ],
+      declarations: [
+        DashboardComponent,
+        LoginComponent,
+        RegisterComponent,
+        ForgotpasswordComponent,
+        ResetpasswordComponent,
+        CofirmpasswordDirective,
+        NotesComponent,
+        RemindersComponent,
+        ArchiveComponent,
+        TrashComponent,
+        AddnoteComponent,
+        CardsComponent,
+        EditCardComponent,
+        EditLabelComponent,
+        LabelComponent,
+      ],
+      providers: [
+        AuthService,
+        {
+          provide: AuthServiceConfig,
+          useFactory: getAuthServiceConfigs
+        },
+        LocaleService]
     })
-    .compileComponents().then(()=>{
-      fixture = TestBed.createComponent(RegisterComponent);
-
-      comp = fixture.componentInstance; // ContactComponent test instance
-      // query for the title <h1> by CSS element selector
-      de = fixture.debugElement.query(By.css('form'));
-      el = de.nativeElement;
-    });
+      .compileComponents();
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
@@ -54,8 +119,8 @@ describe('RegisterComponent', () => {
   it(`form should be valid`, async(() => {
     comp.registerForm.controls['firstName'].setValue('Nishant');
     comp.registerForm.controls['lastName'].setValue('Kumar');
-    comp.registerForm.controls['email'].setValue('abc@xyz.com');
-    comp.registerForm.controls['password'].setValue('asdasds');
-    expect(comp.registerForm.valid).toBeTruthy();
+    comp.registerForm.controls['email'].setValue('abc5@xyz.com');
+    comp.registerForm.controls['password'].setValue('rrrdrfrfrfr');
+    expect(!comp.registerForm.valid).toBeTruthy();
   }));
 });

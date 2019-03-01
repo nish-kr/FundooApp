@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { HttpService } from 'src/app/services/http.service';
 import { ChangeviewService } from 'src/app/services/changeview.service';
+import { UserCredentials } from 'src/app/models/userCredentials.model';
 
 @Component({
   selector: 'app-archive',
@@ -39,11 +40,16 @@ export class ArchiveComponent implements OnInit {
   }
 
   getNotes() {
-    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
-    const getNotesObj = {
-      userId: userCredentials.userId,
-      token: userCredentials.loginToken
-    };
+    const userCredentials : UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
+
+    let getNotesObj;
+    if(userCredentials !== null){
+      getNotesObj = {
+        userId: userCredentials.userId,
+        token: userCredentials.loginToken
+  
+      };
+    }
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;

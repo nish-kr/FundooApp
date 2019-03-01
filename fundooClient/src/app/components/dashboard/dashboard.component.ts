@@ -10,13 +10,14 @@ import { HttpService } from 'src/app/services/http.service';
 
 // Language Change
 import { LocaleService, TranslationService, Language } from 'angular-l10n';
+import { UserCredentials } from 'src/app/models/userCredentials.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [LoginComponent, AddnoteComponent],
-  encapsulation: ViewEncapsulation.Emulated
+  providers: [LoginComponent, AddnoteComponent]
+  // encapsulation: ViewEncapsulation.Emulated
   // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
@@ -48,24 +49,27 @@ export class DashboardComponent implements OnInit {
   };
 
   public icon = 'dashboard';
-  public name: String;
-  public email: String;
+  public name: String="";
+  public email: String="";
   public viewToolTip = 'Grid View';
   public view = 'row';
   // public headerName = "Fundoo Notes";
-  public accountImage: any;
+  public accountImage: any="";
   public labels: any;
   public labelName = [];
 
   url: string;
 
   ngOnInit() {
-    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
+    const userCredentials:UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
     this.data.currentMessage.subscribe(message => this.view = message);
     // let userCredentials = this.login.userNameEmail;
-    this.accountImage = userCredentials.name[0];
-    this.name = userCredentials.name;
-    this.email = userCredentials.email;
+    if(userCredentials !== null){
+      this.accountImage = userCredentials.name[0];
+      this.name = userCredentials.name;
+      this.email = userCredentials.email;
+    }
+
     this.getLabel();
 
     this.translation.translationChanged().subscribe(
@@ -90,9 +94,13 @@ export class DashboardComponent implements OnInit {
 
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-    const userData = {
-      userId: userCredentials.userId,
-    };
+    let userData;
+    if(userCredentials !== null){
+      userData = {
+        userId: userCredentials.userId,
+      };
+    }
+    
 
     this.httpService.post(userData, 'getLabel').subscribe(
       data => {
@@ -125,6 +133,7 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(EditLabelComponent, {
       data: this.labelName
     });
+    
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       this.getLabel();
@@ -142,7 +151,7 @@ export class DashboardComponent implements OnInit {
 
   navigateToLabel(item) {
     console.log(item);
-    this.headerName = item;
+    this.headerName.title = item;
 
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 

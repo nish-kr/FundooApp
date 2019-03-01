@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ArchiveComponent } from './archive.component';
 import { MaterialModule } from 'src/app/material.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ArchiveComponent', () => {
   let component: ArchiveComponent;
@@ -12,8 +14,10 @@ describe('ArchiveComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        AngularSvgIconModule
+        FlexLayoutModule,
+        HttpClientModule
       ],
+      providers: [AngularSvgIconModule],
       declarations: [ArchiveComponent]
     })
       .compileComponents();

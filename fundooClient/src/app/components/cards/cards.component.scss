@@ -96,19 +96,19 @@
     word-break: break-all; // overflow-wrap: break-word;
 }
 
-// .notesIcons,
-// .pinIcon {
-//     // position: absolute;
-//     visibility: hidden;
-//     opacity: 0;
-//     transition: visibility 0.5s, opacity 0.2s linear; // display: none;
-// }
-// .noteCard:hover .notesIcons,
-// .noteCard:hover .pinIcon {
-//     visibility: visible;
-//     opacity: 1; // transition: opacity 0.5s linear;
-//     // display: block;
-// }
+.notesIcons,
+.pinIcon {
+    // position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.2s linear; // display: none;
+}
+.noteCard:hover .notesIcons,
+.noteCard:hover .pinIcon {
+    visibility: visible;
+    opacity: 1; // transition: opacity 0.5s linear;
+    // display: block;
+}
 .pinIcon {
     height: 30px;
     margin-left: auto;

@@ -71,9 +71,13 @@ export class CardsComponent implements OnInit {
 
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-    const userData = {
-      userId: userCredentials.userId,
-    };
+    let userData
+
+    if (userCredentials != null) {
+      userData = {
+        userId: userCredentials.userId,
+      };
+    }
 
     this.httpService.post(userData, 'getLabel').subscribe(
       data => {
@@ -97,11 +101,13 @@ export class CardsComponent implements OnInit {
 
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-    const userData = {
-      userId: userCredentials.userId,
-      noteId: this.item._id
-    };
-
+    let userData;
+    if (userCredentials != null) {
+      userData = {
+        userId: userCredentials.userId,
+        noteId: this.item._id
+      };
+    }
     this.httpService.post(userData, 'getChosenLabel').subscribe(
       data => {
         // console.log(data);
@@ -129,11 +135,16 @@ export class CardsComponent implements OnInit {
 
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-    const newLabel = {
-      labelName: label,
-      userId: userCredentials.userId,
-      noteId: this.item._id
-    };
+    let newLabel
+
+    if (userCredentials != null) {
+      newLabel = {
+        labelName: label,
+        userId: userCredentials.userId,
+        noteId: this.item._id
+      };
+    }
+
 
     console.log(newLabel);
 
@@ -164,13 +175,17 @@ export class CardsComponent implements OnInit {
 
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-    const toRemove = {
-      _id: label._id,
-      labelName: label.labelName,
-      userId: userCredentials.userId,
-      noteId: this.item._id,
-      __v: 0
-    };
+    let toRemove
+
+    if (userCredentials != null) {
+      toRemove = {
+        _id: label._id,
+        labelName: label.labelName,
+        userId: userCredentials.userId,
+        noteId: this.item._id,
+        __v: 0
+      };
+    }
 
     console.log('To remove: ', toRemove);
 
@@ -472,8 +487,11 @@ export class CardsComponent implements OnInit {
   //   )
   // }
 
-  changeColor(color, item) {
-    item.color = color;
+  changeColor(color: String, item: any) {
+    if (item != null && color != null) {
+      item.color = color;
+    }
+
     // console.log(item," ",color);
     this.httpService.post(item, 'changeColor').subscribe(
       data => {

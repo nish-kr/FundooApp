@@ -2,7 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RemindersComponent } from './reminders.component';
 import { MaterialModule } from 'src/app/material.module';
-import { SvgIconComponent } from 'angular-svg-icon';
+import { SvgIconComponent, AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CardsComponent } from '../cards/cards.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('RemindersComponent', () => {
   let component: RemindersComponent;
@@ -12,11 +16,18 @@ describe('RemindersComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        SvgIconComponent
+        HttpClientModule,
+        FlexLayoutModule,
+        AngularSvgIconModule,
+        FormsModule,
+        ReactiveFormsModule
       ],
-      declarations: [ RemindersComponent ]
+      declarations: [
+        RemindersComponent,
+        CardsComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

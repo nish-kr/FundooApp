@@ -2,7 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditLabelComponent } from './edit-label.component';
 import { MaterialModule } from 'src/app/material.module';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('EditLabelComponent', () => {
   let component: EditLabelComponent;
@@ -10,9 +15,19 @@ describe('EditLabelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule],
+      imports: [
+        MaterialModule,
+        AngularSvgIconModule,
+        FormsModule,
+        HttpClientModule,
+        AmazingTimePickerModule,
+        BrowserAnimationsModule
+      ],
       declarations: [EditLabelComponent],
-      providers: [MatDialogRef]
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: [] },
+      ]
     })
       .compileComponents();
   }));

@@ -43,13 +43,13 @@
     <mat-nav-list class="sideNavList">
       <div>
         <button mat-button [routerLink]="['addNote']" (click)="headerName.title=headerName.header"
-          [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
+          [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName.title==headerName.header}">
           <mat-icon>lightbulb_outline</mat-icon> {{headerName.notes}}
         </button>
       </div>
       <div>
         <button mat-button [routerLink]="['reminders']" (click)="headerName.title=headerName.reminders"
-          [ngClass]="{'sideNavListItems': headerName!='Reminders', 'sideNavlistItemsColored': headerName=='Reminders'}">
+          [ngClass]="{'sideNavListItems': headerName!='Reminders', 'sideNavlistItemsColored': headerName.title==headerName.reminders}">
           <mat-icon>notifications_none</mat-icon> {{headerName.reminders}}
         </button>
       </div>
@@ -57,7 +57,8 @@
         <span>Labels</span>
         <div *ngFor="let item of labelName">
           <!-- [routerLink]="['label']" -->
-          <button class="sideNavListItems" mat-button (click)="navigateToLabel(item)">
+          <button class="sideNavListItems" mat-button (click)="navigateToLabel(item)" (click)="headerName.title=item"
+            [ngClass]="{'sideNavListItems': headerName.title!=item, 'sideNavlistItemsColored': headerName.title==item}">
             <mat-icon>label</mat-icon>{{item}}
             <!-- <app-label [childMessage]="item"></app-label> -->
           </button>
@@ -70,13 +71,13 @@
       </div>
       <div>
         <button mat-button [routerLink]="['archive']" (click)="headerName.title=headerName.archive"
-          [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName=='Archive'}">
+          [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName.title==headerName.archive}">
           <mat-icon>archive</mat-icon> {{headerName.archive}}
         </button>
       </div>
       <div>
         <button mat-button [routerLink]="['trash']" (click)="headerName.title=headerName.trash"
-          [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
+          [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName.title==headerName.trash}">
           <mat-icon>delete</mat-icon> {{headerName.trash}}
         </button>
       </div>

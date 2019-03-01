@@ -2,14 +2,14 @@
   <div class="notes" fxLayout="{{rowCol}}" fxLayoutGap="5px" fxFlex="">
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">PINNED</div>
     <div class="ngForDiv" *ngFor="let item of data">
-      <div *ngIf="!item.archive && !item.trash && item.pin" class="cardComponent">
+      <div *ngIf="!item?.archive && !item?.trash && item?.pin" class="cardComponent">
         <app-cards [item]=item [pinIconSrc]=pinnedIconSrc (messageEvent)="receiveMessage($event)" [ngClass]="{'matCardGrid': rowCol=='row','matCardList': rowCol=='column'}"></app-cards>
       </div>
     </div>
 
     <div class="pinnedOthers" *ngIf="counter>0" style="width: 700px">OTHERS</div>
     <div class="ngForDiv" *ngFor="let item of data">
-      <div *ngIf="!item.archive && !item.trash && !item.pin" class="cardComponent">
+      <div *ngIf="!item?.archive && !item?.trash && !item?.pin" class="cardComponent">
         <app-cards [item]=item [pinIconSrc]=unpinnedIconSrc (messageEvent)="receiveMessage($event)" [ngClass]="{'matCardGrid': rowCol=='row','matCardList': rowCol=='column'}"></app-cards>
       </div>
     </div>

@@ -7,10 +7,12 @@ import { ServerUrl } from '../backend.url';
 })
 
 export class HttpService {
-  private url = new ServerUrl().serverUrl;
+  private url:String = new ServerUrl().serverUrl;
   constructor(private http: HttpClient,
     // private httpHeaders= new HttpHeaders()
-    ) { }
+    ) { 
+      this.url = new ServerUrl().serverUrl;
+    }
 
   post(data: Object, purpose: String) {
     return this.http.post(this.url + '/' + purpose, data, {});
@@ -18,6 +20,10 @@ export class HttpService {
 
   get(purpose: String) {
     return this.http.get(this.url + '/' + purpose);
+  }
+
+  isLoggedIn(){
+    return !!localStorage.getItem('loginToken');
   }
 }
 

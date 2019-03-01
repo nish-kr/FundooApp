@@ -25,10 +25,14 @@ export class TrashComponent implements OnInit {
 
   getNotes() {
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
-    const getNotesObj = {
-      userId: userCredentials.userId,
-      token: userCredentials.loginToken
-    };
+    let getNotesObj
+
+    if (userCredentials != null) {
+      getNotesObj = {
+        userId: userCredentials.userId,
+        token: userCredentials.loginToken
+      };
+    }
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
         this.data = data;

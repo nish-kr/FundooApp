@@ -5,6 +5,10 @@ node_modules/
 .scannerwork/
 /scannerwork/
 
+/environments/
+/environments
+environments/
+
 # Logs
 logs
 *.log

@@ -20,6 +20,8 @@ const url = require('./config/dbconfig'); // Importing dbconfig module to get th
 const cors = require('cors') // Importing cors module to check the request timed out while reaching the host.
 const expressValidator = require('express-validator');
 // const cache = require('express-redis-cache')();
+var redis = require('redis');
+var cache = redis.createClient();
 
 require('dotenv').config();
 // console.log(process.env.emailId);
@@ -55,6 +57,23 @@ function mongofunction(url) {
 
     })
 }
+
+cache.on('connect', function () {
+    console.log('Redis client connected');
+});
+
+cache.on('error', function (err) {
+    console.log('Something went wrong connecting Redis ' + err);
+});
+
+cache.set('my test key', 'my test value', redis.print);
+cache.get('my test key', function (error, result) {
+    if (error) {
+        console.log(error);
+        throw error;
+    }
+    console.log('GET result ->' + result);
+});
 
 // cache.on('error', function (error) {
 //     throw new Error('Cache error!');

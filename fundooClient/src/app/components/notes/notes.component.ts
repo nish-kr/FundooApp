@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { HttpService } from 'src/app/services/http.service';
 import { ChangeviewService } from 'src/app/services/changeview.service';
+import { UserCredentials } from 'src/app/models/userCredentials.model';
 
 @Component({
   selector: 'app-notes',
@@ -13,7 +14,7 @@ export class NotesComponent implements OnInit {
 
   pinnedIconSrc = '../../assets/Icons/pinIcon.svg';
   unpinnedIconSrc = '../../assets/Icons/unpinIcon.svg';
-  data: any;
+  data=[];
   notes: Array<Object> = [];
   rowCol: any = 'column';
   pinValue: Boolean = false;
@@ -49,14 +50,21 @@ export class NotesComponent implements OnInit {
   }
 
   getNotes() {
-    const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
-    const getNotesObj = {
-      userId: userCredentials.userId,
-      token: userCredentials.loginToken
-    };
+
+    const userCredentials: UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
+
+    let getNotesObj;
+
+    if (userCredentials != null) {
+      getNotesObj = {
+        userId: userCredentials.userId,
+        token: userCredentials.loginToken
+      };
+    }
+
     this.httpService.post(getNotesObj, 'getNotes').subscribe(
       data => {
-        this.data = data;
+        this.data = (data as any[]);
         // console.log('notesComponent: ', data);
         this.counter = 0;
         for (let i = 0; i < this.data.length; i++) {
@@ -76,7 +84,10 @@ export class NotesComponent implements OnInit {
 
   receiveMessage($event) {
     console.log('Message recieved from child: ', $event);
-    this.getNotes();
+    if ($event != null) {
+      this.getNotes();
+    }
+
   }
 
   // toggleReminderMenu() {

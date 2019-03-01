@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardsComponent } from './cards.component';
 import { MaterialModule } from 'src/app/material.module';
 import {  AngularSvgIconModule } from 'angular-svg-icon';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 describe('CardsComponent', () => {
   let component: CardsComponent;
@@ -12,7 +15,10 @@ describe('CardsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        FormsModule,
+        HttpClientModule,
+        AmazingTimePickerModule
       ],
       declarations: [ CardsComponent ]
     })

@@ -13,9 +13,6 @@
 const express = require('express'); // Importing express module.
 var router = express.Router(); // Creating router using express' router() function.
 
-
-
-
 // Importing the controller module to set the control for each request type.
 const userController = require('../controller/userController');
 const notesController = require('../controller/notesController');

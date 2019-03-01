@@ -6,6 +6,7 @@ import { NotesComponent } from '../notes/notes.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NotesModel } from 'src/app/models/notes.model';
 import { HttpService } from 'src/app/services/http.service';
+import { UserCredentials } from 'src/app/models/userCredentials.model';
 
 @Component({
   selector: 'app-addnote',
@@ -81,21 +82,24 @@ export class AddnoteComponent implements OnInit {
 
   addNote() {
 
-    if (this.notes.note || this.notes.title) {
+    if (this.notes != null) {
       // if (this.notes.note.trim() || this.notes.title.trim()) {
       // this.notes.note.replace(new RegExp('\n', 'g'), "<br />");
-      const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
+      const userCredentials:UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-      this.noteData = {
-        title: this.notes.title,
-        note: this.notes.note,
-        reminder: '',
-        pin: this.pinValue,
-        trash: false,
-        archive: this.archiveValue,
-        color: this.color,
-        userId: userCredentials.userId
-      };
+      if(userCredentials !== null){
+        this.noteData = {
+          title: this.notes.title,
+          note: this.notes.note,
+          reminder: '',
+          pin: this.pinValue,
+          trash: false,
+          archive: this.archiveValue,
+          color: this.color,
+          userId: userCredentials.userId
+        };
+      }
+      
 
       this.httpService.post(this.noteData, 'addNote').subscribe(
         data => {

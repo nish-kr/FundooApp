@@ -3,6 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotesComponent } from './notes.component';
 import { MaterialModule } from 'src/app/material.module';
 import { CardsComponent } from '../cards/cards.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FormsModule } from '@angular/forms';
 
 describe('NotesComponent', () => {
   let component: NotesComponent;
@@ -12,9 +16,15 @@ describe('NotesComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        CardsComponent
+        FlexLayoutModule,
+        HttpClientModule,
+        AngularSvgIconModule,
+        FormsModule
       ],
-      declarations: [NotesComponent]
+      declarations: [
+        NotesComponent,
+        CardsComponent
+      ]
     })
       .compileComponents();
   }));

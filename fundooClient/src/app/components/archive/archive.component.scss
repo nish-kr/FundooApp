@@ -5,7 +5,6 @@
 //     margin-left: 5px;
 //     padding: 5px;
 // }
-
 .matCardGrid {
     width: 200px;
     display: flex;
@@ -16,10 +15,8 @@
 }
 
 .matCardList {
-    width: 570px;
-    // display: flex;
-    margin-bottom: 10px;
-    // margin-top: 10px;
+    width: 570px; // display: flex;
+    margin-bottom: 10px; // margin-top: 10px;
     margin-left: 50px;
     margin-right: 80px;
     border: 1px solid rgb(223, 223, 223);
@@ -28,8 +25,8 @@
 
 /deep/ .ng-star-inserted .ngForDiv {
     margin-right: 0px !important;
+    margin-bottom: 0px !important;
 }
-
 
 .matCardGrid .reminderIcon,
 .matCardGrid .collaboratorIcon,
@@ -53,7 +50,6 @@
 
 /deep/ .mat-icon-button .mat-icon {
     font-size: 20px !important;
-    
 }
 
 .notes {
@@ -73,12 +69,13 @@
 .notesIcons {
     // position: absolute;
     display: none;
-    transition:opacity 0.5s linear;
+    transition: opacity 0.5s linear;
 }
+
 .noteCard:hover .notesIcons {
     // position: absolute;
     opacity: 1;
-    transition:opacity 0.5s linear;
+    transition: opacity 0.5s linear;
     display: block;
 }
 
@@ -96,7 +93,7 @@
     font-size: 32px !important;
 }
 
-/deep/ .colorMenu .mat-menu-content div{
+/deep/ .colorMenu .mat-menu-content div {
     display: flex;
     flex-wrap: wrap;
     max-width: 160px;

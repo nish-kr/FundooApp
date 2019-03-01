@@ -1,6 +1,6 @@
 <div [class]=item>
 
-  <mat-card [ngStyle]="{'background-color': item.color}">
+  <mat-card [ngStyle]="{'background-color': item?.color}">
 
     <div class="noteCard">
       <div class="matCardTitleContent" (click)="editCard(item)">
@@ -9,19 +9,19 @@
         </div> -->
         <mat-card-header>
 
-          <mat-card-title class="matCardTitle">{{item.title}}</mat-card-title>
+          <mat-card-title class="matCardTitle">{{item?.title}}</mat-card-title>
           <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePin(item)">
             <svg-icon [src]="pinIconSrc"> </svg-icon>
           </button>
         </mat-card-header>
-        <mat-card-content class="matCardContent"> {{item.note}} </mat-card-content>
+        <mat-card-content class="matCardContent"> {{item?.note}} </mat-card-content>
       </div>
       <mat-card-footer class="matCardFooter">
-        <div *ngIf="item.reminder" class="reminderDisplay">
+        <div *ngIf="item?.reminder" class="reminderDisplay">
           <button mat-icon-button>
             <mat-icon class="mat-18">access_time</mat-icon>
           </button>
-          <span class="textReminderLabel">{{item.reminder}}</span>
+          <span class="textReminderLabel">{{item?.reminder}}</span>
           <button mat-icon-button (click)="removeReminder()" matTooltip="Delete Reminder">
             <mat-icon class="mat-18">cancel_outline</mat-icon>
           </button>
@@ -29,7 +29,7 @@
 
         <div class="labelsInNote" *ngIf="chosenLabel.length>0">
           <div *ngFor="let item of chosenLabel" class="reminderDisplay">
-            <span class="textReminderLabel">{{item.labelName}}</span>
+            <span class="textReminderLabel">{{item?.labelName}}</span>
             <button mat-icon-button (click)="removeLabelFromNote(item)" matTooltip="Delete Reminder">
               <mat-icon class="mat-18">cancel_outline</mat-icon>
             </button>
