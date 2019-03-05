@@ -4,12 +4,12 @@
   </div>
   <div>
     <button mat-icon-button>
-      <mat-icon class="clearButton">clear</mat-icon>
+      <mat-icon class="clearButton" (click)="label.value=''">clear</mat-icon>
     </button>
     <mat-form-field floatLabel="never" hideRequiredMarker="true">
       <input matInput #label placeholder="Create new label" required autocomplete="off">
     </mat-form-field>
-    <button mat-icon-button matTooltip="Create label" (click)="createLabel(label.value)">
+    <button mat-icon-button matTooltip="Create label" (click)="createLabel(label.value)" (click)="label.value=''">
       <mat-icon class="clearButton">check</mat-icon>
     </button>
   </div>

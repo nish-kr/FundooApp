@@ -11,10 +11,9 @@
     min-width: 200px;
 }
 
-.fundooNotesText {
-    // position: absolute;
-}
-
+// .fundooNotesText {
+// position: absolute;
+// }
 .sidenavBar {
     position: absolute;
     min-width: 300px;
@@ -134,17 +133,20 @@
 //     min-width: 300px !important;
 //     //     justify-content: space-around;
 // }
-// .accountMenuMain {
-//     display: flex;
-//     width: 300px;
-//     flex-direction: row;
-//     justify-content: space-around;
-// }
-/deep/ .accountMenuMain .mat-menu-panel {
-    // max-width: unset !important;
-    min-width: 340px !important; // justify-content: space-around;
+::ng-deep .accountMenuMain {
+    width: 320px !important;
 }
 
+::ng-deep .mat-menu-panel {
+    // max-width: unset !important;
+    max-width: 500px !important; // justify-content: space-around;
+}
+
+// ::ng-deep .mat-menu-content:not(:empty) {
+//     padding-top: 8px;
+//     padding-bottom: 8px;
+//     min-width: 321px !important;
+// }
 .accountMenuImage {
     height: 96px;
     width: 96px;

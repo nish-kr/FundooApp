@@ -10,6 +10,31 @@
 // Importing the server module to use the user services.
 const notesService = require('../services/notesService');
 
+// var aws = require('aws-sdk')
+// var express = require('express')
+// var multer = require('multer')
+// var multerS3 = require('multer-s3')
+
+// var s3 = new aws.S3({
+//     accessKeyId: process.env.Access_Key_ID,
+//     secretAccessKey: process.env.Secret_Access_Key
+// })
+
+// var upload = multer({
+//     storage: multerS3({
+//         s3: s3,
+//         bucket: 'fundoo-image-upload',
+//         metadata: function (req, file, cb) {
+//             cb(null, { fieldName: file.originalname });
+//         },
+//         key: function (req, file, cb) {
+//             cb(null, Date.now().toString())
+//         }
+//     })
+// })
+
+// module.exports = upload;
+
 exports.addNoteController = (req, res) => {
 
     notesService.addNoteService(req.body, (err, data) => {
@@ -157,6 +182,26 @@ exports.changeColorController = (req, res) => {
 exports.updateNoteController = (req, res) => {
 
     notesService.updateNoteService(req.body, (err, data) => {
+
+        // If error is found, send error back in the response.
+        if (err) {
+            res.status(404).send('Error');
+        }
+
+        // Else, send object of the data back in response.
+        else {
+
+            // Creating obj object to store just the email of the data.
+
+            // Sending the object back in response.
+            res.status(200).send(data);
+        }
+    })
+}
+
+exports.updateImageController = (req, res) => {
+
+    notesService.updateImageService(req.body, (err, data) => {
 
         // If error is found, send error back in the response.
         if (err) {

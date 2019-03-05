@@ -1,6 +1,9 @@
-<div class="mainEditArea" [ngStyle]="{'background': data.color}">
+<div [ngClass]="{'withImage': data.image, 'withoutImage' : !data.image}" [ngStyle]="{'background': data.color}">
   <div>
     <div class="editNoteTitleDiv">
+      <div *ngIf="data.image">
+        <img class="cardImage" [src]="data.image">
+      </div>
       <textarea class="editNoteTitleInput" matTextareaAutosize [(ngModel)]="data.title" id="" cols="40" rows="1"
         placeholder="Title" [ngStyle]="{'background': data.color}">{{data.title}}</textarea>
       <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePinValue()">
@@ -28,7 +31,8 @@ mat-dialog-title-->
     <!-- align="end" -->
 
     <div class="notesIcons">
-      <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
+      <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()"
+        (click)="toggleShowReminder()">
         <mat-icon>notifications_active</mat-icon>
       </button>
       <!-- <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">

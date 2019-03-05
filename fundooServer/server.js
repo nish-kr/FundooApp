@@ -13,17 +13,19 @@
  */
 const express = require('express'); // Importing express module.
 const app = express(); // Creating constructor of express module.
+require('dotenv').config();
+
 const bodyParser = require('body-parser'); // Importing bodyParser module.
+
 const routes = require('./routes/route'); // Importing routes module.
 const mongoose = require('mongoose'); // Importing mongoose module to connect to the database.
 const url = require('./config/dbconfig'); // Importing dbconfig module to get the url of the database.
 const cors = require('cors') // Importing cors module to check the request timed out while reaching the host.
 const expressValidator = require('express-validator');
 // const cache = require('express-redis-cache')();
-var redis = require('redis');
-var cache = redis.createClient();
+var redisClient = require('redis').createClient;
+var redis = redisClient();
 
-require('dotenv').config();
 // console.log(process.env.emailId);
 
 // const nodemailer = require('nodemailer');
@@ -58,37 +60,21 @@ function mongofunction(url) {
     })
 }
 
-cache.on('connect', function () {
+redis.on('connect', function () {
     console.log('Redis client connected');
 });
 
-cache.on('error', function (err) {
+redis.on('error', function (err) {
     console.log('Something went wrong connecting Redis ' + err);
 });
 
-cache.set('my test key', 'my test value', redis.print);
-cache.get('my test key', function (error, result) {
-    if (error) {
-        console.log(error);
-        throw error;
-    }
-    console.log('GET result ->' + result);
-});
-
-// cache.on('error', function (error) {
-//     throw new Error('Cache error!');
-// });
-
-// cache.on('message', function (message) {
-//     // ...
-// });
-
-// cache.on('connected', function () {
-//     // ....
-// });
-
-// cache.on('disconnected', function () {
-//     // ....
+// redis.set('my test key', 'my test value', redis.print);
+// redis.get('my test key', function (error, result) {
+//     if (error) {
+//         console.log(error);
+//         throw error;
+//     }
+//     console.log('GET result ->' + result);
 // });
 
 

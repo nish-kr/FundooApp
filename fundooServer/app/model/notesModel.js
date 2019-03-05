@@ -14,6 +14,9 @@ const mongoose = require('mongoose'); // Importing mongoose model to use the Mon
 mongoose.set("useFindAndModify", false);
 const schema = mongoose.Schema;
 
+var redisClient = require('redis').createClient;
+var redis = redisClient();
+
 // Defining Mongoose schema for storing user data into the database.
 var noteSchema = new mongoose.Schema({
     title: { type: String },
@@ -75,28 +78,54 @@ notesDB.prototype.addNote = (req, callback) => {
             callback(error);
         } else {
 
-            console.log("Data Updated! \n", newNote);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the result.
-            return callback(null, result);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('added the new note to cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     })
 }
 
 notesDB.prototype.getNotes = (req, callback) => {
 
-    notes.find({ userId: req.userId }, function (err, data) {
-
+    redis.get('notes', function (err, reply) {
         if (err) {
-            console.log("Username Request Error");
-            return callback(err);
+            callback(err);
+        } else if (reply) {
+            console.log('Sent notes from cache only');
+            callback(null, JSON.parse(reply));
         } else {
 
-            // Checking if there is any data in the database of that username.
-            // console.log(data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated notes the cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }
@@ -110,11 +139,23 @@ notesDB.prototype.archiveNote = (req, callback) => {
             return callback(err);
         } else {
 
-            // Checking if there is any data in the database of that username.
-            // console.log(data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated archive in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }
@@ -128,11 +169,23 @@ notesDB.prototype.deleteNote = (req, callback) => {
             return callback(err);
         } else {
 
-            // Checking if there is any data in the database of that username.
-            // console.log(data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated delete in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }
@@ -147,11 +200,23 @@ notesDB.prototype.deleteNoteForever = (req, callback) => {
             return callback(err);
         } else {
 
-            // Checking if there is any data in the database of that username.
-            // console.log(data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated permanent delete in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }
@@ -165,11 +230,23 @@ notesDB.prototype.pinNote = (req, callback) => {
             return callback(err);
         } else {
 
-            // Checking if there is any data in the database of that username.
-            // console.log(data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated pin in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }
@@ -183,11 +260,23 @@ notesDB.prototype.changeColor = (req, callback) => {
             return callback(err);
         } else {
 
-            // Checking if there is any data in the database of that username.
-            // console.log(data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated color in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }
@@ -202,11 +291,54 @@ notesDB.prototype.updateNote = (req, callback) => {
             return callback(err);
         } else {
 
-            // Checking if there is any data in the database of that username.
-            console.log("update notes", data);
+            notes.find({ userId: req.userId }, function (err, data) {
 
-            // Returning the data.
-            return callback(null, data);
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated the note in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
+        }
+    });
+}
+
+notesDB.prototype.updateImage = (req, callback) => {
+    console.log("request on update note", req);
+
+    notes.findByIdAndUpdate(req._id, { ...req }, function (err, data) {
+
+        if (err) {
+            console.log("Update Request Error");
+            return callback(err);
+        } else {
+
+            notes.find({ userId: req.userId }, function (err, data) {
+
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated the note in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
         }
     });
 }

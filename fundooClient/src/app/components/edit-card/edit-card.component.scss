@@ -37,6 +37,33 @@
 }
 
 .mainEditArea {
-    // margin: auto;    
+    // // margin: auto;    
+    // padding: 10px;
+    // overflow-y: overlay;
+    // overflow-x: hidden;
+    // max-height: 500px;
+}
+
+.withImage {
     padding: 10px;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    max-height: 500px;
+}
+
+.withoutImage {
+    padding: 10px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-height: 500px;
+}
+
+.cardImage {
+    // max-width: 200px;
+    width: 105%;
+    margin: 0px;
+    margin-top: -15px;
+    margin-left: -18px;
+    margin-right: -18px;
+    border-radius: 10px;
 }

@@ -19,45 +19,65 @@ const notesController = require('../controller/notesController');
 
 const notesMiddleware = require('../middleware/notesMiddleware');
 
+// const upload = require('../controller/notesController');
+
+// var redis = require('redis');
+// var cache = redis.createClient();
+
 // AWS S3 Implementaion
-const multer = require('multer');
-var multerS3 = require('multer-s3');
-const auth = require('../middleware/authentication');
-const fs = require('fs');
-const AWS = require('aws-sdk');
-const s3 = new AWS.S3({
+var aws = require('aws-sdk')
+var multer = require('multer')
+var multerS3 = require('multer-s3')
+
+var s3 = new aws.S3({
     accessKeyId: process.env.Access_Key_ID,
     secretAccessKey: process.env.Secret_Access_Key
-});
+})
 
 var upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'fundoo-image-upload',
-
+        acl: 'public-read',
         metadata: function (req, file, cb) {
-            console.log('file in metadata-----', file);
-            cb(null, { fieldName: file.fieldname });
+            cb(null, { fieldName: file.originalname });
         },
         key: function (req, file, cb) {
-            console.log('file in key-----', file);
-            cb(null, Date.now().toString());
+            cb(null, Date.now().toString())
         }
     })
 })
 
-router.post('/imageUpload', upload.single(('image'), (err, data) => {
-    if (err) {
-        console.log('78 err routes file upload', err);
-    }
-    else {
-        console.log('81 data while upload', data);
-    }
-}), (req, res, next) => {
-    console.log('req.file', req.file);
-    next();
-}, notesController.updateNoteController);
+const singleUpload = upload.single('image');
 
+router.post('/imageUpload', function (req, res) {
+
+    singleUpload(req, res, (err, result) => {
+        if (err) {
+            console.log("upload error: ", err);
+            return res.status(422).send({ errors: err });
+        } else {
+            console.log('req on upload', req.body);
+
+            // let userData = {
+            //     userId: req.body.userId,
+            //     _id: req.body.noteId,
+            //     image: req.file.location
+            // };
+            // notesController.updateNoteController(userData, (err, result) => {
+            //     if (err)
+            //         console.log(err);
+            //     if (result)
+            //         console.log(result);
+            //     return res.status(422).send(result);
+            // });
+            return res.json({ 'imgUrl': req.file.location });
+        }
+    });
+});
+
+
+router.post('/updateImage', notesController.updateImageController);
 
 // router.post('/labelAdd', auth, notesController.addLabelController);
 router.post('/addLabel', notesController.addLabelController);
@@ -91,12 +111,7 @@ router.post('/forgotPassword', userController.forgotPasswordController);
 
 router.post('/addNote', notesMiddleware.addNoteMiddleware, notesController.addNoteController);
 
-router.post('/getNotes', notesMiddleware.addNoteMiddleware,
-    // cache({
-    //     name: 'getNotes',
-    //     expire: 60
-    // }),
-    notesController.getNotesController);
+router.post('/getNotes', notesMiddleware.addNoteMiddleware, notesController.getNotesController);
 
 // router.post('/updateNote', notesMiddleware.updateNoteMiddleware, notesController.updateNoteController);
 

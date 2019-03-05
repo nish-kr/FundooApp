@@ -38,6 +38,7 @@ export class NotesComponent implements OnInit {
     { name: 'darkBlue', colorCode: 'rgb(174, 203, 250)' },
     { name: 'gray', colorCode: 'rgb(232, 234, 237)' }
   ];
+  
   constructor(
     private httpService: HttpService,
     private snackBar: MatSnackBar,

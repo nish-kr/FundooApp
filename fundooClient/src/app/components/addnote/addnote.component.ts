@@ -82,12 +82,11 @@ export class AddnoteComponent implements OnInit {
 
   addNote() {
 
-    if (this.notes != null) {
-      // if (this.notes.note.trim() || this.notes.title.trim()) {
-      // this.notes.note.replace(new RegExp('\n', 'g'), "<br />");
-      const userCredentials:UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
+    // if (this.notes != null) {
+    if (this.notes.note || this.notes.title) {
+      const userCredentials: UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
-      if(userCredentials !== null){
+      if (userCredentials !== null) {
         this.noteData = {
           title: this.notes.title,
           note: this.notes.note,
@@ -99,7 +98,7 @@ export class AddnoteComponent implements OnInit {
           userId: userCredentials.userId
         };
       }
-      
+
 
       this.httpService.post(this.noteData, 'addNote').subscribe(
         data => {

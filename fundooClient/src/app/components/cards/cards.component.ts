@@ -335,9 +335,33 @@ export class CardsComponent implements OnInit {
     fd.append('image', file);
     // console.log(fd);
 
+    // const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
+
+    // let userData;
+    // if (userCredentials != null) {
+    //   userData = {
+    //     userId: userCredentials.userId,
+    //     noteId: this.item._id,
+    //     image: fd
+    //   };
+    // }
+    // console.log('uiserData', userData);
+
+
     this.httpService.post(fd, 'imageUpload').subscribe(
       data => {
         console.log(data);
+        this.imageUrl = (data as any).imgUrl;
+        this.item.image = this.imageUrl;
+        this.httpService.post(this.item, 'updateImage').subscribe(
+          data => {
+            console.log(data);
+            
+          },
+          err => {
+            console.log(err);
+          }
+        )
       },
       err => {
         console.log('image upload error', err);

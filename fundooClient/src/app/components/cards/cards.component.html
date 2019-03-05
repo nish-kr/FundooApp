@@ -4,11 +4,10 @@
 
     <div class="noteCard">
       <div class="matCardTitleContent" (click)="editCard(item)">
-        <!-- <div>
-          <img class="cardImage" [src]="imageUrl">
-        </div> -->
+        <div *ngIf="item.image">
+          <img class="cardImage" [src]="item.image">
+        </div>
         <mat-card-header>
-
           <mat-card-title class="matCardTitle">{{item?.title}}</mat-card-title>
           <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePin(item)">
             <svg-icon [src]="pinIconSrc"> </svg-icon>
@@ -37,7 +36,8 @@
         </div>
 
         <div class="notesIcons">
-          <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()" (click)="toggleShowReminder()">
+          <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()"
+            (click)="toggleShowReminder()">
             <mat-icon>notifications_active</mat-icon>
           </button>
           <div class="reminderMenu" *ngIf="!reminderMenuBool && showReminderMenu && item">
@@ -92,7 +92,7 @@
             <mat-icon>color_lens</mat-icon>
           </button>
 
-          <input style="display: none" type="file" (change)="onUpload($event)" #fileInput>
+          <input style="display: none" type="file" (change)="onUpload($event,item)" #fileInput>
           <button class="imageIcon" mat-icon-button matTooltip="Add Image" (click)="fileInput.click()">
             <mat-icon>image</mat-icon>
           </button>
