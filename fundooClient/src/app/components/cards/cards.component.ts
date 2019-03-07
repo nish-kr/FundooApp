@@ -347,7 +347,6 @@ export class CardsComponent implements OnInit {
     // }
     // console.log('uiserData', userData);
 
-
     this.httpService.post(fd, 'imageUpload').subscribe(
       data => {
         console.log(data);
@@ -356,7 +355,7 @@ export class CardsComponent implements OnInit {
         this.httpService.post(this.item, 'updateImage').subscribe(
           data => {
             console.log(data);
-            
+            this.snackBar.open('Image Added', 'Okay', { duration: 2000 });
           },
           err => {
             console.log(err);
@@ -368,6 +367,7 @@ export class CardsComponent implements OnInit {
       });
   }
 
+  
 
   //   var FormData = require('form-data');
   // var http = require('http');

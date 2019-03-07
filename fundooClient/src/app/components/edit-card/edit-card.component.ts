@@ -109,4 +109,17 @@ export class EditCardComponent implements OnInit {
       this.data.pin = true;
     }
   }
+
+  deleteImage() {
+    this.httpService.post(this.data, 'deleteImage').subscribe(
+      data => {
+        console.log('after image delete', data);
+        this.data.image = null;
+        // this.snackBar.open('Image Deleted', 'Okay', { duration: 2000 });
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 }

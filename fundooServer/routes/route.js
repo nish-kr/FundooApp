@@ -79,6 +79,7 @@ router.post('/imageUpload', function (req, res) {
 
 router.post('/updateImage', notesController.updateImageController);
 
+router.post('/deleteImage', notesController.deleteImageController);
 // router.post('/labelAdd', auth, notesController.addLabelController);
 router.post('/addLabel', notesController.addLabelController);
 

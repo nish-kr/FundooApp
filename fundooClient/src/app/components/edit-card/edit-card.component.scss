@@ -46,24 +46,32 @@
 
 .withImage {
     padding: 10px;
-    overflow-y: overlay;
+    overflow-y: auto;
     overflow-x: hidden;
-    max-height: 500px;
+    max-height: 550px; // @media screen (max-height: 550px){
+    //     overflow-y: hidden;
+    // }
 }
 
 .withoutImage {
     padding: 10px;
     overflow-y: hidden;
     overflow-x: hidden;
-    max-height: 500px;
+    max-height: 550px;
 }
 
 .cardImage {
-    // max-width: 200px;
-    width: 105%;
+    width: 110%;
+    max-width: 622px;
     margin: 0px;
     margin-top: -15px;
     margin-left: -18px;
     margin-right: -18px;
     border-radius: 10px;
+}
+
+.deleteImageIcon {
+    margin-left: -20px;
+    background-color: rgb(34, 34, 34);
+    color: white;
 }

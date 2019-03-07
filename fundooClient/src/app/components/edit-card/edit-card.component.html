@@ -1,13 +1,18 @@
 <div [ngClass]="{'withImage': data.image, 'withoutImage' : !data.image}" [ngStyle]="{'background': data.color}">
   <div>
-    <div class="editNoteTitleDiv">
-      <div *ngIf="data.image">
-        <img class="cardImage" [src]="data.image">
+    <div fxLayout="row" *ngIf="data.image">
+      <img fxFlexFill class="cardImage" [src]="data.image">
+      <div fxLayoutAlign="end end">
+        <button class="deleteImageIcon" mat-icon-button (click)="deleteImage()">
+          <mat-icon class="mat-18">delete</mat-icon>
+        </button>
       </div>
+    </div>
+    <div class="editNoteTitleDiv" fxLayout="row">
       <textarea class="editNoteTitleInput" matTextareaAutosize [(ngModel)]="data.title" id="" cols="40" rows="1"
         placeholder="Title" [ngStyle]="{'background': data.color}">{{data.title}}</textarea>
-      <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="changePinValue()">
-        <!-- <svg-icon [src]="pinIconSrc"> </svg-icon> -->
+      <button fxLayoutAlign="end end" class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note"
+        (click)="changePinValue()">
         <svg-icon [src]="data.pin ? '../../assets/Icons/pinIcon.svg' : '../../assets/Icons/unpinIcon.svg' "> </svg-icon>
         <!-- <mat-icon class="mat-18">ligature</mat-icon>  mat-dialog-title
 mat-dialog-title-->

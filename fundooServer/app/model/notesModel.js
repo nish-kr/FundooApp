@@ -313,7 +313,7 @@ notesDB.prototype.updateNote = (req, callback) => {
 }
 
 notesDB.prototype.updateImage = (req, callback) => {
-    console.log("request on update note", req);
+    console.log("request on update image", req);
 
     notes.findByIdAndUpdate(req._id, { ...req }, function (err, data) {
 
@@ -321,6 +321,37 @@ notesDB.prototype.updateImage = (req, callback) => {
             console.log("Update Request Error");
             return callback(err);
         } else {
+
+            notes.find({ userId: req.userId }, function (err, data) {
+
+                if (err) {
+                    console.log("Username Request Error");
+                    return callback(err);
+                } else {
+                    console.log('updated the note in cache and then sent');
+                    // Checking if there is any data in the database of that username.
+                    redis.set('notes', JSON.stringify(data), function () {
+
+                        return callback(null, data);
+                    });
+
+                    // Returning the data.
+
+                }
+            });
+        }
+    });
+}
+
+notesDB.prototype.deleteImage = (req, callback) => {
+
+    notes.findByIdAndUpdate(req._id, { image: null }, { new: true }, function (err, data) {
+
+        if (err) {
+            console.log("Update Request Error");
+            return callback(err);
+        } else {/*  */
+            // console.log(data);
 
             notes.find({ userId: req.userId }, function (err, data) {
 
