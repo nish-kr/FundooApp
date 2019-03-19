@@ -23,15 +23,14 @@ mat-dialog-title-->
         placeholder="Note" [ngStyle]="{'background': data.color}">{{data.note}}</textarea>
     </div>
   </div>
-  <div *ngIf="data.reminder" class="reminderDisplay">
-    <button mat-icon-button>
-      <mat-icon class="mat-18">access_time</mat-icon>
-    </button>
-    {{data.reminder}}
-    <button mat-icon-button (click)="removeReminder()" matTooltip="Delete Reminder">
-      <mat-icon class="mat-18">cancel_outline</mat-icon>
-    </button>
-  </div>
+  <mat-chip-list *ngIf="data?.reminder">
+    <mat-chip class="reminderDisplay">
+      <mat-icon matChipRemove class="timeIcon">access_time</mat-icon>
+      {{data?.reminder}}
+      <mat-icon class="deleteChipButton" matChipRemove (click)="removeReminder()" matTooltip="Delete Reminder">
+        close</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
   <mat-dialog-actions>
     <!-- align="end" -->
 

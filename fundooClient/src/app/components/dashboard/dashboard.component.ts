@@ -48,23 +48,23 @@ export class DashboardComponent implements OnInit {
     search: String
   };
 
-  public icon = 'dashboard';
-  public name: String="";
-  public email: String="";
-  public viewToolTip = 'Grid View';
-  public view = 'row';
+  public icon = 'view_agenda_outline';
+  public name: String = "";
+  public email: String = "";
+  public viewToolTip = 'List View';
+  public view = 'column';
   // public headerName = "Fundoo Notes";
-  public accountImage: any="";
+  public accountImage: any = "";
   public labels: any;
   public labelName = [];
 
   url: string;
 
   ngOnInit() {
-    const userCredentials:UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
+    const userCredentials: UserCredentials = JSON.parse(localStorage.getItem('loginToken'));
     this.data.currentMessage.subscribe(message => this.view = message);
     // let userCredentials = this.login.userNameEmail;
-    if(userCredentials !== null){
+    if (userCredentials !== null) {
       this.accountImage = userCredentials.name[0];
       this.name = userCredentials.name;
       this.email = userCredentials.email;
@@ -95,12 +95,12 @@ export class DashboardComponent implements OnInit {
     const userCredentials = JSON.parse(localStorage.getItem('loginToken'));
 
     let userData;
-    if(userCredentials !== null){
+    if (userCredentials !== null) {
       userData = {
         userId: userCredentials.userId,
       };
     }
-    
+
 
     this.httpService.post(userData, 'getLabel').subscribe(
       data => {
@@ -131,9 +131,10 @@ export class DashboardComponent implements OnInit {
 
   editLabel() {
     const dialogRef = this.dialog.open(EditLabelComponent, {
-      data: this.labelName
+      data: this.labelName,
+      autoFocus: false
     });
-    
+
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       this.getLabel();
@@ -184,15 +185,15 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleGridListIcon() {
-    if (this.icon === 'view_agenda_outline') {
-      this.icon = 'dashboard';
-      this.viewToolTip = 'Grid View';
+    if (this.icon === 'dashboard') {
+      this.icon = 'view_agenda_outline';
+      this.viewToolTip = 'List View';
       this.data.changeMessage('row');
       // console.log("row");
 
     } else {
-      this.icon = 'view_agenda_outline';
-      this.viewToolTip = 'List View';
+      this.icon = 'dashboard';
+      this.viewToolTip = 'Grid View';
       this.data.changeMessage('column');
       // console.log("column");
     }

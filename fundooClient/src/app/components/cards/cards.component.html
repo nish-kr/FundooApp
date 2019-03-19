@@ -16,7 +16,25 @@
         <mat-card-content class="matCardContent"> {{item?.note}} </mat-card-content>
       </div>
       <mat-card-footer class="matCardFooter">
-        <div *ngIf="item?.reminder" class="reminderDisplay">
+        <mat-chip-list *ngIf="item?.reminder">
+          <mat-chip class="reminderDisplay">
+            <mat-icon matChipRemove class="timeIcon">access_time</mat-icon>
+            {{item?.reminder}}
+            <mat-icon class="deleteChipButton" matChipRemove (click)="removeReminder()" matTooltip="Delete Reminder">
+              close</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+
+        <mat-chip-list *ngIf="chosenLabel.length>0">
+          <mat-chip *ngFor="let item of chosenLabel" class="reminderDisplay">
+            {{item?.labelName}}
+            <mat-icon class="deleteChipButton" matChipRemove (click)="removeLabelFromNote(item)"
+              matTooltip="Remove Label">
+              close</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+
+        <!-- <div *ngIf="item?.reminder" class="reminderDisplay">
           <button mat-icon-button>
             <mat-icon class="mat-18">access_time</mat-icon>
           </button>
@@ -24,16 +42,16 @@
           <button mat-icon-button (click)="removeReminder()" matTooltip="Delete Reminder">
             <mat-icon class="mat-18">cancel_outline</mat-icon>
           </button>
-        </div>
+        </div> -->
 
-        <div class="labelsInNote" *ngIf="chosenLabel.length>0">
+        <!-- <div class="labelsInNote" *ngIf="chosenLabel.length>0">
           <div *ngFor="let item of chosenLabel" class="reminderDisplay">
             <span class="textReminderLabel">{{item?.labelName}}</span>
             <button mat-icon-button (click)="removeLabelFromNote(item)" matTooltip="Delete Reminder">
               <mat-icon class="mat-18">cancel_outline</mat-icon>
             </button>
           </div>
-        </div>
+        </div> -->
 
         <div class="notesIcons">
           <button class="reminderIcon" mat-icon-button matTooltip="Remind me" (click)="toggleReminderMenu()"
@@ -84,7 +102,7 @@
             </div>
           </div>
 
-          <button class="collaboratorIcon" mat-icon-button matTooltip="Collaborator">
+          <button class="collaboratorIcon" (click)="addCollaborator(item)" mat-icon-button matTooltip="Collaborator">
             <mat-icon>person_add</mat-icon>
           </button>
           <button class="changeColorIcon" mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu"

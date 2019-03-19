@@ -6,6 +6,7 @@ import { EditCardComponent } from '../edit-card/edit-card.component';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { Time } from '@angular/common';
 import { isDate } from 'util';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -260,6 +261,33 @@ export class CardsComponent implements OnInit {
     // });
   }
 
+  addCollaborator(item) {
+    const dialogRef = this.dialog.open(CollaboratorComponent, {
+      data: item,
+      minWidth: "600px",
+      autoFocus: false
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`, item);
+      // this.httpService.post(item, 'updateNote').subscribe(
+      //   data => {
+      //     console.log('updated: ', data);
+      //     this.messageEvent.emit('Emitted from child');
+      //     if (item.archive) {
+      //       this.snackBar.open('Note Archived!', 'Okay', { duration: 3000 });
+      //     } else if (item.trash) {
+      //       this.snackBar.open('Note Deleted!', 'Okay', { duration: 3000 });
+      //     } else {
+      //       this.snackBar.open('Note Edited!', 'Okay', { duration: 3000 });
+      //     }
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   }
+      // );
+    });
+  }
+
   toggleReminderMenu() {
     if (this.reminderMenuBool == true) {
       this.reminderMenuBool = false;
@@ -367,7 +395,7 @@ export class CardsComponent implements OnInit {
       });
   }
 
-  
+
 
   //   var FormData = require('form-data');
   // var http = require('http');

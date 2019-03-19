@@ -45,7 +45,7 @@ userDB.prototype.loginUser = (req, callback) => {
             // Checking if there is any data in the database of that username.
             if (data) {
                 console.log(data);
-                
+
                 // Cheking if 'res' is true, i.e. passwords are matched.
                 if (bcrypt.compareSync(req.password, data.password)) {
 
@@ -89,7 +89,7 @@ userDB.prototype.signupUser = (req, callback) => {
         } else {
 
             console.log("Data Updated! \n", newData);
-            
+
             // Returning the result.
             return callback(null, result);
         }
@@ -97,14 +97,14 @@ userDB.prototype.signupUser = (req, callback) => {
 }
 
 userDB.prototype.forgotPassword = (req, callback) => {
-    user.findOneAndUpdate( {email:req.email}, {token:req.token}, (err, data) => {
+    user.findOneAndUpdate({ email: req.email }, { token: req.token }, (err, data) => {
         if (err) {
 
             return callback(err);
         } else {
 
             console.log("Data Updated! \n", data);
-            
+
             return callback(null, data);
         }
     })

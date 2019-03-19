@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
-import { CofirmpasswordDirective } from './cofirmpassword.directive';
 
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { ClickOutsideModule } from 'ng-click-outside';
@@ -43,6 +42,8 @@ import { LabelComponent } from './components/label/label.component';
 import { L10nConfig, L10nLoader, TranslationModule, StorageStrategy, ProviderType, LogLevel } from 'angular-l10n';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AuthGuard } from './services/auth.guard';
+import { CollaboratorComponent } from './components/collaborator/collaborator.component';
+import { EmailSearchPipe } from './pipes/email-search.pipe';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -92,7 +93,6 @@ export function getAuthServiceConfigs() {
     RegisterComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
-    CofirmpasswordDirective,
     NotesComponent,
     RemindersComponent,
     ArchiveComponent,
@@ -102,6 +102,8 @@ export function getAuthServiceConfigs() {
     EditCardComponent,
     EditLabelComponent,
     LabelComponent,
+    CollaboratorComponent,
+    EmailSearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -123,7 +125,8 @@ export function getAuthServiceConfigs() {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
     EditCardComponent,
-    EditLabelComponent
+    EditLabelComponent,
+    CollaboratorComponent
   ],
   providers: [
     {

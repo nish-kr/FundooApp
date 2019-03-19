@@ -2,11 +2,14 @@
 
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700');
-
 .noteCard {
     // word-wrap: break-word;
     word-break: break-all;
     word-wrap: break-word; // overflow-wrap: break-word;
+}
+
+.mat-tooltip {
+    font-size: 13px;
 }
 
 // @import "~@angular/material/prebuilt-themes/purple-green.css";
@@ -22,7 +25,6 @@
 // * {
 //     font-family: 'Roboto', sans-serif;
 // }
-
 // .list-viewer-wrapper {
 //   display: flex;
 //   flex-direction: column;

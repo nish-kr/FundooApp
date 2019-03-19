@@ -75,3 +75,33 @@
     background-color: rgb(34, 34, 34);
     color: white;
 }
+
+.reminderDisplay {
+    font-size: 12px;
+    background: #0000001f;
+    padding: 12px 5px !important;
+}
+
+:host ::ng-deep .reminderDisplay .mat-standard-chip .mat-chip-remove,
+.mat-standard-chip .mat-chip-trailing-icon {
+    margin: 0px;
+}
+
+.mat-standard-chip {
+    min-height: 22px;
+}
+
+.deleteChipButton {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.2s linear;
+}
+
+.reminderDisplay:hover .deleteChipButton {
+    visibility: visible;
+    opacity: 1;
+}
+
+.timeIcon {
+    margin-right: 8px !important;
+}

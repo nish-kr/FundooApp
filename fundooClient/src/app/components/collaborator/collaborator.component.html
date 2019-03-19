@@ -1,0 +1,49 @@
+<div class="mainCollaboratorDiv">
+  <h3>Collaborators</h3>
+  <mat-divider></mat-divider>
+  <div fxFill class="matDialogContentCollab">
+    <!-- <mat-dialog-content fxFill class="matDialogContentCollab"> -->
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div>
+        <mat-icon class="personAddIcon">person_add</mat-icon>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row">
+          <div class="userDataName">
+            {{userData.name}}
+          </div>
+          <div class="userDataOwnerItalic">
+            (Owner)
+          </div>
+        </div>
+        <div class="userDataEmail">
+          {{userData.email}}
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="personAddIcon">person_add</mat-icon>
+      <input class="emailSearchInput" fxFlex [(ngModel)]="searchEmail" type="text" required
+        placeholder="Person or email to share with">
+      <!-- [matAutocomplete]="auto" -->
+      <!-- <mat-autocomplete *ngIf="searchEmail" #auto="matAutocomplete">
+        <mat-option *ngFor="let c of characters | emailSearch : searchEmail" [value]="c">
+          {{c}}
+        </mat-option>
+      </mat-autocomplete> -->
+    </div>
+
+    <div *ngIf="searchEmail">
+      <li *ngFor="let c of characters | emailSearch : searchEmail">
+        {{c}}
+      </li>
+    </div>
+    <!-- </mat-dialog-content> -->
+  </div>
+</div>
+<div fxFill class="matDialogActions" fxLayoutAlign="end end">
+  <!-- <mat-dialog-actions fxFill class="matDialogActions" fxLayoutAlign="end end"> -->
+  <button mat-button matDialogClose>Cancel</button>
+  <button mat-button>Save</button>
+  <!-- </mat-dialog-actions> -->
+</div>

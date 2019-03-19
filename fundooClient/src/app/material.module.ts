@@ -18,7 +18,8 @@ import {
     MatCheckboxModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule
   } from '@angular/material';
   import {NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -61,6 +62,8 @@ import { FormsModule } from '@angular/forms';
       MatExpansionModule,
       MatDatepickerModule,
       MatNativeDateModule,
+      MatChipsModule,
+      MatAutocompleteModule
     ],
   })
 

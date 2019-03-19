@@ -103,12 +103,14 @@
     opacity: 0;
     transition: visibility 0.5s, opacity 0.2s linear; // display: none;
 }
+
 .noteCard:hover .notesIcons,
 .noteCard:hover .pinIcon {
     visibility: visible;
     opacity: 1; // transition: opacity 0.5s linear;
     // display: block;
 }
+
 .pinIcon {
     height: 30px;
     margin-left: auto;
@@ -167,18 +169,15 @@
 //     min-width: auto !important;
 //     justify-content: space-around;
 // }
-
 /deep/ .moreNotesMenu .mat-menu-content div {
     display: flex;
     flex-direction: column;
 }
 
 .reminderDisplay {
-    display: flex; // flex-wrap: wrap;
     font-size: 12px;
-    border: 1px solid rgba($color: #ffffff, $alpha: 0.0);
-    border-radius: 20px;
-    background: rgba($color: #909090, $alpha: 0.4);
+    background: #0000001f;
+    padding: 12px 5px !important;
 }
 
 .labelsInNote {
@@ -186,10 +185,33 @@
     flex-wrap: wrap;
 }
 
-.textReminderLabel {
-    align-self: center;
+:host ::ng-deep .reminderDisplay .mat-standard-chip .mat-chip-remove,
+.mat-standard-chip .mat-chip-trailing-icon {
+    margin: 0px;
 }
 
+.mat-standard-chip {
+    min-height: 22px;
+}
+
+.deleteChipButton {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.2s linear;
+}
+
+.reminderDisplay:hover .deleteChipButton {
+    visibility: visible;
+    opacity: 1;
+}
+
+.timeIcon {
+    margin-right: 8px !important;
+}
+
+// .textReminderLabel {
+//     align-self: center;
+// }
 // .cardImage {
 //     // max-width: 200px;
 //     width: 234px;
